@@ -1,0 +1,12 @@
+[
+    {"name":"Michael", "age":37, "sex":"M", "salary": 1000},
+    {"name":"Andy", "age":30, "sex":"M", "salary": 1000},
+    {"name":"Justin", "age":19, "sex":"M", "salary": 1000},
+    {"name":"Caroline", "sex":"F", "salary": 2000},
+    {"name":"Fabiana", "age":30, "sex":"F", "salary": 2000},
+    {"name":"Sandhya", "age":19, "sex":"F", "salary": 2000},
+    {"name":"Michael", "sex":"M", "salary": 3000},
+    {"name":"Andy", "age":40, "sex":"M", "salary": 3000},
+    {"name":"Justin", "age":29, "sex":"M", "salary": 3000}
+]
+

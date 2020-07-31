@@ -1,0 +1,369 @@
+Config 1: [('spark.app.id', 'local-1596160627717'), ('spark.rdd.compress', 'True'), ('spark.app.name', 'basic-sql-udf-matplotlib.py'), ('spark.serializer.objectStreamReset', '100'), ('spark.master', 'local[*]'), ('spark.executor.id', 'driver'), ('spark.driver.port', '55977'), ('spark.submit.deployMode', 'client'), ('spark.driver.host', '192.168.1.13')] 
+
+Config 2: <pyspark.sql.session.SparkSession object at 0x110654a50> 
+
+root
+ |-- integers: long (nullable = true)
+ |-- floats: double (nullable = true)
+ |-- integer_arrays: array (nullable = true)
+ |    |-- element: long (containsNull = true)
+
+df_ss_1 schema
+ None 
+
+root
+ |-- Name: string (nullable = true)
+ |-- Sex: string (nullable = true)
+ |-- Age (yrs): long (nullable = true)
+ |-- Height (in): long (nullable = true)
+ |-- Weight (lb): long (nullable = true)
+
+df_ss_csv schema
+ None 
+
+root
+ |-- name: string (nullable = true)
+ |-- sex: string (nullable = true)
+ |-- salary: long (nullable = true)
+ |-- age: double (nullable = true)
+
+df_ss_json schema
+ None 
+
+df_ss_1 describe
+ DataFrame[summary: string, integers: string, floats: string] 
+
+df_ss_csv describe
+ DataFrame[summary: string, Name: string, Sex: string, Age (yrs): string, Height (in): string, Weight (lb): string] 
+
+df_ss_json describe
+ DataFrame[summary: string, name: string, sex: string, salary: string, age: string] 
+
++-------+--------+------------------+
+|summary|integers|            floats|
++-------+--------+------------------+
+|  count|       3|                 3|
+|   mean|     2.0|0.7333333333333334|
+| stddev|     1.0|1.8610033136277147|
+|    min|       1|              -1.0|
+|    max|       3|               2.7|
++-------+--------+------------------+
+
+df_ss_1 describe show
+ None 
+
++-------+----+----+------------------+-----------------+------------------+
+|summary|Name| Sex|         Age (yrs)|      Height (in)|       Weight (lb)|
++-------+----+----+------------------+-----------------+------------------+
+|  count|  18|  18|                18|               18|                18|
+|   mean|null|null|34.666666666666664|85.11111111111111|146.72222222222223|
+| stddev|null|null|7.5770551473433505|8.703541462354744|22.540957638082503|
+|    min|Alex|   F|                23|               72|                98|
+|    max|Ruth|   M|                53|               99|               176|
++-------+----+----+------------------+-----------------+------------------+
+
+df_ss_csv describe show
+ None 
+
++-------+-------+----+-----------------+----+
+|summary|   name| sex|           salary| age|
++-------+-------+----+-----------------+----+
+|  count|      9|   9|                9|   9|
+|   mean|   null|null|           2000.0| NaN|
+| stddev|   null|null|866.0254037844386| NaN|
+|    min|   Andy|   F|             1000|19.0|
+|    max|Sandhya|   M|             3000| NaN|
++-------+-------+----+-----------------+----+
+
+df_ss_json describe show
+ None 
+
++--------+------+--------------+
+|integers|floats|integer_arrays|
++--------+------+--------------+
+|       1|  -1.0|        [1, 2]|
+|       2|   0.5|     [3, 4, 5]|
+|       3|   2.7|  [6, 7, 8, 9]|
++--------+------+--------------+
+
+df_ss_1 show 
+ None 
+
++----+---+---------+-----------+-----------+
+|Name|Sex|Age (yrs)|Height (in)|Weight (lb)|
++----+---+---------+-----------+-----------+
+|Alex|  M|       41|         72|        170|
+|Bert|  M|       42|         73|        166|
+|Carl|  M|       32|         74|        155|
+|Dave|  M|       39|         75|        167|
+|Elly|  F|       30|         76|        124|
+|Fran|  F|       33|         77|        115|
+|Gwen|  F|       26|         84|        121|
+|Hank|  M|       30|         85|        158|
+|Ivan|  M|       53|         86|        175|
+|Jake|  M|       32|         87|        143|
+|Kate|  F|       47|         88|        139|
+|Luke|  M|       34|         89|        163|
+|Myra|  F|       23|         90|         98|
+|Neil|  M|       36|         92|        160|
+|Omar|  M|       38|         93|        145|
+|Page|  F|       31|         95|        135|
+|Quin|  M|       29|         97|        176|
+|Ruth|  F|       28|         99|        131|
++----+---+---------+-----------+-----------+
+
+df_ss_csv show 
+ None 
+
++--------+---+------+----+
+|    name|sex|salary| age|
++--------+---+------+----+
+| Michael|  M|  1000| NaN|
+|    Andy|  M|  1000|30.0|
+|  Justin|  M|  1000|19.0|
+|Caroline|  F|  2000| NaN|
+| Fabiana|  F|  2000|30.0|
+| Sandhya|  F|  2000|19.0|
+| Michael|  M|  3000| NaN|
+|    Andy|  M|  3000|40.0|
+|  Justin|  M|  3000|29.0|
++--------+---+------+----+
+
+df_ss_json show None 
+
+df_ss_1 count 
+ 3 
+
+df_ss_csv count 
+ 18 
+
+df_ss_json count 9 
+
+df_ss_csv first 5 rows [Row(Name='Alex', Sex='M', Age (yrs)=41, Height (in)=72, Weight (lb)=170), Row(Name='Bert', Sex='M', Age (yrs)=42, Height (in)=73, Weight (lb)=166), Row(Name='Carl', Sex='M', Age (yrs)=32, Height (in)=74, Weight (lb)=155), Row(Name='Dave', Sex='M', Age (yrs)=39, Height (in)=75, Weight (lb)=167), Row(Name='Elly', Sex='F', Age (yrs)=30, Height (in)=76, Weight (lb)=124)] 
+
+df_ss_json first 5 rows [Row(name='Michael', sex='M', salary=1000, age=nan), Row(name='Andy', sex='M', salary=1000, age=30.0), Row(name='Justin', sex='M', salary=1000, age=19.0), Row(name='Caroline', sex='F', salary=2000, age=nan), Row(name='Fabiana', sex='F', salary=2000, age=30.0)] 
+
+df_ss_1 collect
+ [Row(integers=1, floats=-1.0, integer_arrays=[1, 2]), Row(integers=2, floats=0.5, integer_arrays=[3, 4, 5]), Row(integers=3, floats=2.7, integer_arrays=[6, 7, 8, 9])] 
+
+df_ss_csv collect
+ [Row(Name='Alex', Sex='M', Age (yrs)=41, Height (in)=72, Weight (lb)=170), Row(Name='Bert', Sex='M', Age (yrs)=42, Height (in)=73, Weight (lb)=166), Row(Name='Carl', Sex='M', Age (yrs)=32, Height (in)=74, Weight (lb)=155), Row(Name='Dave', Sex='M', Age (yrs)=39, Height (in)=75, Weight (lb)=167), Row(Name='Elly', Sex='F', Age (yrs)=30, Height (in)=76, Weight (lb)=124), Row(Name='Fran', Sex='F', Age (yrs)=33, Height (in)=77, Weight (lb)=115), Row(Name='Gwen', Sex='F', Age (yrs)=26, Height (in)=84, Weight (lb)=121), Row(Name='Hank', Sex='M', Age (yrs)=30, Height (in)=85, Weight (lb)=158), Row(Name='Ivan', Sex='M', Age (yrs)=53, Height (in)=86, Weight (lb)=175), Row(Name='Jake', Sex='M', Age (yrs)=32, Height (in)=87, Weight (lb)=143), Row(Name='Kate', Sex='F', Age (yrs)=47, Height (in)=88, Weight (lb)=139), Row(Name='Luke', Sex='M', Age (yrs)=34, Height (in)=89, Weight (lb)=163), Row(Name='Myra', Sex='F', Age (yrs)=23, Height (in)=90, Weight (lb)=98), Row(Name='Neil', Sex='M', Age (yrs)=36, Height (in)=92, Weight (lb)=160), Row(Name='Omar', Sex='M', Age (yrs)=38, Height (in)=93, Weight (lb)=145), Row(Name='Page', Sex='F', Age (yrs)=31, Height (in)=95, Weight (lb)=135), Row(Name='Quin', Sex='M', Age (yrs)=29, Height (in)=97, Weight (lb)=176), Row(Name='Ruth', Sex='F', Age (yrs)=28, Height (in)=99, Weight (lb)=131)] 
+
+df_ss_json collect
+ [Row(name='Michael', sex='M', salary=1000, age=nan), Row(name='Andy', sex='M', salary=1000, age=30.0), Row(name='Justin', sex='M', salary=1000, age=19.0), Row(name='Caroline', sex='F', salary=2000, age=nan), Row(name='Fabiana', sex='F', salary=2000, age=30.0), Row(name='Sandhya', sex='F', salary=2000, age=19.0), Row(name='Michael', sex='M', salary=3000, age=nan), Row(name='Andy', sex='M', salary=3000, age=40.0), Row(name='Justin', sex='M', salary=3000, age=29.0)] 
+
+row_json :  nan 1000
+row_json :  30.0 1000
+row_json :  19.0 1000
+row_json :  nan 2000
+row_json :  30.0 2000
+row_json :  19.0 2000
+row_json :  nan 3000
+row_json :  40.0 3000
+row_json :  29.0 3000
+row_csv :  72 170
+row_csv :  73 166
+row_csv :  74 155
+row_csv :  75 167
+row_csv :  76 124
+row_csv :  77 115
+row_csv :  84 121
+row_csv :  85 158
+row_csv :  86 175
+row_csv :  87 143
+row_csv :  88 139
+row_csv :  89 163
+row_csv :  90 98
+row_csv :  92 160
+row_csv :  93 145
+row_csv :  95 135
+row_csv :  97 176
+row_csv :  99 131
+list_csv_height:  [72, 73, 74, 75, 76, 77, 84, 85, 86, 87, 88, 89, 90, 92, 93, 95, 97, 99]
+list_csv_weight:  [170, 166, 155, 167, 124, 115, 121, 158, 175, 143, 139, 163, 98, 160, 145, 135, 176, 131]
++----+---------+---+
+|Name|Age (yrs)|Sex|
++----+---------+---+
+|Alex|       41|  M|
+|Bert|       42|  M|
+|Carl|       32|  M|
+|Dave|       39|  M|
+|Elly|       30|  F|
+|Fran|       33|  F|
+|Gwen|       26|  F|
+|Hank|       30|  M|
+|Ivan|       53|  M|
+|Jake|       32|  M|
+|Kate|       47|  F|
+|Luke|       34|  M|
+|Myra|       23|  F|
+|Neil|       36|  M|
+|Omar|       38|  M|
+|Page|       31|  F|
+|Quin|       29|  M|
+|Ruth|       28|  F|
++----+---------+---+
+
+df_ss_csv select
+ None 
+
++--------+----+---+
+|    name| age|sex|
++--------+----+---+
+| Michael| NaN|  M|
+|    Andy|30.0|  M|
+|  Justin|19.0|  M|
+|Caroline| NaN|  F|
+| Fabiana|30.0|  F|
+| Sandhya|19.0|  F|
+| Michael| NaN|  M|
+|    Andy|40.0|  M|
+|  Justin|29.0|  M|
++--------+----+---+
+
+df_ss_json select
+ None 
+
++----+---------+---+
+|Name|Age (yrs)|Sex|
++----+---------+---+
+|Alex|       41|  M|
+|Bert|       42|  M|
+|Carl|       32|  M|
+|Dave|       39|  M|
+|Elly|       30|  F|
+|Fran|       33|  F|
+|Gwen|       26|  F|
+|Hank|       30|  M|
+|Ivan|       53|  M|
+|Jake|       32|  M|
+|Kate|       47|  F|
+|Luke|       34|  M|
+|Myra|       23|  F|
+|Neil|       36|  M|
+|Omar|       38|  M|
+|Page|       31|  F|
+|Quin|       29|  M|
+|Ruth|       28|  F|
++----+---------+---+
+
+df_ss_csv select alt
+ None 
+
++--------+----+---+
+|    name| age|sex|
++--------+----+---+
+| Michael| NaN|  M|
+|    Andy|30.0|  M|
+|  Justin|19.0|  M|
+|Caroline| NaN|  F|
+| Fabiana|30.0|  F|
+| Sandhya|19.0|  F|
+| Michael| NaN|  M|
+|    Andy|40.0|  M|
+|  Justin|29.0|  M|
++--------+----+---+
+
+df_ss_json select alt
+ None 
+
++----+
+|Name|
++----+
+|Alex|
+|Bert|
+|Carl|
+|Dave|
+|Elly|
+|Fran|
+|Gwen|
+|Hank|
+|Ivan|
+|Jake|
+|Kate|
+|Luke|
+|Myra|
+|Neil|
+|Omar|
+|Page|
+|Quin|
+|Ruth|
++----+
+
+df_ss_csv select dropDuplicates and sort
+ None 
+
++--------+
+|    name|
++--------+
+|    Andy|
+|Caroline|
+| Fabiana|
+|  Justin|
+| Michael|
+| Sandhya|
++--------+
+
+df_ss_json select dropDuplicates and sort
+ None 
+
++----+----------+---------+-------------+
+|Name|Hello Name|Age (yrs)|Age doubled !|
++----+----------+---------+-------------+
+|Alex|Hello Alex|       41|           82|
+|Bert|Hello Bert|       42|           84|
+|Carl|Hello Carl|       32|           64|
+|Dave|Hello Dave|       39|           78|
+|Elly|Hello Elly|       30|           60|
+|Fran|Hello Fran|       33|           66|
+|Gwen|Hello Gwen|       26|           52|
+|Hank|Hello Hank|       30|           60|
+|Ivan|Hello Ivan|       53|          106|
+|Jake|Hello Jake|       32|           64|
+|Kate|Hello Kate|       47|           94|
+|Luke|Hello Luke|       34|           68|
+|Myra|Hello Myra|       23|           46|
+|Neil|Hello Neil|       36|           72|
+|Omar|Hello Omar|       38|           76|
+|Page|Hello Page|       31|           62|
+|Quin|Hello Quin|       29|           58|
+|Ruth|Hello Ruth|       28|           56|
++----+----------+---------+-------------+
+
+df_ss_csv_new 
+ None 
+
++--------+--------------+------+----------------+
+|    name|    Hello name|salary|salary doubled !|
++--------+--------------+------+----------------+
+| Michael| Hello Michael|  1000|            2000|
+|    Andy|    Hello Andy|  1000|            2000|
+|  Justin|  Hello Justin|  1000|            2000|
+|Caroline|Hello Caroline|  2000|            4000|
+| Fabiana| Hello Fabiana|  2000|            4000|
+| Sandhya| Hello Sandhya|  2000|            4000|
+| Michael| Hello Michael|  3000|            6000|
+|    Andy|    Hello Andy|  3000|            6000|
+|  Justin|  Hello Justin|  3000|            6000|
++--------+--------------+------+----------------+
+
+df_ss_json_new_sq 
+ None 
+
++--------+--------------+------+----------------+
+|    name|    Hello name|salary|salary doubled !|
++--------+--------------+------+----------------+
+| Michael| Hello Michael|  1000|            2000|
+|    Andy|    Hello Andy|  1000|            2000|
+|  Justin|  Hello Justin|  1000|            2000|
+|Caroline|Hello Caroline|  2000|            4000|
+| Fabiana| Hello Fabiana|  2000|            4000|
+| Sandhya| Hello Sandhya|  2000|            4000|
+| Michael| Hello Michael|  3000|            6000|
+|    Andy|    Hello Andy|  3000|            6000|
+|  Justin|  Hello Justin|  3000|            6000|
++--------+--------------+------+----------------+
+
+df_ss_json_new_dq 
+ None 
+

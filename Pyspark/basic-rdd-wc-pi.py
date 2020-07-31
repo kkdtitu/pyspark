@@ -12,7 +12,7 @@ def calc_pi(n):
 sc = pyspark.SparkContext()
 
 
-srcFile = "/home/ubuntu/Downloads/spark-2.4.3-bin-hadoop2.7/README.md"  
+srcFile = "/Users/ronakronik/server/spark-2.4.3-bin-hadoop2.7/README.md"  
 rdd_file = sc.textFile(srcFile, 4)   #specify number of partitions in the RDD
 lc_file = rdd_file.count()
 rdd_file_words = rdd_file.flatMap(lambda line: line.split(" "))
