@@ -127,14 +127,23 @@ print("df_ss_json select dropDuplicates and sort\n", df_ss_json.select('name').d
 
 #Calling Spark UDFs
 #csv
-df_ss_csv_new = df_ss_csv.select("Name", udf_hello_name("Name").alias("Hello Name"), "Age (yrs)", udf_twice_val("Age (yrs)").alias("Age doubled !"))
+df_ss_csv_new_1 = df_ss_csv.select("Name", udf_hello_name("Name").alias("Hello Name"), "Age (yrs)", udf_twice_val("Age (yrs)").alias("Age doubled !"))
 #json, string single quote
-df_ss_json_new_sq = df_ss_json.select('name', udf_hello_name('name').alias('Hello name'), 'salary', udf_twice_val('salary').alias('salary doubled !'))
+df_ss_json_new_sq_1 = df_ss_json.select('name', udf_hello_name('name').alias('Hello name'), 'salary', udf_twice_val('salary').alias('salary doubled !'))
 #json, string double quote
-df_ss_json_new_dq = df_ss_json.select("name", udf_hello_name("name").alias("Hello name"), "salary", udf_twice_val("salary").alias("salary doubled !"))
-print("df_ss_csv_new \n", df_ss_csv_new.show() ,"\n")
-print("df_ss_json_new_sq \n", df_ss_json_new_sq.show() ,"\n")
-print("df_ss_json_new_dq \n", df_ss_json_new_dq.show() ,"\n")
+df_ss_json_new_dq_1 = df_ss_json.select("name", udf_hello_name("name").alias("Hello name"), "salary", udf_twice_val("salary").alias("salary doubled !"))
+print("df_ss_csv_new_1 \n", df_ss_csv_new_1.show() ,"\n")
+print("df_ss_json_new_sq_1 \n", df_ss_json_new_sq_1.show() ,"\n")
+print("df_ss_json_new_dq_1 \n", df_ss_json_new_dq_1.show() ,"\n")
+
+#Using Spark UDFs to add columns to a Spark DF
+#csv
+df_ss_csv_new_2 = df_ss_csv.withColumn("Hello Name", udf_hello_name("Name"))
+#json, string single quote
+df_ss_json_new_2 = df_ss_json.withColumn('Salary Doubled !', udf_twice_val('salary'))
+print("df_ss_csv_new_2 \n", df_ss_csv_new_2.show() ,"\n")
+print("df_ss_json_new_2 \n", df_ss_json_new_2.show() ,"\n")
+
 
 
 #Generating the plots using matplotlib (lines, scatter, bar all in one plot)

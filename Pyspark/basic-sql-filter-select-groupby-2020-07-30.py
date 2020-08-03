@@ -25,6 +25,8 @@ print("Config 2:", ss, "\n")
 df_json = ss.read.json("people-sql-filter-select-groupby.json", multiLine=True)
 #df_json = ss.read.json("people.json", multiLine=True)
 df_csv = ss.read.csv('biostats-sql-filter-select-groupby.csv', header=True)
+# Drop rows if they have null values
+df_json_valid = df_json.dropna()
 
 if os.path.exists('csv_sql_dir'):
         shutil.rmtree('csv_sql_dir')
@@ -41,6 +43,12 @@ print("df_json printSchema :", df_json.printSchema(), "\n")
 #show
 print("df_csv.show :", df_csv.show(), "\n")
 print("df_json.show :", df_json.show(), "\n")
+print("df_json_valid.show :", df_json_valid.show(), "\n")  #rows with any null value dropped from df_json_valid 
+
+#count
+print("df_csv.count :", df_csv.count(), "\n")
+print("df_json.count :", df_json.count(), "\n")
+print("df_json_valid.count :", df_json_valid.count(), "\n")  #rows with any null value dropped from df_json_valid 
 
 #describe
 print("df_csv describe :", df_csv.describe(), "\n")
