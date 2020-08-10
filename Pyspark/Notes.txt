@@ -1,0 +1,5 @@
+(A) This folder runs spark in local mode / macbook
+(B) Spark in EMR examples are in Udacity/Data-Engineering-Nanodegree/Basic-Exercises/Exercises-Data-Lake-Spark
+	(B1) Look in the file .....Basic-Exercises/Exercises-Data-Lake-Spark/EMR-Notes.txt for details to run Spark in EMR
+	(B2) Udacity/Data-Engineering-Nanodegree/Basic-Exercises/Exercises-Data-Lake-Spark also has Python code / SDK / boto3 
+             to programmatically spin up / down EMR cluster
