@@ -27,6 +27,11 @@ def hello_name (abc):
 udf_twice_val = udf(lambda z: twice_val(z), IntegerType())
 udf_hello_name = udf(lambda xyz: hello_name(xyz), StringType())
 
+#Alternae way of creatimng UDFs
+@udf
+def udf_square_val (x):
+        return x*x
+
 #spark = SparkSession \
 #    .builder \
 #    .appName("Python Spark SQL basic example") \
@@ -143,6 +148,15 @@ df_ss_csv_new_2 = df_ss_csv.withColumn("Hello Name", udf_hello_name("Name"))
 df_ss_json_new_2 = df_ss_json.withColumn('Salary Doubled !', udf_twice_val('salary'))
 print("df_ss_csv_new_2 \n", df_ss_csv_new_2.show() ,"\n")
 print("df_ss_json_new_2 \n", df_ss_json_new_2.show() ,"\n")
+
+
+#Using ALT Spark UDFs to add columns to a Spark DF
+#csv
+df_ss_csv_new_3 = df_ss_csv.withColumn("Age Squared", udf_square_val("Age (yrs)"))
+print("df_ss_csv_new_3 \n", df_ss_csv_new_3.show() ,"\n")
+#json, string single quote
+df_ss_json_new_3 = df_ss_json.withColumn('Salary Squared !', udf_square_val('salary'))
+print("df_ss_json_new_3 \n", df_ss_json_new_3.show() ,"\n")
 
 
 
