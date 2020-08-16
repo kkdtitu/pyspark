@@ -52,6 +52,8 @@ print("Config sc:", sc, "\n")
 print("Config ss 1:", ss.sparkContext.getConf().getAll(), "\n")
 print("Config ss 2:", ss, "\n")
 
+
+
 #RDDs to/from Spark DF (Schema inferred at READ in these examples)
 rdd1 = sc.parallelize([("KKD","M",5.5), \
         ("Neepa","F",5.0), \
@@ -59,22 +61,26 @@ rdd1 = sc.parallelize([("KKD","M",5.5), \
         ("Ronik", "M", 4.4)])
 print("RDD1 :", rdd1.collect(), "\n RDD1 count:", rdd1.count())
 
-srcFile="/Users/ronakronik/Documents/KKD/Technical/pyspark-basic/Pyspark/people_orient_columns.txt"
+srcFile="/Users/ronakronik/Documents/KKD/Technical/pyspark/Pyspark/people_orient_columns.txt"
 rdd2 = sc.textFile(srcFile, 4).cache()   #.cache() is optional, number of RDD partitions = 4 is also optional
 print("RDD2 :", rdd2.collect(), "\n RDD2 count:", rdd2.count())
-rdd3 = rdd2.map(lambda x: x.split(","))
-print("RDD3 :", rdd3.collect(), "\n RDD3 count:", rdd3.count())
+rdd3 = rdd2.map(lambda x: x.split(",")).map(lambda x: tuple(x)) #convert each line/string x to a list and then the list to a tuple
+print("RDD3 :", rdd3.collect(), "\n RDD3 count:", rdd3.count()) #rdd3 is a list of tuples
 
+#RDD to Spark DF
 df_ss_from_rdd1 = rdd1.toDF(["Name","Sex","Height"])  #the RDD needs to be a list of tuples, where each tuple represents a row
 print("df_ss_from_rdd1.printSchema() :", df_ss_from_rdd1.printSchema())
 print("df_ss_from_rdd1.show() :", df_ss_from_rdd1.show())
 print("df_ss_from_rdd1.collect() :", df_ss_from_rdd1.collect())
 
-df_ss_from_rdd2 = rdd2.toDF(["Name","Sex","Height","Country"])
-print("df_ss_from_rdd2.printSchema() :", df_ss_from_rdd2.printSchema())
-print("df_ss_from_rdd2.show() :", df_ss_from_rdd2.show())
-print("df_ss_from_rdd2.collect() :", df_ss_from_rdd2.collect())
+df_ss_from_rdd3 = rdd3.toDF(["Name","Sex","Height","Country","State"]) #the RDD needs to be a list of tuples, where each tuple represents a row
+print("df_ss_from_rdd3.printSchema() :", df_ss_from_rdd3.printSchema())
+print("df_ss_from_rdd3.show() :", df_ss_from_rdd3.show())
+print("df_ss_from_rdd3.collect() :", df_ss_from_rdd3.collect())
 
+#Spark DF to RDD
+print("df_ss_from_rdd1.rdd :", df_ss_from_rdd1.rdd.collect())
+print("df_ss_from_rdd3.rdd :", df_ss_from_rdd3.rdd.collect())
 
 # Pandas to/from Spark DF (Schema inferred at READ in these examples)
 source_dict = {'integers': [1, 2, 3], 'floats': [-1.0, 0.5, 2.7], 'integer_arrays': [[1, 2], [3, 4, 5], [6, 7, 8, 9]]}
@@ -126,7 +132,7 @@ print("df_ss_json count", df_ss_json.count(), "\n")
 print("df_ss_csv first 5 rows", df_ss_csv.take(5), "\n")
 print("df_ss_json first 5 rows", df_ss_json.take(5), "\n")
 
-#collect -- returns a list of tuples. Each row is a tuple
+#collect -- returns a list of tuples. Each row is a row object / tuple
 print("df_ss_1 collect\n", df_ss_1.collect(), "\n")
 print("df_ss_csv collect\n", df_ss_csv.collect(), "\n")
 print("df_ss_json collect\n", df_ss_json.collect(), "\n")
