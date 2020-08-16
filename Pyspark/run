@@ -1,6 +1,6 @@
-Config 1: [('spark.app.id', 'local-1597545520273'), ('spark.driver.host', '192.168.1.15'), ('spark.rdd.compress', 'True'), ('spark.app.name', 'basic-sql-udf-matplotlib.py'), ('spark.driver.port', '64113'), ('spark.serializer.objectStreamReset', '100'), ('spark.master', 'local[*]'), ('spark.executor.id', 'driver'), ('spark.submit.deployMode', 'client')] 
+Config 1: [('spark.app.id', 'local-1597546319898'), ('spark.driver.host', '192.168.1.15'), ('spark.rdd.compress', 'True'), ('spark.app.name', 'basic-sql-udf-matplotlib.py'), ('spark.driver.port', '64220'), ('spark.serializer.objectStreamReset', '100'), ('spark.master', 'local[*]'), ('spark.executor.id', 'driver'), ('spark.submit.deployMode', 'client')] 
 
-Config 2: <pyspark.sql.session.SparkSession object at 0x114baef50> 
+Config 2: <pyspark.sql.session.SparkSession object at 0x1181df610> 
 
 root
  |-- integers: long (nullable = true)
@@ -451,5 +451,65 @@ df_ss_csv_new_3
 +--------+---+------+----+----------------+
 
 df_ss_json_new_3 
+ None 
+
++----+--------+---------+-------------+
+|Name|Hey Name|Age (yrs)|Age Squared !|
++----+--------+---------+-------------+
+|Alex|Hey Alex|       41|         1681|
+|Bert|Hey Bert|       42|         1764|
+|Carl|Hey Carl|       32|         1024|
+|Dave|Hey Dave|       39|         1521|
+|Elly|Hey Elly|       30|          900|
+|Fran|Hey Fran|       33|         1089|
+|Gwen|Hey Gwen|       26|          676|
+|Hank|Hey Hank|       30|          900|
+|Ivan|Hey Ivan|       53|         2809|
+|Jake|Hey Jake|       32|         1024|
+|Kate|Hey Kate|       47|         2209|
+|Luke|Hey Luke|       34|         1156|
+|Myra|Hey Myra|       23|          529|
+|Neil|Hey Neil|       36|         1296|
+|Omar|Hey Omar|       38|         1444|
+|Page|Hey Page|       31|          961|
+|Quin|Hey Quin|       29|          841|
+|Ruth|Hey Ruth|       28|          784|
++----+--------+---------+-------------+
+
+df_ss_csv_new_4 
+ None 
+
++--------+------------+------+-----------------+
+|    name|    Hey name|salary|salary Squared  !|
++--------+------------+------+-----------------+
+| Michael| Hey Michael|  1000|          1000000|
+|    Andy|    Hey Andy|  1002|          1004004|
+|  Justin|  Hey Justin|  1001|          1002001|
+|Caroline|Hey Caroline|  2002|          4008004|
+| Fabiana| Hey Fabiana|  2000|          4000000|
+| Sandhya| Hey Sandhya|  2002|          4008004|
+| Michael| Hey Michael|  3002|          9012004|
+|    Andy|    Hey Andy|  3002|          9012004|
+|  Justin|  Hey Justin|  3000|          9000000|
++--------+------------+------+-----------------+
+
+df_ss_json_new_sq_4 
+ None 
+
++--------+------------+------+-----------------+
+|    name|    Hey name|salary|salary Squared  !|
++--------+------------+------+-----------------+
+| Michael| Hey Michael|  1000|          1000000|
+|    Andy|    Hey Andy|  1002|          1004004|
+|  Justin|  Hey Justin|  1001|          1002001|
+|Caroline|Hey Caroline|  2002|          4008004|
+| Fabiana| Hey Fabiana|  2000|          4000000|
+| Sandhya| Hey Sandhya|  2002|          4008004|
+| Michael| Hey Michael|  3002|          9012004|
+|    Andy|    Hey Andy|  3002|          9012004|
+|  Justin|  Hey Justin|  3000|          9000000|
++--------+------------+------+-----------------+
+
+df_ss_json_new_dq_4 
  None 
 
