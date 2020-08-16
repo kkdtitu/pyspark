@@ -81,6 +81,10 @@ print("df_ss_from_rdd3.collect() :", df_ss_from_rdd3.collect())
 #Spark DF to RDD
 print("df_ss_from_rdd1.rdd :", df_ss_from_rdd1.rdd.collect())
 print("df_ss_from_rdd3.rdd :", df_ss_from_rdd3.rdd.collect())
+print("df_ss_from_rdd1.rdd.map(list) :", df_ss_from_rdd1.rdd.map(list).collect())
+print("df_ss_from_rdd3.rdd.map(list) :", df_ss_from_rdd3.rdd.map(list).collect())
+print("df_ss_from_rdd1.rdd.map(tuple) :", df_ss_from_rdd1.rdd.map(tuple).collect())
+print("df_ss_from_rdd3.rdd.map(tuple) :", df_ss_from_rdd3.rdd.map(tuple).collect())
 
 # Pandas to/from Spark DF (Schema inferred at READ in these examples)
 source_dict = {'integers': [1, 2, 3], 'floats': [-1.0, 0.5, 2.7], 'integer_arrays': [[1, 2], [3, 4, 5], [6, 7, 8, 9]]}

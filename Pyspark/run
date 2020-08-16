@@ -1,8 +1,8 @@
-Config sc: <SparkContext master=local[*] appName=basic-sql-rdd-pd-udf-matplotlib.py> 
+Config sc: <SparkContext master=local[*] appName=pyspark-df-rdd-pd-udf-matplotlib.py> 
 
-Config ss 1: [('spark.app.id', 'local-1597604176077'), ('spark.app.name', 'basic-sql-rdd-pd-udf-matplotlib.py'), ('spark.driver.host', '192.168.1.15'), ('spark.driver.port', '51426'), ('spark.rdd.compress', 'True'), ('spark.serializer.objectStreamReset', '100'), ('spark.master', 'local[*]'), ('spark.executor.id', 'driver'), ('spark.submit.deployMode', 'client')] 
+Config ss 1: [('spark.driver.host', '192.168.1.15'), ('spark.rdd.compress', 'True'), ('spark.app.name', 'pyspark-df-rdd-pd-udf-matplotlib.py'), ('spark.serializer.objectStreamReset', '100'), ('spark.master', 'local[*]'), ('spark.driver.port', '51677'), ('spark.executor.id', 'driver'), ('spark.submit.deployMode', 'client'), ('spark.app.id', 'local-1597605108066')] 
 
-Config ss 2: <pyspark.sql.session.SparkSession object at 0x116480ad0> 
+Config ss 2: <pyspark.sql.session.SparkSession object at 0x1158d0ad0> 
 
 RDD1 : [('KKD', 'M', 5.5), ('Neepa', 'F', 5.0), ('Ronak', 'M', 5.1), ('Ronik', 'M', 4.4)] 
  RDD1 count: 4
@@ -48,6 +48,10 @@ df_ss_from_rdd3.show() : None
 df_ss_from_rdd3.collect() : [Row(Name='"KKD"', Sex='"M"', Height='5.5', Country='"USA"', State='"NY"'), Row(Name='"Neepa"', Sex='"F"', Height='5.0', Country='"USA"', State='"NY"'), Row(Name='"Ronak"', Sex='"M"', Height='5.1', Country='"USA"', State='"NY"'), Row(Name='"Ronik"', Sex='"M"', Height='4.4', Country='"USA"', State='"NY"')]
 df_ss_from_rdd1.rdd : [Row(Name='KKD', Sex='M', Height=5.5), Row(Name='Neepa', Sex='F', Height=5.0), Row(Name='Ronak', Sex='M', Height=5.1), Row(Name='Ronik', Sex='M', Height=4.4)]
 df_ss_from_rdd3.rdd : [Row(Name='"KKD"', Sex='"M"', Height='5.5', Country='"USA"', State='"NY"'), Row(Name='"Neepa"', Sex='"F"', Height='5.0', Country='"USA"', State='"NY"'), Row(Name='"Ronak"', Sex='"M"', Height='5.1', Country='"USA"', State='"NY"'), Row(Name='"Ronik"', Sex='"M"', Height='4.4', Country='"USA"', State='"NY"')]
+df_ss_from_rdd1.rdd.map(list) : [['KKD', 'M', 5.5], ['Neepa', 'F', 5.0], ['Ronak', 'M', 5.1], ['Ronik', 'M', 4.4]]
+df_ss_from_rdd3.rdd.map(list) : [['"KKD"', '"M"', '5.5', '"USA"', '"NY"'], ['"Neepa"', '"F"', '5.0', '"USA"', '"NY"'], ['"Ronak"', '"M"', '5.1', '"USA"', '"NY"'], ['"Ronik"', '"M"', '4.4', '"USA"', '"NY"']]
+df_ss_from_rdd1.rdd.map(tuple) : [('KKD', 'M', 5.5), ('Neepa', 'F', 5.0), ('Ronak', 'M', 5.1), ('Ronik', 'M', 4.4)]
+df_ss_from_rdd3.rdd.map(tuple) : [('"KKD"', '"M"', '5.5', '"USA"', '"NY"'), ('"Neepa"', '"F"', '5.0', '"USA"', '"NY"'), ('"Ronak"', '"M"', '5.1', '"USA"', '"NY"'), ('"Ronik"', '"M"', '4.4', '"USA"', '"NY"')]
 root
  |-- integers: long (nullable = true)
  |-- floats: double (nullable = true)
