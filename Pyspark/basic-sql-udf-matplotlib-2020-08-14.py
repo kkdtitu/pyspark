@@ -32,6 +32,10 @@ udf_hello_name = udf(lambda xyz: hello_name(xyz), StringType())
 def udf_square_val (x):
         return x*x
 
+@udf
+def udf_hey_name (abc):
+        return "Hey " + abc
+
 #spark = SparkSession \
 #    .builder \
 #    .appName("Python Spark SQL basic example") \
@@ -158,6 +162,16 @@ print("df_ss_csv_new_3 \n", df_ss_csv_new_3.show() ,"\n")
 df_ss_json_new_3 = df_ss_json.withColumn('Salary Squared !', udf_square_val('salary'))
 print("df_ss_json_new_3 \n", df_ss_json_new_3.show() ,"\n")
 
+#Using ALT Spark UDFs 
+#csv
+df_ss_csv_new_4 = df_ss_csv.select("Name", udf_hey_name("Name").alias("Hey Name"), "Age (yrs)", udf_square_val("Age (yrs)").alias("Age Squared !"))
+#json, string single quote
+df_ss_json_new_sq_4 = df_ss_json.select('name', udf_hey_name('name').alias('Hey name'), 'salary', udf_square_val('salary').alias('salary Squared  !'))
+#json, string double quote
+df_ss_json_new_dq_4 = df_ss_json.select("name", udf_hey_name("name").alias("Hey name"), "salary", udf_square_val("salary").alias("salary Squared  !"))
+print("df_ss_csv_new_4 \n", df_ss_csv_new_4.show() ,"\n")
+print("df_ss_json_new_sq_4 \n", df_ss_json_new_sq_4.show() ,"\n")
+print("df_ss_json_new_dq_4 \n", df_ss_json_new_dq_4.show() ,"\n")
 
 
 #Generating the plots using matplotlib (lines, scatter, bar all in one plot)
