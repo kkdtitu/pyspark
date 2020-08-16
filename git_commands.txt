@@ -6,5 +6,5 @@ git add -A	(this adds all contents. For a specific "dir": git add dir
 git status
 git commit -m "commit July 19, 2020"
 git status
-git remote add kkdtitu-pyspark-basic https://github.com/kkdtitu/pyspark-basic
-git push -u kkdtitu-pyspark-basic master
+git remote add kkdtitu-pyspark https://github.com/kkdtitu/pyspark
+git push -u kkdtitu-pyspark master
