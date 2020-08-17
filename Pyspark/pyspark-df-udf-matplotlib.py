@@ -31,15 +31,15 @@ udf_twice_val_1 = udf(twice_val, IntegerType())
 udf_hello_name_1 = udf(hello_name, StringType())
 
 #Alternae way of creatimng UDFs
-@udf
+@udf(returnType=IntegerType())
 def udf_square_val (x):
         return x*x
 
-@udf
+@udf(returnType=StringType())
 def udf_hey_name (abc):
         return "Hey " + abc
 
-@udf
+@udf(returnType=FloatType())
 def udf_ratio_cols (a,b):
         if a and b:
                 return a/b

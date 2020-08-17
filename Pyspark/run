@@ -1,8 +1,8 @@
 Config sc: <SparkContext master=local[*] appName=pyspark-df-rdd-pd-udf-matplotlib.py> 
 
-Config ss 1: [('spark.driver.port', '65325'), ('spark.driver.host', '192.168.1.15'), ('spark.rdd.compress', 'True'), ('spark.app.name', 'pyspark-df-rdd-pd-udf-matplotlib.py'), ('spark.app.id', 'local-1597698920245'), ('spark.serializer.objectStreamReset', '100'), ('spark.master', 'local[*]'), ('spark.executor.id', 'driver'), ('spark.submit.deployMode', 'client')] 
+Config ss 1: [('spark.app.id', 'local-1597699965664'), ('spark.driver.host', '192.168.1.15'), ('spark.rdd.compress', 'True'), ('spark.app.name', 'pyspark-df-rdd-pd-udf-matplotlib.py'), ('spark.serializer.objectStreamReset', '100'), ('spark.master', 'local[*]'), ('spark.executor.id', 'driver'), ('spark.submit.deployMode', 'client'), ('spark.driver.port', '49183')] 
 
-Config ss 2: <pyspark.sql.session.SparkSession object at 0x1133ed410> 
+Config ss 2: <pyspark.sql.session.SparkSession object at 0x112710450> 
 
 RDD1 : [('KKD', 'M', 5.5), ('Neepa', 'F', 5.0), ('Ronak', 'M', 5.1), ('Ronik', 'M', 4.4)] 
  RDD1 count: 4
@@ -553,28 +553,28 @@ df_ss_json_new_3
 df_ss_csv_new_4 
  None 
 
-+----+-----------+-----------+------------------+
-|Name|Height (in)|Weight (lb)|      Ration Wt/Ht|
-+----+-----------+-----------+------------------+
-|Alex|         72|        170| 2.361111111111111|
-|Bert|         73|        166|2.2739726027397262|
-|Carl|         74|        155|2.0945945945945947|
-|Dave|         75|        167|2.2266666666666666|
-|Elly|         76|        124| 1.631578947368421|
-|Fran|         77|        115|1.4935064935064934|
-|Gwen|         84|        121|1.4404761904761905|
-|Hank|         85|        158|1.8588235294117648|
-|Ivan|         86|        175|2.0348837209302326|
-|Jake|         87|        143|1.6436781609195403|
-|Kate|         88|        139|1.5795454545454546|
-|Luke|         89|        163|1.8314606741573034|
-|Myra|         90|         98|1.0888888888888888|
-|Neil|         92|        160|1.7391304347826086|
-|Omar|         93|        145|1.5591397849462365|
-|Page|         95|        135|1.4210526315789473|
-|Quin|         97|        176|1.8144329896907216|
-|Ruth|         99|        131|1.3232323232323233|
-+----+-----------+-----------+------------------+
++----+-----------+-----------+------------+
+|Name|Height (in)|Weight (lb)|Ration Wt/Ht|
++----+-----------+-----------+------------+
+|Alex|         72|        170|   2.3611112|
+|Bert|         73|        166|   2.2739725|
+|Carl|         74|        155|   2.0945945|
+|Dave|         75|        167|   2.2266667|
+|Elly|         76|        124|   1.6315789|
+|Fran|         77|        115|   1.4935066|
+|Gwen|         84|        121|   1.4404762|
+|Hank|         85|        158|   1.8588235|
+|Ivan|         86|        175|   2.0348837|
+|Jake|         87|        143|   1.6436782|
+|Kate|         88|        139|   1.5795455|
+|Luke|         89|        163|   1.8314607|
+|Myra|         90|         98|   1.0888889|
+|Neil|         92|        160|   1.7391304|
+|Omar|         93|        145|   1.5591397|
+|Page|         95|        135|   1.4210526|
+|Quin|         97|        176|    1.814433|
+|Ruth|         99|        131|   1.3232323|
++----+-----------+-----------+------------+
 
 df_ss_csv_new_ratio_4 
  None 
