@@ -22,6 +22,12 @@ print("Config 2:", ss, "\n")
 
 #sc = ss.sparkContext()
 
+df_direct = ss.createDataFrame([["KKD", "M", 5.6, ["USA", "India", "Europe"]], \
+        ["Neepa", "F", 5.0, ["USA", "India", "Europe"]], \
+        ["Ronak", "M", 5.1, ["USA", "India"]], \
+        ["Ronik", "M", 4.4, ["USA", "India"]]], \
+        ["Name", "Sex", "Height", "Countries visited"])
+
 df_json = ss.read.json("people-sql-filter-select-groupby.json", multiLine=True)
 #df_json = ss.read.json("people.json", multiLine=True)
 df_csv = ss.read.csv('biostats-sql-filter-select-groupby.csv', header=True)
@@ -37,40 +43,49 @@ df_csv.write.csv('csv_sql_dir', header=True)
 df_json.write.json('json_sql_dir')
 
 #printSchema
+print("df_direct printSchema :", df_direct.printSchema(), "\n")
 print("df_csv printSchema :", df_csv.printSchema(), "\n")
 print("df_json printSchema :", df_json.printSchema(), "\n")
 
-#show
+#show'
+print("df_direct show :", df_direct.show(), "\n")
 print("df_csv.show :", df_csv.show(), "\n")
 print("df_json.show :", df_json.show(), "\n")
 print("df_json_valid.show :", df_json_valid.show(), "\n")  #rows with any null value dropped from df_json_valid 
 
 #count
+print("df_direct count :", df_direct.count(), "\n")
 print("df_csv.count :", df_csv.count(), "\n")
 print("df_json.count :", df_json.count(), "\n")
 print("df_json_valid.count :", df_json_valid.count(), "\n")  #rows with any null value dropped from df_json_valid 
 
 #describe
+print("df_direct describe :", df_direct.describe(), "\n")
 print("df_csv describe :", df_csv.describe(), "\n")
 print("df_json describe :", df_json.describe(), "\n")
 
 #describe.show
+print("df_direct describe show :", df_direct.describe().show(), "\n")
 print("df_csv describe show :", df_csv.describe().show(), "\n")
 print("df_json describe show :", df_json.describe().show(), "\n")
 
 #describe.show for a particular column
+print("df_direct describe show particular col :", df_direct.describe('Name').show(), "\n")
 print("df_csv describe show particular col :", df_csv.describe('Name').show(), "\n")
 print("df_json describe show particular col :", df_json.describe('name').show(), "\n")
 
 #show n=3
+print("df_direct row 3", df_direct.show(n=3), "\n")
 print("df_csv row 3", df_csv.show(n=3), "\n")
 print("df_json row 3", df_json.show(n=3), "\n")
 
 #take first 5 rows
+print("df_direct first 3 rows", df_direct.take(3), "\n")
 print("df_csv first 5 rows", df_csv.take(5), "\n")
 print("df_json first 5 rows", df_json.take(5), "\n")
 
-#collect. List of tuples. Each tuple corresponds to a row
+#collect. List of row objects / tuples. Each row object / tuple corresponds to a row
+print("df_direct collect", df_direct.collect(), "\n")
 print("df_csv collect", df_csv.collect(), "\n")
 print("df_json collect", df_json.collect(), "\n")
 
@@ -79,8 +94,13 @@ print("df_csv select col :", df_csv.select(df_csv['Name']).show(), "\n")
 print("df_json col select :", df_json.select(df_json['name'], df_json['age'], df_json['sex']).show(), "\n")
 
 #select alt
-print("df_csv select col alt :", df_csv.select('Name').show(), "\n")
-print("df_json col select alt :", df_json.select('name', 'age', 'sex').show(), "\n")
+print("df_csv select col alt 1 :", df_csv.select(df_csv.Name).show(), "\n")
+print("df_json col select alt 1 :", df_json.select(df_json.name, df_json.age, df_json.sex).show(), "\n")
+
+#select alt 2
+print("df_csv select col alt 2 :", df_csv.select('Name').show(), "\n")
+print("df_json col select alt 2 :", df_json.select('name', 'age', 'sex').show(), "\n")
+
 
 #select alt, dropDuplicates and sort
 print("df_csv select col alt, dropDuplicates and sort :", df_csv.select('Name').dropDuplicates().sort('Name').show(), "\n")
@@ -99,7 +119,7 @@ print("df_json filter by name and age \n", df_json.filter(df_json['name'].isin([
 #select alt 1  using 'filter'
 print("df_json filter ALT 1 by name and age \n", df_json.filter(df_json.name.isin(["Andy", "Fabiana", "Justin"])) \
         .filter(df_json.age > 20)    \
-        .select('name', 'age', 'sex')        \
+        .select(df_json.name, df_json.age, df_json.sex)        \
         .show(), "\n")
 
 #select alt 2 using 'where' instead of 'filter'

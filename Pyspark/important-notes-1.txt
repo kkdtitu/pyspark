@@ -1,4 +1,5 @@
 ls -altr | grep .py | grep udf
+touch pyspark-df-filter-select-groupby.py
 spark-submit basic-sql-rdd-pd-udf-matplotlib.py > run
 
 (A) This folder runs spark in local mode / macbook (not in standalone mode or  cluster mode).
