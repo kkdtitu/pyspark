@@ -27,6 +27,9 @@ def hello_name (abc):
 udf_twice_val = udf(lambda z: twice_val(z), IntegerType())
 udf_hello_name = udf(lambda xyz: hello_name(xyz), StringType())
 
+udf_twice_val_1 = udf(twice_val, IntegerType())
+udf_hello_name_1 = udf(hello_name, StringType())
+
 #Alternae way of creatimng UDFs
 @udf
 def udf_square_val (x):
@@ -193,11 +196,11 @@ print("df_ss_json select dropDuplicates and sort\n", df_ss_json.select('name').d
 
 #Calling Spark UDFs
 #csv
-df_ss_csv_new_1 = df_ss_csv.select("Name", udf_hello_name("Name").alias("Hello Name"), "Age (yrs)", udf_twice_val("Age (yrs)").alias("Age doubled !"))
+df_ss_csv_new_1 = df_ss_csv.select("Name", udf_hello_name_1("Name").alias("Hello Name"), "Age (yrs)", udf_twice_val_1("Age (yrs)").alias("Age doubled !"))
 #json, string single quote
-df_ss_json_new_sq_1 = df_ss_json.select('name', udf_hello_name('name').alias('Hello name'), 'salary', udf_twice_val('salary').alias('salary doubled !'))
+df_ss_json_new_sq_1 = df_ss_json.select('name', udf_hello_name_1('name').alias('Hello name'), 'salary', udf_twice_val_1('salary').alias('salary doubled !'))
 #json, string double quote
-df_ss_json_new_dq_1 = df_ss_json.select("name", udf_hello_name("name").alias("Hello name"), "salary", udf_twice_val("salary").alias("salary doubled !"))
+df_ss_json_new_dq_1 = df_ss_json.select("name", udf_hello_name_1("name").alias("Hello name"), "salary", udf_twice_val_1("salary").alias("salary doubled !"))
 print("df_ss_csv_new_1 \n", df_ss_csv_new_1.show() ,"\n")
 print("df_ss_json_new_sq_1 \n", df_ss_json_new_sq_1.show() ,"\n")
 print("df_ss_json_new_dq_1 \n", df_ss_json_new_dq_1.show() ,"\n")
