@@ -39,6 +39,13 @@ def udf_square_val (x):
 def udf_hey_name (abc):
         return "Hey " + abc
 
+@udf
+def udf_ratio_cols (a,b):
+        if a and b:
+                return a/b
+        else:
+                return 0
+
 #spark = SparkSession \
 #    .builder \
 #    .appName("Python Spark SQL basic example") \
@@ -98,7 +105,7 @@ print("df_ss_json count", df_ss_json.count(), "\n")
 print("df_ss_csv first 5 rows", df_ss_csv.take(5), "\n")
 print("df_ss_json first 5 rows", df_ss_json.take(5), "\n")
 
-#collect -- returns a list of tuples. Each row is a tuple
+#collect -- returns a list of row object / tuples. Each row is a row object / tuple
 print("df_ss_1 collect\n", df_ss_1.collect(), "\n")
 print("df_ss_csv collect\n", df_ss_csv.collect(), "\n")
 print("df_ss_json collect\n", df_ss_json.collect(), "\n")
@@ -109,7 +116,7 @@ for row in list_json:
         print("row_json : ", row.age, row.salary)
 
 #creating two lists list_csv_height,list_csv_weight from spark DF columns
-list_csv = df_ss_csv.collect()
+list_csv = df_ss_csv.collect()    #list of row object / tuples
 list_csv_height = list()
 list_csv_weight = []
 for row in list_csv:
@@ -167,12 +174,18 @@ print("df_ss_json_new_3 \n", df_ss_json_new_3.show() ,"\n")
 
 #Using ALT Spark UDFs 
 #csv
-df_ss_csv_new_4 = df_ss_csv.select("Name", udf_hey_name("Name").alias("Hey Name"), "Age (yrs)", udf_square_val("Age (yrs)").alias("Age Squared !"))
+df_ss_csv_new_sq_4 = df_ss_csv.select("Name", udf_hey_name("Name").alias("Hey Name"), "Age (yrs)", \
+        udf_square_val("Age (yrs)").alias("Age Squared !"))
+df_ss_csv_new_ratio_4 = df_ss_csv.select("Name", "Height (in)", "Weight (lb)", \
+        udf_ratio_cols("Weight (lb)", "Height (in)").alias("Ration Wt/Ht"))
 #json, string single quote
-df_ss_json_new_sq_4 = df_ss_json.select('name', udf_hey_name('name').alias('Hey name'), 'salary', udf_square_val('salary').alias('salary Squared  !'))
+df_ss_json_new_sq_4 = df_ss_json.select('name', udf_hey_name('name').alias('Hey name'), 'salary', \
+        udf_square_val('salary').alias('salary Squared  !'))
 #json, string double quote
-df_ss_json_new_dq_4 = df_ss_json.select("name", udf_hey_name("name").alias("Hey name"), "salary", udf_square_val("salary").alias("salary Squared  !"))
-print("df_ss_csv_new_4 \n", df_ss_csv_new_4.show() ,"\n")
+df_ss_json_new_dq_4 = df_ss_json.select("name", udf_hey_name("name").alias("Hey name"), "salary", \
+        udf_square_val("salary").alias("salary Squared  !"))
+print("df_ss_csv_new_sq_4 \n", df_ss_csv_new_sq_4.show() ,"\n")
+print("df_ss_csv_new_ratio_4 \n", df_ss_csv_new_ratio_4.show() ,"\n")
 print("df_ss_json_new_sq_4 \n", df_ss_json_new_sq_4.show() ,"\n")
 print("df_ss_json_new_dq_4 \n", df_ss_json_new_dq_4.show() ,"\n")
 

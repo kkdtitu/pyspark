@@ -1,7 +1,81 @@
-Config 1: [('spark.app.name', 'pyspark-df-udf-matplotlib.py'), ('spark.driver.host', '192.168.1.15'), ('spark.driver.port', '54921'), ('spark.rdd.compress', 'True'), ('spark.serializer.objectStreamReset', '100'), ('spark.master', 'local[*]'), ('spark.executor.id', 'driver'), ('spark.submit.deployMode', 'client'), ('spark.app.id', 'local-1597638920576')] 
+Config sc: <SparkContext master=local[*] appName=pyspark-df-rdd-pd-udf-matplotlib.py> 
 
-Config 2: <pyspark.sql.session.SparkSession object at 0x115b9a8d0> 
+Config ss 1: [('spark.driver.port', '65325'), ('spark.driver.host', '192.168.1.15'), ('spark.rdd.compress', 'True'), ('spark.app.name', 'pyspark-df-rdd-pd-udf-matplotlib.py'), ('spark.app.id', 'local-1597698920245'), ('spark.serializer.objectStreamReset', '100'), ('spark.master', 'local[*]'), ('spark.executor.id', 'driver'), ('spark.submit.deployMode', 'client')] 
 
+Config ss 2: <pyspark.sql.session.SparkSession object at 0x1133ed410> 
+
+RDD1 : [('KKD', 'M', 5.5), ('Neepa', 'F', 5.0), ('Ronak', 'M', 5.1), ('Ronik', 'M', 4.4)] 
+ RDD1 count: 4
+RDD2 : ['"KKD","M",5.5,"USA","NY"', '"Neepa","F",5.0,"USA","NY"', '"Ronak","M",5.1,"USA","NY"', '"Ronik","M",4.4,"USA","NY"'] 
+ RDD2 count: 4
+RDD3 : [('"KKD"', '"M"', '5.5', '"USA"', '"NY"'), ('"Neepa"', '"F"', '5.0', '"USA"', '"NY"'), ('"Ronak"', '"M"', '5.1', '"USA"', '"NY"'), ('"Ronik"', '"M"', '4.4', '"USA"', '"NY"')] 
+ RDD3 count: 4
+RDD4 : [('"KKD"', '"M"', '5.5', '"USA"', '"NY"'), ('"Neepa"', '"F"', '5.0', '"USA"', '"NY"'), ('"Ronak"', '"M"', '5.1', '"USA"', '"NY"'), ('"Ronik"', '"M"', '4.4', '"USA"', '"NY"')] 
+ RDD4 count: 4
+root
+ |-- Name: string (nullable = true)
+ |-- Sex: string (nullable = true)
+ |-- Height: double (nullable = true)
+
+df_ss_from_rdd1.printSchema() : None
++-----+---+------+
+| Name|Sex|Height|
++-----+---+------+
+|  KKD|  M|   5.5|
+|Neepa|  F|   5.0|
+|Ronak|  M|   5.1|
+|Ronik|  M|   4.4|
++-----+---+------+
+
+df_ss_from_rdd1.show() : None
+df_ss_from_rdd1.collect() : [Row(Name='KKD', Sex='M', Height=5.5), Row(Name='Neepa', Sex='F', Height=5.0), Row(Name='Ronak', Sex='M', Height=5.1), Row(Name='Ronik', Sex='M', Height=4.4)]
+root
+ |-- Name: string (nullable = true)
+ |-- Sex: string (nullable = true)
+ |-- Height: string (nullable = true)
+ |-- Country: string (nullable = true)
+ |-- State: string (nullable = true)
+
+df_ss_from_rdd3.printSchema() : None
++-------+---+------+-------+-----+
+|   Name|Sex|Height|Country|State|
++-------+---+------+-------+-----+
+|  "KKD"|"M"|   5.5|  "USA"| "NY"|
+|"Neepa"|"F"|   5.0|  "USA"| "NY"|
+|"Ronak"|"M"|   5.1|  "USA"| "NY"|
+|"Ronik"|"M"|   4.4|  "USA"| "NY"|
++-------+---+------+-------+-----+
+
+df_ss_from_rdd3.show() : None
+df_ss_from_rdd3.collect() : [Row(Name='"KKD"', Sex='"M"', Height='5.5', Country='"USA"', State='"NY"'), Row(Name='"Neepa"', Sex='"F"', Height='5.0', Country='"USA"', State='"NY"'), Row(Name='"Ronak"', Sex='"M"', Height='5.1', Country='"USA"', State='"NY"'), Row(Name='"Ronik"', Sex='"M"', Height='4.4', Country='"USA"', State='"NY"')]
+root
+ |-- Name: string (nullable = true)
+ |-- Sex: string (nullable = true)
+ |-- Height: string (nullable = true)
+ |-- Country: string (nullable = true)
+ |-- State: string (nullable = true)
+
+df_ss_from_rdd4.printSchema() : None
++-------+---+------+-------+-----+
+|   Name|Sex|Height|Country|State|
++-------+---+------+-------+-----+
+|  "KKD"|"M"|   5.5|  "USA"| "NY"|
+|"Neepa"|"F"|   5.0|  "USA"| "NY"|
+|"Ronak"|"M"|   5.1|  "USA"| "NY"|
+|"Ronik"|"M"|   4.4|  "USA"| "NY"|
++-------+---+------+-------+-----+
+
+df_ss_from_rdd4.show() : None
+df_ss_from_rdd4.collect() : [Row(Name='"KKD"', Sex='"M"', Height='5.5', Country='"USA"', State='"NY"'), Row(Name='"Neepa"', Sex='"F"', Height='5.0', Country='"USA"', State='"NY"'), Row(Name='"Ronak"', Sex='"M"', Height='5.1', Country='"USA"', State='"NY"'), Row(Name='"Ronik"', Sex='"M"', Height='4.4', Country='"USA"', State='"NY"')]
+df_ss_from_rdd1.rdd : [Row(Name='KKD', Sex='M', Height=5.5), Row(Name='Neepa', Sex='F', Height=5.0), Row(Name='Ronak', Sex='M', Height=5.1), Row(Name='Ronik', Sex='M', Height=4.4)]
+df_ss_from_rdd3.rdd : [Row(Name='"KKD"', Sex='"M"', Height='5.5', Country='"USA"', State='"NY"'), Row(Name='"Neepa"', Sex='"F"', Height='5.0', Country='"USA"', State='"NY"'), Row(Name='"Ronak"', Sex='"M"', Height='5.1', Country='"USA"', State='"NY"'), Row(Name='"Ronik"', Sex='"M"', Height='4.4', Country='"USA"', State='"NY"')]
+df_ss_from_rdd4.rdd : [Row(Name='"KKD"', Sex='"M"', Height='5.5', Country='"USA"', State='"NY"'), Row(Name='"Neepa"', Sex='"F"', Height='5.0', Country='"USA"', State='"NY"'), Row(Name='"Ronak"', Sex='"M"', Height='5.1', Country='"USA"', State='"NY"'), Row(Name='"Ronik"', Sex='"M"', Height='4.4', Country='"USA"', State='"NY"')]
+df_ss_from_rdd1.rdd.map(list) : [['KKD', 'M', 5.5], ['Neepa', 'F', 5.0], ['Ronak', 'M', 5.1], ['Ronik', 'M', 4.4]]
+df_ss_from_rdd3.rdd.map(list) : [['"KKD"', '"M"', '5.5', '"USA"', '"NY"'], ['"Neepa"', '"F"', '5.0', '"USA"', '"NY"'], ['"Ronak"', '"M"', '5.1', '"USA"', '"NY"'], ['"Ronik"', '"M"', '4.4', '"USA"', '"NY"']]
+df_ss_from_rdd4.rdd.map(list) : [['"KKD"', '"M"', '5.5', '"USA"', '"NY"'], ['"Neepa"', '"F"', '5.0', '"USA"', '"NY"'], ['"Ronak"', '"M"', '5.1', '"USA"', '"NY"'], ['"Ronik"', '"M"', '4.4', '"USA"', '"NY"']]
+df_ss_from_rdd1.rdd.map(tuple) : [('KKD', 'M', 5.5), ('Neepa', 'F', 5.0), ('Ronak', 'M', 5.1), ('Ronik', 'M', 4.4)]
+df_ss_from_rdd3.rdd.map(tuple) : [('"KKD"', '"M"', '5.5', '"USA"', '"NY"'), ('"Neepa"', '"F"', '5.0', '"USA"', '"NY"'), ('"Ronak"', '"M"', '5.1', '"USA"', '"NY"'), ('"Ronik"', '"M"', '4.4', '"USA"', '"NY"')]
+df_ss_from_rdd4.rdd.map(tuple) : [('"KKD"', '"M"', '5.5', '"USA"', '"NY"'), ('"Neepa"', '"F"', '5.0', '"USA"', '"NY"'), ('"Ronak"', '"M"', '5.1', '"USA"', '"NY"'), ('"Ronik"', '"M"', '4.4', '"USA"', '"NY"')]
 root
  |-- integers: long (nullable = true)
  |-- floats: double (nullable = true)
@@ -477,6 +551,32 @@ df_ss_json_new_3
 +----+--------+---------+-------------+
 
 df_ss_csv_new_4 
+ None 
+
++----+-----------+-----------+------------------+
+|Name|Height (in)|Weight (lb)|      Ration Wt/Ht|
++----+-----------+-----------+------------------+
+|Alex|         72|        170| 2.361111111111111|
+|Bert|         73|        166|2.2739726027397262|
+|Carl|         74|        155|2.0945945945945947|
+|Dave|         75|        167|2.2266666666666666|
+|Elly|         76|        124| 1.631578947368421|
+|Fran|         77|        115|1.4935064935064934|
+|Gwen|         84|        121|1.4404761904761905|
+|Hank|         85|        158|1.8588235294117648|
+|Ivan|         86|        175|2.0348837209302326|
+|Jake|         87|        143|1.6436781609195403|
+|Kate|         88|        139|1.5795454545454546|
+|Luke|         89|        163|1.8314606741573034|
+|Myra|         90|         98|1.0888888888888888|
+|Neil|         92|        160|1.7391304347826086|
+|Omar|         93|        145|1.5591397849462365|
+|Page|         95|        135|1.4210526315789473|
+|Quin|         97|        176|1.8144329896907216|
+|Ruth|         99|        131|1.3232323232323233|
++----+-----------+-----------+------------------+
+
+df_ss_csv_new_ratio_4 
  None 
 
 +--------+------------+------+-----------------+

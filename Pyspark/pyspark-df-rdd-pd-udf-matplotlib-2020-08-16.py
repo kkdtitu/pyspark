@@ -39,6 +39,13 @@ def udf_square_val (x):
 def udf_hey_name (abc):
         return "Hey " + abc
 
+@udf
+def udf_ratio_cols (a,b):
+        if a and b:
+                return a/b
+        else:
+                return 0
+
 # **** sc will have to be created BEFORE ss, else ERROR
 sc = pyspark.SparkContext()
 
@@ -62,7 +69,7 @@ rdd1 = sc.parallelize([("KKD","M",5.5), \
         ("Neepa","F",5.0), \
         ("Ronak","M",5.1),\
         ("Ronik", "M", 4.4)])
-print("RDD1 :", rdd1.collect(), "\n RDD1 count:", rdd1.count())
+print("RDD1 :", rdd1.collect(), "\n RDD1 count:", rdd1.count()) # output is list of tuples
 
 srcFile="/Users/ronakronik/Documents/KKD/Technical/pyspark/Pyspark/people_orient_columns.txt"
 rdd2 = sc.textFile(srcFile, 4).cache()   #.cache() is optional, number of RDD partitions = 4 is also optional
@@ -79,7 +86,7 @@ print("RDD4 :", rdd4.collect(), "\n RDD4 count:", rdd4.count()) #so rdd4 is a li
 df_ss_from_rdd1 = rdd1.toDF(["Name","Sex","Height"])  #the RDD needs to be a list of tuples, where each tuple represents a row
 print("df_ss_from_rdd1.printSchema() :", df_ss_from_rdd1.printSchema())
 print("df_ss_from_rdd1.show() :", df_ss_from_rdd1.show())
-print("df_ss_from_rdd1.collect() :", df_ss_from_rdd1.collect())
+print("df_ss_from_rdd1.collect() :", df_ss_from_rdd1.collect())  #list of row objects / tuples
 
 df_ss_from_rdd3 = rdd3.toDF(["Name","Sex","Height","Country","State"]) #the RDD needs to be a list of tuples, where each tuple represents a row
 print("df_ss_from_rdd3.printSchema() :", df_ss_from_rdd3.printSchema())
@@ -89,7 +96,7 @@ print("df_ss_from_rdd3.collect() :", df_ss_from_rdd3.collect())
 df_ss_from_rdd4 = rdd4.toDF(["Name","Sex","Height","Country","State"]) #the RDD needs to be a list of tuples, where each tuple represents a row
 print("df_ss_from_rdd4.printSchema() :", df_ss_from_rdd4.printSchema())
 print("df_ss_from_rdd4.show() :", df_ss_from_rdd4.show())
-print("df_ss_from_rdd4.collect() :", df_ss_from_rdd4.collect())
+print("df_ss_from_rdd4.collect() :", df_ss_from_rdd4.collect()) #list of row objects / tuples
 
 #Spark DF back to RDD
 print("df_ss_from_rdd1.rdd :", df_ss_from_rdd1.rdd.collect())  #df_ss_from_rdd1.rdd creates RDD of row objects
@@ -160,7 +167,7 @@ print("df_ss_json collect\n", df_ss_json.collect(), "\n")
 
 #Method 1 : Creating lists for matplotlib.pyplot / plt
 #converting Spark dataframe column to a list 
-list_json = df_ss_json.collect()
+list_json = df_ss_json.collect()   #list of row objects / tuples
 for row in list_json:
         print("row_json : ", row.age, row.salary)
 
@@ -224,12 +231,18 @@ print("df_ss_json_new_3 \n", df_ss_json_new_3.show() ,"\n")
 
 #Using ALT Spark UDFs 
 #csv
-df_ss_csv_new_4 = df_ss_csv.select("Name", udf_hey_name("Name").alias("Hey Name"), "Age (yrs)", udf_square_val("Age (yrs)").alias("Age Squared !"))
+df_ss_csv_new_4 = df_ss_csv.select("Name", udf_hey_name("Name").alias("Hey Name"), \
+        "Age (yrs)", udf_square_val("Age (yrs)").alias("Age Squared !"))
+df_ss_csv_new_ratio_4 = df_ss_csv.select("Name", "Height (in)", "Weight (lb)", \
+        udf_ratio_cols("Weight (lb)", "Height (in)").alias("Ration Wt/Ht"))
 #json, string single quote
-df_ss_json_new_sq_4 = df_ss_json.select('name', udf_hey_name('name').alias('Hey name'), 'salary', udf_square_val('salary').alias('salary Squared  !'))
+df_ss_json_new_sq_4 = df_ss_json.select('name', udf_hey_name('name').alias('Hey name'), \
+        'salary', udf_square_val('salary').alias('salary Squared  !'))
 #json, string double quote
-df_ss_json_new_dq_4 = df_ss_json.select("name", udf_hey_name("name").alias("Hey name"), "salary", udf_square_val("salary").alias("salary Squared  !"))
+df_ss_json_new_dq_4 = df_ss_json.select("name", udf_hey_name("name").alias("Hey name"), \
+        "salary", udf_square_val("salary").alias("salary Squared  !"))
 print("df_ss_csv_new_4 \n", df_ss_csv_new_4.show() ,"\n")
+print("df_ss_csv_new_ratio_4 \n", df_ss_csv_new_ratio_4.show() ,"\n")
 print("df_ss_json_new_sq_4 \n", df_ss_json_new_sq_4.show() ,"\n")
 print("df_ss_json_new_dq_4 \n", df_ss_json_new_dq_4.show() ,"\n")
 
