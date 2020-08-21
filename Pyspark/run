@@ -1,86 +1,12 @@
-Config sc: <SparkContext master=local[*] appName=pyspark-df-rdd-pd-udf-matplotlib.py> 
+Config 1: [('spark.app.name', 'pyspark-df-udf-complex.py'), ('spark.app.id', 'local-1597972982406'), ('spark.driver.host', '192.168.1.15'), ('spark.rdd.compress', 'True'), ('spark.serializer.objectStreamReset', '100'), ('spark.master', 'local[*]'), ('spark.executor.id', 'driver'), ('spark.submit.deployMode', 'client'), ('spark.driver.port', '60238')] 
 
-Config ss 1: [('spark.app.id', 'local-1597699965664'), ('spark.driver.host', '192.168.1.15'), ('spark.rdd.compress', 'True'), ('spark.app.name', 'pyspark-df-rdd-pd-udf-matplotlib.py'), ('spark.serializer.objectStreamReset', '100'), ('spark.master', 'local[*]'), ('spark.executor.id', 'driver'), ('spark.submit.deployMode', 'client'), ('spark.driver.port', '49183')] 
+Config 2: <pyspark.sql.session.SparkSession object at 0x10bad8e10> 
 
-Config ss 2: <pyspark.sql.session.SparkSession object at 0x112710450> 
-
-RDD1 : [('KKD', 'M', 5.5), ('Neepa', 'F', 5.0), ('Ronak', 'M', 5.1), ('Ronik', 'M', 4.4)] 
- RDD1 count: 4
-RDD2 : ['"KKD","M",5.5,"USA","NY"', '"Neepa","F",5.0,"USA","NY"', '"Ronak","M",5.1,"USA","NY"', '"Ronik","M",4.4,"USA","NY"'] 
- RDD2 count: 4
-RDD3 : [('"KKD"', '"M"', '5.5', '"USA"', '"NY"'), ('"Neepa"', '"F"', '5.0', '"USA"', '"NY"'), ('"Ronak"', '"M"', '5.1', '"USA"', '"NY"'), ('"Ronik"', '"M"', '4.4', '"USA"', '"NY"')] 
- RDD3 count: 4
-RDD4 : [('"KKD"', '"M"', '5.5', '"USA"', '"NY"'), ('"Neepa"', '"F"', '5.0', '"USA"', '"NY"'), ('"Ronak"', '"M"', '5.1', '"USA"', '"NY"'), ('"Ronik"', '"M"', '4.4', '"USA"', '"NY"')] 
- RDD4 count: 4
 root
  |-- Name: string (nullable = true)
  |-- Sex: string (nullable = true)
  |-- Height: double (nullable = true)
-
-df_ss_from_rdd1.printSchema() : None
-+-----+---+------+
-| Name|Sex|Height|
-+-----+---+------+
-|  KKD|  M|   5.5|
-|Neepa|  F|   5.0|
-|Ronak|  M|   5.1|
-|Ronik|  M|   4.4|
-+-----+---+------+
-
-df_ss_from_rdd1.show() : None
-df_ss_from_rdd1.collect() : [Row(Name='KKD', Sex='M', Height=5.5), Row(Name='Neepa', Sex='F', Height=5.0), Row(Name='Ronak', Sex='M', Height=5.1), Row(Name='Ronik', Sex='M', Height=4.4)]
-root
- |-- Name: string (nullable = true)
- |-- Sex: string (nullable = true)
- |-- Height: string (nullable = true)
- |-- Country: string (nullable = true)
- |-- State: string (nullable = true)
-
-df_ss_from_rdd3.printSchema() : None
-+-------+---+------+-------+-----+
-|   Name|Sex|Height|Country|State|
-+-------+---+------+-------+-----+
-|  "KKD"|"M"|   5.5|  "USA"| "NY"|
-|"Neepa"|"F"|   5.0|  "USA"| "NY"|
-|"Ronak"|"M"|   5.1|  "USA"| "NY"|
-|"Ronik"|"M"|   4.4|  "USA"| "NY"|
-+-------+---+------+-------+-----+
-
-df_ss_from_rdd3.show() : None
-df_ss_from_rdd3.collect() : [Row(Name='"KKD"', Sex='"M"', Height='5.5', Country='"USA"', State='"NY"'), Row(Name='"Neepa"', Sex='"F"', Height='5.0', Country='"USA"', State='"NY"'), Row(Name='"Ronak"', Sex='"M"', Height='5.1', Country='"USA"', State='"NY"'), Row(Name='"Ronik"', Sex='"M"', Height='4.4', Country='"USA"', State='"NY"')]
-root
- |-- Name: string (nullable = true)
- |-- Sex: string (nullable = true)
- |-- Height: string (nullable = true)
- |-- Country: string (nullable = true)
- |-- State: string (nullable = true)
-
-df_ss_from_rdd4.printSchema() : None
-+-------+---+------+-------+-----+
-|   Name|Sex|Height|Country|State|
-+-------+---+------+-------+-----+
-|  "KKD"|"M"|   5.5|  "USA"| "NY"|
-|"Neepa"|"F"|   5.0|  "USA"| "NY"|
-|"Ronak"|"M"|   5.1|  "USA"| "NY"|
-|"Ronik"|"M"|   4.4|  "USA"| "NY"|
-+-------+---+------+-------+-----+
-
-df_ss_from_rdd4.show() : None
-df_ss_from_rdd4.collect() : [Row(Name='"KKD"', Sex='"M"', Height='5.5', Country='"USA"', State='"NY"'), Row(Name='"Neepa"', Sex='"F"', Height='5.0', Country='"USA"', State='"NY"'), Row(Name='"Ronak"', Sex='"M"', Height='5.1', Country='"USA"', State='"NY"'), Row(Name='"Ronik"', Sex='"M"', Height='4.4', Country='"USA"', State='"NY"')]
-df_ss_from_rdd1.rdd : [Row(Name='KKD', Sex='M', Height=5.5), Row(Name='Neepa', Sex='F', Height=5.0), Row(Name='Ronak', Sex='M', Height=5.1), Row(Name='Ronik', Sex='M', Height=4.4)]
-df_ss_from_rdd3.rdd : [Row(Name='"KKD"', Sex='"M"', Height='5.5', Country='"USA"', State='"NY"'), Row(Name='"Neepa"', Sex='"F"', Height='5.0', Country='"USA"', State='"NY"'), Row(Name='"Ronak"', Sex='"M"', Height='5.1', Country='"USA"', State='"NY"'), Row(Name='"Ronik"', Sex='"M"', Height='4.4', Country='"USA"', State='"NY"')]
-df_ss_from_rdd4.rdd : [Row(Name='"KKD"', Sex='"M"', Height='5.5', Country='"USA"', State='"NY"'), Row(Name='"Neepa"', Sex='"F"', Height='5.0', Country='"USA"', State='"NY"'), Row(Name='"Ronak"', Sex='"M"', Height='5.1', Country='"USA"', State='"NY"'), Row(Name='"Ronik"', Sex='"M"', Height='4.4', Country='"USA"', State='"NY"')]
-df_ss_from_rdd1.rdd.map(list) : [['KKD', 'M', 5.5], ['Neepa', 'F', 5.0], ['Ronak', 'M', 5.1], ['Ronik', 'M', 4.4]]
-df_ss_from_rdd3.rdd.map(list) : [['"KKD"', '"M"', '5.5', '"USA"', '"NY"'], ['"Neepa"', '"F"', '5.0', '"USA"', '"NY"'], ['"Ronak"', '"M"', '5.1', '"USA"', '"NY"'], ['"Ronik"', '"M"', '4.4', '"USA"', '"NY"']]
-df_ss_from_rdd4.rdd.map(list) : [['"KKD"', '"M"', '5.5', '"USA"', '"NY"'], ['"Neepa"', '"F"', '5.0', '"USA"', '"NY"'], ['"Ronak"', '"M"', '5.1', '"USA"', '"NY"'], ['"Ronik"', '"M"', '4.4', '"USA"', '"NY"']]
-df_ss_from_rdd1.rdd.map(tuple) : [('KKD', 'M', 5.5), ('Neepa', 'F', 5.0), ('Ronak', 'M', 5.1), ('Ronik', 'M', 4.4)]
-df_ss_from_rdd3.rdd.map(tuple) : [('"KKD"', '"M"', '5.5', '"USA"', '"NY"'), ('"Neepa"', '"F"', '5.0', '"USA"', '"NY"'), ('"Ronak"', '"M"', '5.1', '"USA"', '"NY"'), ('"Ronik"', '"M"', '4.4', '"USA"', '"NY"')]
-df_ss_from_rdd4.rdd.map(tuple) : [('"KKD"', '"M"', '5.5', '"USA"', '"NY"'), ('"Neepa"', '"F"', '5.0', '"USA"', '"NY"'), ('"Ronak"', '"M"', '5.1', '"USA"', '"NY"'), ('"Ronik"', '"M"', '4.4', '"USA"', '"NY"')]
-root
- |-- integers: long (nullable = true)
- |-- floats: double (nullable = true)
- |-- integer_arrays: array (nullable = true)
- |    |-- element: long (containsNull = true)
+ |-- Countries: string (nullable = true)
 
 df_ss_1 schema
  None 
@@ -88,528 +14,573 @@ df_ss_1 schema
 root
  |-- Name: string (nullable = true)
  |-- Sex: string (nullable = true)
- |-- Age (yrs): long (nullable = true)
- |-- Height (in): long (nullable = true)
- |-- Weight (lb): long (nullable = true)
+ |-- Age (yrs): string (nullable = true)
+ |-- Height (in): string (nullable = true)
+ |-- Weight (lb): string (nullable = true)
 
 df_ss_csv schema
  None 
 
 root
+ |-- age: long (nullable = true)
  |-- name: string (nullable = true)
- |-- sex: string (nullable = true)
  |-- salary: long (nullable = true)
- |-- age: double (nullable = true)
+ |-- sex: string (nullable = true)
 
 df_ss_json schema
  None 
 
 df_ss_1 describe
- DataFrame[summary: string, integers: string, floats: string] 
+ DataFrame[summary: string, Name: string, Sex: string, Height: string, Countries: string] 
 
 df_ss_csv describe
  DataFrame[summary: string, Name: string, Sex: string, Age (yrs): string, Height (in): string, Weight (lb): string] 
 
 df_ss_json describe
- DataFrame[summary: string, name: string, sex: string, salary: string, age: string] 
+ DataFrame[summary: string, age: string, name: string, salary: string, sex: string] 
 
-+-------+--------+------------------+
-|summary|integers|            floats|
-+-------+--------+------------------+
-|  count|       3|                 3|
-|   mean|     2.0|0.7333333333333334|
-| stddev|     1.0|1.8610033136277147|
-|    min|       1|              -1.0|
-|    max|       3|               2.7|
-+-------+--------+------------------+
++-------+-----+----+------------------+---------------+
+|summary| Name| Sex|            Height|      Countries|
++-------+-----+----+------------------+---------------+
+|  count|    4|   4|                 4|              4|
+|   mean| null|null|             5.025|           null|
+| stddev| null|null|0.4924428900898051|           null|
+|    min|  KKD|   F|               4.4|USA,India,India|
+|    max|Ronik|   M|               5.6|  USA,India,USA|
++-------+-----+----+------------------+---------------+
 
 df_ss_1 describe show
  None 
 
-+-------+----+----+------------------+-----------------+------------------+
-|summary|Name| Sex|         Age (yrs)|      Height (in)|       Weight (lb)|
-+-------+----+----+------------------+-----------------+------------------+
-|  count|  18|  18|                18|               18|                18|
-|   mean|null|null|34.666666666666664|85.11111111111111|146.72222222222223|
-| stddev|null|null|7.5770551473433505|8.703541462354744|22.540957638082503|
-|    min|Alex|   F|                23|               72|                98|
-|    max|Ruth|   M|                53|               99|               176|
-+-------+----+----+------------------+-----------------+------------------+
++-------+---------------+----+------------------+-----------------+------------------+
+|summary|           Name| Sex|         Age (yrs)|      Height (in)|       Weight (lb)|
++-------+---------------+----+------------------+-----------------+------------------+
+|  count|             18|  18|                18|               18|                18|
+|   mean|           null|null|34.666666666666664|85.11111111111111|146.72222222222223|
+| stddev|           null|null|  7.57705514734335| 8.70354146235474|22.540957638082507|
+|    min| Alex Kumar Das|   F|                23|               72|               115|
+|    max|Ruth Biswas Das|   M|                53|               99|                98|
++-------+---------------+----+------------------+-----------------+------------------+
 
 df_ss_csv describe show
  None 
 
-+-------+-------+----+------------------+----+
-|summary|   name| sex|            salary| age|
-+-------+-------+----+------------------+----+
-|  count|      9|   9|                 9|   9|
-|   mean|   null|null|2001.2222222222222| NaN|
-| stddev|   null|null|  866.170274509836| NaN|
-|    min|   Andy|   F|              1000|19.0|
-|    max|Sandhya|   M|              3002| NaN|
-+-------+-------+----+------------------+----+
++-------+------------------+------------------+-----------------+----+
+|summary|               age|              name|           salary| sex|
++-------+------------------+------------------+-----------------+----+
+|  count|                 7|                 9|                9|   9|
+|   mean|29.142857142857142|              null|           2000.0|null|
+| stddev| 8.029706749078105|              null|866.0254037844386|null|
+|    min|                19|    Andy Kumar Das|             1000|   F|
+|    max|                40|Sandhya Biswas Das|             3000|   M|
++-------+------------------+------------------+-----------------+----+
 
 df_ss_json describe show
  None 
 
-+--------+------+--------------+
-|integers|floats|integer_arrays|
-+--------+------+--------------+
-|       1|  -1.0|        [1, 2]|
-|       2|   0.5|     [3, 4, 5]|
-|       3|   2.7|  [6, 7, 8, 9]|
-+--------+------+--------------+
++-----+---+------+---------------+
+| Name|Sex|Height|      Countries|
++-----+---+------+---------------+
+|  KKD|  M|   5.6|USA,India,India|
+|Neepa|  F|   5.0|USA,India,India|
+|Ronak|  M|   5.1|  USA,India,USA|
+|Ronik|  M|   4.4|  USA,India,USA|
++-----+---+------+---------------+
 
 df_ss_1 show 
  None 
 
-+----+---+---------+-----------+-----------+
-|Name|Sex|Age (yrs)|Height (in)|Weight (lb)|
-+----+---+---------+-----------+-----------+
-|Alex|  M|       41|         72|        170|
-|Bert|  M|       42|         73|        166|
-|Carl|  M|       32|         74|        155|
-|Dave|  M|       39|         75|        167|
-|Elly|  F|       30|         76|        124|
-|Fran|  F|       33|         77|        115|
-|Gwen|  F|       26|         84|        121|
-|Hank|  M|       30|         85|        158|
-|Ivan|  M|       53|         86|        175|
-|Jake|  M|       32|         87|        143|
-|Kate|  F|       47|         88|        139|
-|Luke|  M|       34|         89|        163|
-|Myra|  F|       23|         90|         98|
-|Neil|  M|       36|         92|        160|
-|Omar|  M|       38|         93|        145|
-|Page|  F|       31|         95|        135|
-|Quin|  M|       29|         97|        176|
-|Ruth|  F|       28|         99|        131|
-+----+---+---------+-----------+-----------+
++---------------+---+---------+-----------+-----------+
+|           Name|Sex|Age (yrs)|Height (in)|Weight (lb)|
++---------------+---+---------+-----------+-----------+
+| Alex Kumar Das|  M|       41|         72|        170|
+|Bert Biswas Das|  M|       42|         73|        166|
+| Carl Kumar Das|  M|       32|         74|        155|
+|Dave Biswas Das|  M|       39|         75|        167|
+| Elly Kumar Das|  F|       30|         76|        124|
+|Fran Biswas Das|  F|       33|         77|        115|
+| Gwen Kumar Das|  F|       26|         84|        121|
+|Hank Biswas Das|  M|       30|         85|        158|
+| Ivan Kumar Das|  M|       53|         86|        175|
+|Jake Biswas Das|  M|       32|         87|        143|
+| Kate Kumar Das|  F|       47|         88|        139|
+|Luke Biswas Das|  M|       34|         89|        163|
+| Myra Kumar Das|  F|       23|         90|         98|
+|Neil Biswas Das|  M|       36|         92|        160|
+| Omar Kumar Das|  M|       38|         93|        145|
+|Page Biswas Das|  F|       31|         95|        135|
+| Quin Kumar Das|  M|       29|         97|        176|
+|Ruth Biswas Das|  F|       28|         99|        131|
++---------------+---+---------+-----------+-----------+
 
 df_ss_csv show 
  None 
 
-+--------+---+------+----+
-|    name|sex|salary| age|
-+--------+---+------+----+
-| Michael|  M|  1000| NaN|
-|    Andy|  M|  1002|30.0|
-|  Justin|  M|  1001|19.0|
-|Caroline|  F|  2002| NaN|
-| Fabiana|  F|  2000|30.0|
-| Sandhya|  F|  2002|19.0|
-| Michael|  M|  3002| NaN|
-|    Andy|  M|  3002|40.0|
-|  Justin|  M|  3000|29.0|
-+--------+---+------+----+
++----+-------------------+------+---+
+| age|               name|salary|sex|
++----+-------------------+------+---+
+|  37|  Michael Kumar Das|  1000|  M|
+|  30|     Andy Kumar Das|  1000|  M|
+|  19|   Justin Kumar Das|  1000|  M|
+|null|Caroline Biswas Das|  2000|  F|
+|  30| Fabiana Biswas Das|  2000|  F|
+|  19| Sandhya Biswas Das|  2000|  F|
+|null|  Michael Kumar Das|  3000|  M|
+|  40|     Andy Kumar Das|  3000|  M|
+|  29|   Justin Kumar Das|  3000|  M|
++----+-------------------+------+---+
 
 df_ss_json show None 
 
 df_ss_1 count 
- 3 
+ 4 
 
 df_ss_csv count 
  18 
 
 df_ss_json count 9 
 
-df_ss_csv first 5 rows [Row(Name='Alex', Sex='M', Age (yrs)=41, Height (in)=72, Weight (lb)=170), Row(Name='Bert', Sex='M', Age (yrs)=42, Height (in)=73, Weight (lb)=166), Row(Name='Carl', Sex='M', Age (yrs)=32, Height (in)=74, Weight (lb)=155), Row(Name='Dave', Sex='M', Age (yrs)=39, Height (in)=75, Weight (lb)=167), Row(Name='Elly', Sex='F', Age (yrs)=30, Height (in)=76, Weight (lb)=124)] 
+df_ss_1 take 3
+ [Row(Name='KKD', Sex='M', Height=5.6, Countries='USA,India,India'), Row(Name='Neepa', Sex='F', Height=5.0, Countries='USA,India,India'), Row(Name='Ronak', Sex='M', Height=5.1, Countries='USA,India,USA')] 
 
-df_ss_json first 5 rows [Row(name='Michael', sex='M', salary=1000, age=nan), Row(name='Andy', sex='M', salary=1002, age=30.0), Row(name='Justin', sex='M', salary=1001, age=19.0), Row(name='Caroline', sex='F', salary=2002, age=nan), Row(name='Fabiana', sex='F', salary=2000, age=30.0)] 
+df_ss_csv take 5 [Row(Name='Alex Kumar Das', Sex='M', Age (yrs)='41', Height (in)='72', Weight (lb)='170'), Row(Name='Bert Biswas Das', Sex='M', Age (yrs)='42', Height (in)='73', Weight (lb)='166'), Row(Name='Carl Kumar Das', Sex='M', Age (yrs)='32', Height (in)='74', Weight (lb)='155'), Row(Name='Dave Biswas Das', Sex='M', Age (yrs)='39', Height (in)='75', Weight (lb)='167'), Row(Name='Elly Kumar Das', Sex='F', Age (yrs)='30', Height (in)='76', Weight (lb)='124')] 
+
+df_ss_json take 5 [Row(age=37, name='Michael Kumar Das', salary=1000, sex='M'), Row(age=30, name='Andy Kumar Das', salary=1000, sex='M'), Row(age=19, name='Justin Kumar Das', salary=1000, sex='M'), Row(age=None, name='Caroline Biswas Das', salary=2000, sex='F'), Row(age=30, name='Fabiana Biswas Das', salary=2000, sex='F')] 
+
+df_ss_1 head 3
+ [Row(Name='KKD', Sex='M', Height=5.6, Countries='USA,India,India'), Row(Name='Neepa', Sex='F', Height=5.0, Countries='USA,India,India'), Row(Name='Ronak', Sex='M', Height=5.1, Countries='USA,India,USA')] 
+
+df_ss_csv head 5 [Row(Name='Alex Kumar Das', Sex='M', Age (yrs)='41', Height (in)='72', Weight (lb)='170'), Row(Name='Bert Biswas Das', Sex='M', Age (yrs)='42', Height (in)='73', Weight (lb)='166'), Row(Name='Carl Kumar Das', Sex='M', Age (yrs)='32', Height (in)='74', Weight (lb)='155'), Row(Name='Dave Biswas Das', Sex='M', Age (yrs)='39', Height (in)='75', Weight (lb)='167'), Row(Name='Elly Kumar Das', Sex='F', Age (yrs)='30', Height (in)='76', Weight (lb)='124')] 
+
+df_ss_json head 5 [Row(age=37, name='Michael Kumar Das', salary=1000, sex='M'), Row(age=30, name='Andy Kumar Das', salary=1000, sex='M'), Row(age=19, name='Justin Kumar Das', salary=1000, sex='M'), Row(age=None, name='Caroline Biswas Das', salary=2000, sex='F'), Row(age=30, name='Fabiana Biswas Das', salary=2000, sex='F')] 
 
 df_ss_1 collect
- [Row(integers=1, floats=-1.0, integer_arrays=[1, 2]), Row(integers=2, floats=0.5, integer_arrays=[3, 4, 5]), Row(integers=3, floats=2.7, integer_arrays=[6, 7, 8, 9])] 
+ [Row(Name='KKD', Sex='M', Height=5.6, Countries='USA,India,India'), Row(Name='Neepa', Sex='F', Height=5.0, Countries='USA,India,India'), Row(Name='Ronak', Sex='M', Height=5.1, Countries='USA,India,USA'), Row(Name='Ronik', Sex='M', Height=4.4, Countries='USA,India,USA')] 
 
 df_ss_csv collect
- [Row(Name='Alex', Sex='M', Age (yrs)=41, Height (in)=72, Weight (lb)=170), Row(Name='Bert', Sex='M', Age (yrs)=42, Height (in)=73, Weight (lb)=166), Row(Name='Carl', Sex='M', Age (yrs)=32, Height (in)=74, Weight (lb)=155), Row(Name='Dave', Sex='M', Age (yrs)=39, Height (in)=75, Weight (lb)=167), Row(Name='Elly', Sex='F', Age (yrs)=30, Height (in)=76, Weight (lb)=124), Row(Name='Fran', Sex='F', Age (yrs)=33, Height (in)=77, Weight (lb)=115), Row(Name='Gwen', Sex='F', Age (yrs)=26, Height (in)=84, Weight (lb)=121), Row(Name='Hank', Sex='M', Age (yrs)=30, Height (in)=85, Weight (lb)=158), Row(Name='Ivan', Sex='M', Age (yrs)=53, Height (in)=86, Weight (lb)=175), Row(Name='Jake', Sex='M', Age (yrs)=32, Height (in)=87, Weight (lb)=143), Row(Name='Kate', Sex='F', Age (yrs)=47, Height (in)=88, Weight (lb)=139), Row(Name='Luke', Sex='M', Age (yrs)=34, Height (in)=89, Weight (lb)=163), Row(Name='Myra', Sex='F', Age (yrs)=23, Height (in)=90, Weight (lb)=98), Row(Name='Neil', Sex='M', Age (yrs)=36, Height (in)=92, Weight (lb)=160), Row(Name='Omar', Sex='M', Age (yrs)=38, Height (in)=93, Weight (lb)=145), Row(Name='Page', Sex='F', Age (yrs)=31, Height (in)=95, Weight (lb)=135), Row(Name='Quin', Sex='M', Age (yrs)=29, Height (in)=97, Weight (lb)=176), Row(Name='Ruth', Sex='F', Age (yrs)=28, Height (in)=99, Weight (lb)=131)] 
+ [Row(Name='Alex Kumar Das', Sex='M', Age (yrs)='41', Height (in)='72', Weight (lb)='170'), Row(Name='Bert Biswas Das', Sex='M', Age (yrs)='42', Height (in)='73', Weight (lb)='166'), Row(Name='Carl Kumar Das', Sex='M', Age (yrs)='32', Height (in)='74', Weight (lb)='155'), Row(Name='Dave Biswas Das', Sex='M', Age (yrs)='39', Height (in)='75', Weight (lb)='167'), Row(Name='Elly Kumar Das', Sex='F', Age (yrs)='30', Height (in)='76', Weight (lb)='124'), Row(Name='Fran Biswas Das', Sex='F', Age (yrs)='33', Height (in)='77', Weight (lb)='115'), Row(Name='Gwen Kumar Das', Sex='F', Age (yrs)='26', Height (in)='84', Weight (lb)='121'), Row(Name='Hank Biswas Das', Sex='M', Age (yrs)='30', Height (in)='85', Weight (lb)='158'), Row(Name='Ivan Kumar Das', Sex='M', Age (yrs)='53', Height (in)='86', Weight (lb)='175'), Row(Name='Jake Biswas Das', Sex='M', Age (yrs)='32', Height (in)='87', Weight (lb)='143'), Row(Name='Kate Kumar Das', Sex='F', Age (yrs)='47', Height (in)='88', Weight (lb)='139'), Row(Name='Luke Biswas Das', Sex='M', Age (yrs)='34', Height (in)='89', Weight (lb)='163'), Row(Name='Myra Kumar Das', Sex='F', Age (yrs)='23', Height (in)='90', Weight (lb)='98'), Row(Name='Neil Biswas Das', Sex='M', Age (yrs)='36', Height (in)='92', Weight (lb)='160'), Row(Name='Omar Kumar Das', Sex='M', Age (yrs)='38', Height (in)='93', Weight (lb)='145'), Row(Name='Page Biswas Das', Sex='F', Age (yrs)='31', Height (in)='95', Weight (lb)='135'), Row(Name='Quin Kumar Das', Sex='M', Age (yrs)='29', Height (in)='97', Weight (lb)='176'), Row(Name='Ruth Biswas Das', Sex='F', Age (yrs)='28', Height (in)='99', Weight (lb)='131')] 
 
 df_ss_json collect
- [Row(name='Michael', sex='M', salary=1000, age=nan), Row(name='Andy', sex='M', salary=1002, age=30.0), Row(name='Justin', sex='M', salary=1001, age=19.0), Row(name='Caroline', sex='F', salary=2002, age=nan), Row(name='Fabiana', sex='F', salary=2000, age=30.0), Row(name='Sandhya', sex='F', salary=2002, age=19.0), Row(name='Michael', sex='M', salary=3002, age=nan), Row(name='Andy', sex='M', salary=3002, age=40.0), Row(name='Justin', sex='M', salary=3000, age=29.0)] 
+ [Row(age=37, name='Michael Kumar Das', salary=1000, sex='M'), Row(age=30, name='Andy Kumar Das', salary=1000, sex='M'), Row(age=19, name='Justin Kumar Das', salary=1000, sex='M'), Row(age=None, name='Caroline Biswas Das', salary=2000, sex='F'), Row(age=30, name='Fabiana Biswas Das', salary=2000, sex='F'), Row(age=19, name='Sandhya Biswas Das', salary=2000, sex='F'), Row(age=None, name='Michael Kumar Das', salary=3000, sex='M'), Row(age=40, name='Andy Kumar Das', salary=3000, sex='M'), Row(age=29, name='Justin Kumar Das', salary=3000, sex='M')] 
 
-row_json :  nan 1000
-row_json :  30.0 1002
-row_json :  19.0 1001
-row_json :  nan 2002
-row_json :  30.0 2000
-row_json :  19.0 2002
-row_json :  nan 3002
-row_json :  40.0 3002
-row_json :  29.0 3000
-row_csv :  72 170
-row_csv :  73 166
-row_csv :  74 155
-row_csv :  75 167
-row_csv :  76 124
-row_csv :  77 115
-row_csv :  84 121
-row_csv :  85 158
-row_csv :  86 175
-row_csv :  87 143
-row_csv :  88 139
-row_csv :  89 163
-row_csv :  90 98
-row_csv :  92 160
-row_csv :  93 145
-row_csv :  95 135
-row_csv :  97 176
-row_csv :  99 131
-list_csv_height:  [72, 73, 74, 75, 76, 77, 84, 85, 86, 87, 88, 89, 90, 92, 93, 95, 97, 99]
-list_csv_weight:  [170, 166, 155, 167, 124, 115, 121, 158, 175, 143, 139, 163, 98, 160, 145, 135, 176, 131]
-+----+---------+---+
-|Name|Age (yrs)|Sex|
-+----+---------+---+
-|Alex|       41|  M|
-|Bert|       42|  M|
-|Carl|       32|  M|
-|Dave|       39|  M|
-|Elly|       30|  F|
-|Fran|       33|  F|
-|Gwen|       26|  F|
-|Hank|       30|  M|
-|Ivan|       53|  M|
-|Jake|       32|  M|
-|Kate|       47|  F|
-|Luke|       34|  M|
-|Myra|       23|  F|
-|Neil|       36|  M|
-|Omar|       38|  M|
-|Page|       31|  F|
-|Quin|       29|  M|
-|Ruth|       28|  F|
-+----+---------+---+
-
-df_ss_csv select
- None 
-
-+--------+----+---+
-|    name| age|sex|
-+--------+----+---+
-| Michael| NaN|  M|
-|    Andy|30.0|  M|
-|  Justin|19.0|  M|
-|Caroline| NaN|  F|
-| Fabiana|30.0|  F|
-| Sandhya|19.0|  F|
-| Michael| NaN|  M|
-|    Andy|40.0|  M|
-|  Justin|29.0|  M|
-+--------+----+---+
-
-df_ss_json select
- None 
-
-+----+---------+---+
-|Name|Age (yrs)|Sex|
-+----+---------+---+
-|Alex|       41|  M|
-|Bert|       42|  M|
-|Carl|       32|  M|
-|Dave|       39|  M|
-|Elly|       30|  F|
-|Fran|       33|  F|
-|Gwen|       26|  F|
-|Hank|       30|  M|
-|Ivan|       53|  M|
-|Jake|       32|  M|
-|Kate|       47|  F|
-|Luke|       34|  M|
-|Myra|       23|  F|
-|Neil|       36|  M|
-|Omar|       38|  M|
-|Page|       31|  F|
-|Quin|       29|  M|
-|Ruth|       28|  F|
-+----+---------+---+
-
-df_ss_csv select alt
- None 
-
-+--------+----+---+
-|    name| age|sex|
-+--------+----+---+
-| Michael| NaN|  M|
-|    Andy|30.0|  M|
-|  Justin|19.0|  M|
-|Caroline| NaN|  F|
-| Fabiana|30.0|  F|
-| Sandhya|19.0|  F|
-| Michael| NaN|  M|
-|    Andy|40.0|  M|
-|  Justin|29.0|  M|
-+--------+----+---+
-
-df_ss_json select alt
- None 
-
-+----+
-|Name|
-+----+
-|Alex|
-|Bert|
-|Carl|
-|Dave|
-|Elly|
-|Fran|
-|Gwen|
-|Hank|
-|Ivan|
-|Jake|
-|Kate|
-|Luke|
-|Myra|
-|Neil|
-|Omar|
-|Page|
-|Quin|
-|Ruth|
-+----+
-
-df_ss_csv select dropDuplicates and sort
- None 
-
-+--------+
-|    name|
-+--------+
-|    Andy|
-|Caroline|
-| Fabiana|
-|  Justin|
-| Michael|
-| Sandhya|
-+--------+
-
-df_ss_json select dropDuplicates and sort
- None 
-
-+----+----------+---------+-------------+
-|Name|Hello Name|Age (yrs)|Age doubled !|
-+----+----------+---------+-------------+
-|Alex|Hello Alex|       41|           82|
-|Bert|Hello Bert|       42|           84|
-|Carl|Hello Carl|       32|           64|
-|Dave|Hello Dave|       39|           78|
-|Elly|Hello Elly|       30|           60|
-|Fran|Hello Fran|       33|           66|
-|Gwen|Hello Gwen|       26|           52|
-|Hank|Hello Hank|       30|           60|
-|Ivan|Hello Ivan|       53|          106|
-|Jake|Hello Jake|       32|           64|
-|Kate|Hello Kate|       47|           94|
-|Luke|Hello Luke|       34|           68|
-|Myra|Hello Myra|       23|           46|
-|Neil|Hello Neil|       36|           72|
-|Omar|Hello Omar|       38|           76|
-|Page|Hello Page|       31|           62|
-|Quin|Hello Quin|       29|           58|
-|Ruth|Hello Ruth|       28|           56|
-+----+----------+---------+-------------+
++---------------+--------------------+---------+-------------+
+|           Name|          Hello Name|Age (yrs)|Age doubled !|
++---------------+--------------------+---------+-------------+
+| Alex Kumar Das|Hello Alex Kumar Das|       41|           82|
+|Bert Biswas Das|Hello Bert Biswas...|       42|           84|
+| Carl Kumar Das|Hello Carl Kumar Das|       32|           64|
+|Dave Biswas Das|Hello Dave Biswas...|       39|           78|
+| Elly Kumar Das|Hello Elly Kumar Das|       30|           60|
+|Fran Biswas Das|Hello Fran Biswas...|       33|           66|
+| Gwen Kumar Das|Hello Gwen Kumar Das|       26|           52|
+|Hank Biswas Das|Hello Hank Biswas...|       30|           60|
+| Ivan Kumar Das|Hello Ivan Kumar Das|       53|          106|
+|Jake Biswas Das|Hello Jake Biswas...|       32|           64|
+| Kate Kumar Das|Hello Kate Kumar Das|       47|           94|
+|Luke Biswas Das|Hello Luke Biswas...|       34|           68|
+| Myra Kumar Das|Hello Myra Kumar Das|       23|           46|
+|Neil Biswas Das|Hello Neil Biswas...|       36|           72|
+| Omar Kumar Das|Hello Omar Kumar Das|       38|           76|
+|Page Biswas Das|Hello Page Biswas...|       31|           62|
+| Quin Kumar Das|Hello Quin Kumar Das|       29|           58|
+|Ruth Biswas Das|Hello Ruth Biswas...|       28|           56|
++---------------+--------------------+---------+-------------+
 
 df_ss_csv_new_1 
  None 
 
-+--------+--------------+------+----------------+
-|    name|    Hello name|salary|salary doubled !|
-+--------+--------------+------+----------------+
-| Michael| Hello Michael|  1000|            2000|
-|    Andy|    Hello Andy|  1002|            2004|
-|  Justin|  Hello Justin|  1001|            2002|
-|Caroline|Hello Caroline|  2002|            4004|
-| Fabiana| Hello Fabiana|  2000|            4000|
-| Sandhya| Hello Sandhya|  2002|            4004|
-| Michael| Hello Michael|  3002|            6004|
-|    Andy|    Hello Andy|  3002|            6004|
-|  Justin|  Hello Justin|  3000|            6000|
-+--------+--------------+------+----------------+
++-------------------+--------------------+------+----------------+
+|               name|          Hello name|salary|salary doubled !|
++-------------------+--------------------+------+----------------+
+|  Michael Kumar Das|Hello Michael Kum...|  1000|            2000|
+|     Andy Kumar Das|Hello Andy Kumar Das|  1000|            2000|
+|   Justin Kumar Das|Hello Justin Kuma...|  1000|            2000|
+|Caroline Biswas Das|Hello Caroline Bi...|  2000|            4000|
+| Fabiana Biswas Das|Hello Fabiana Bis...|  2000|            4000|
+| Sandhya Biswas Das|Hello Sandhya Bis...|  2000|            4000|
+|  Michael Kumar Das|Hello Michael Kum...|  3000|            6000|
+|     Andy Kumar Das|Hello Andy Kumar Das|  3000|            6000|
+|   Justin Kumar Das|Hello Justin Kuma...|  3000|            6000|
++-------------------+--------------------+------+----------------+
 
 df_ss_json_new_sq_1 
  None 
 
-+--------+--------------+------+----------------+
-|    name|    Hello name|salary|salary doubled !|
-+--------+--------------+------+----------------+
-| Michael| Hello Michael|  1000|            2000|
-|    Andy|    Hello Andy|  1002|            2004|
-|  Justin|  Hello Justin|  1001|            2002|
-|Caroline|Hello Caroline|  2002|            4004|
-| Fabiana| Hello Fabiana|  2000|            4000|
-| Sandhya| Hello Sandhya|  2002|            4004|
-| Michael| Hello Michael|  3002|            6004|
-|    Andy|    Hello Andy|  3002|            6004|
-|  Justin|  Hello Justin|  3000|            6000|
-+--------+--------------+------+----------------+
++-------------------+--------------------+------+----------------+
+|               name|          Hello name|salary|salary doubled !|
++-------------------+--------------------+------+----------------+
+|  Michael Kumar Das|Hello Michael Kum...|  1000|            2000|
+|     Andy Kumar Das|Hello Andy Kumar Das|  1000|            2000|
+|   Justin Kumar Das|Hello Justin Kuma...|  1000|            2000|
+|Caroline Biswas Das|Hello Caroline Bi...|  2000|            4000|
+| Fabiana Biswas Das|Hello Fabiana Bis...|  2000|            4000|
+| Sandhya Biswas Das|Hello Sandhya Bis...|  2000|            4000|
+|  Michael Kumar Das|Hello Michael Kum...|  3000|            6000|
+|     Andy Kumar Das|Hello Andy Kumar Das|  3000|            6000|
+|   Justin Kumar Das|Hello Justin Kuma...|  3000|            6000|
++-------------------+--------------------+------+----------------+
 
 df_ss_json_new_dq_1 
  None 
 
-+----+---+---------+-----------+-----------+----------+
-|Name|Sex|Age (yrs)|Height (in)|Weight (lb)|Hello Name|
-+----+---+---------+-----------+-----------+----------+
-|Alex|  M|       41|         72|        170|Hello Alex|
-|Bert|  M|       42|         73|        166|Hello Bert|
-|Carl|  M|       32|         74|        155|Hello Carl|
-|Dave|  M|       39|         75|        167|Hello Dave|
-|Elly|  F|       30|         76|        124|Hello Elly|
-|Fran|  F|       33|         77|        115|Hello Fran|
-|Gwen|  F|       26|         84|        121|Hello Gwen|
-|Hank|  M|       30|         85|        158|Hello Hank|
-|Ivan|  M|       53|         86|        175|Hello Ivan|
-|Jake|  M|       32|         87|        143|Hello Jake|
-|Kate|  F|       47|         88|        139|Hello Kate|
-|Luke|  M|       34|         89|        163|Hello Luke|
-|Myra|  F|       23|         90|         98|Hello Myra|
-|Neil|  M|       36|         92|        160|Hello Neil|
-|Omar|  M|       38|         93|        145|Hello Omar|
-|Page|  F|       31|         95|        135|Hello Page|
-|Quin|  M|       29|         97|        176|Hello Quin|
-|Ruth|  F|       28|         99|        131|Hello Ruth|
-+----+---+---------+-----------+-----------+----------+
++---------------+---+---------+-----------+-----------+--------------------+
+|           Name|Sex|Age (yrs)|Height (in)|Weight (lb)|          Hello Name|
++---------------+---+---------+-----------+-----------+--------------------+
+| Alex Kumar Das|  M|       41|         72|        170|Hello Alex Kumar Das|
+|Bert Biswas Das|  M|       42|         73|        166|Hello Bert Biswas...|
+| Carl Kumar Das|  M|       32|         74|        155|Hello Carl Kumar Das|
+|Dave Biswas Das|  M|       39|         75|        167|Hello Dave Biswas...|
+| Elly Kumar Das|  F|       30|         76|        124|Hello Elly Kumar Das|
+|Fran Biswas Das|  F|       33|         77|        115|Hello Fran Biswas...|
+| Gwen Kumar Das|  F|       26|         84|        121|Hello Gwen Kumar Das|
+|Hank Biswas Das|  M|       30|         85|        158|Hello Hank Biswas...|
+| Ivan Kumar Das|  M|       53|         86|        175|Hello Ivan Kumar Das|
+|Jake Biswas Das|  M|       32|         87|        143|Hello Jake Biswas...|
+| Kate Kumar Das|  F|       47|         88|        139|Hello Kate Kumar Das|
+|Luke Biswas Das|  M|       34|         89|        163|Hello Luke Biswas...|
+| Myra Kumar Das|  F|       23|         90|         98|Hello Myra Kumar Das|
+|Neil Biswas Das|  M|       36|         92|        160|Hello Neil Biswas...|
+| Omar Kumar Das|  M|       38|         93|        145|Hello Omar Kumar Das|
+|Page Biswas Das|  F|       31|         95|        135|Hello Page Biswas...|
+| Quin Kumar Das|  M|       29|         97|        176|Hello Quin Kumar Das|
+|Ruth Biswas Das|  F|       28|         99|        131|Hello Ruth Biswas...|
++---------------+---+---------+-----------+-----------+--------------------+
 
 df_ss_csv_new_2 
  None 
 
-+--------+---+------+----+----------------+
-|    name|sex|salary| age|Salary Doubled !|
-+--------+---+------+----+----------------+
-| Michael|  M|  1000| NaN|            2000|
-|    Andy|  M|  1002|30.0|            2004|
-|  Justin|  M|  1001|19.0|            2002|
-|Caroline|  F|  2002| NaN|            4004|
-| Fabiana|  F|  2000|30.0|            4000|
-| Sandhya|  F|  2002|19.0|            4004|
-| Michael|  M|  3002| NaN|            6004|
-|    Andy|  M|  3002|40.0|            6004|
-|  Justin|  M|  3000|29.0|            6000|
-+--------+---+------+----+----------------+
++----+-------------------+------+---+----------------+
+| age|               name|salary|sex|Salary Doubled !|
++----+-------------------+------+---+----------------+
+|  37|  Michael Kumar Das|  1000|  M|            2000|
+|  30|     Andy Kumar Das|  1000|  M|            2000|
+|  19|   Justin Kumar Das|  1000|  M|            2000|
+|null|Caroline Biswas Das|  2000|  F|            4000|
+|  30| Fabiana Biswas Das|  2000|  F|            4000|
+|  19| Sandhya Biswas Das|  2000|  F|            4000|
+|null|  Michael Kumar Das|  3000|  M|            6000|
+|  40|     Andy Kumar Das|  3000|  M|            6000|
+|  29|   Justin Kumar Das|  3000|  M|            6000|
++----+-------------------+------+---+----------------+
 
 df_ss_json_new_2 
  None 
 
-+----+---+---------+-----------+-----------+-----------+
-|Name|Sex|Age (yrs)|Height (in)|Weight (lb)|Age Squared|
-+----+---+---------+-----------+-----------+-----------+
-|Alex|  M|       41|         72|        170|       1681|
-|Bert|  M|       42|         73|        166|       1764|
-|Carl|  M|       32|         74|        155|       1024|
-|Dave|  M|       39|         75|        167|       1521|
-|Elly|  F|       30|         76|        124|        900|
-|Fran|  F|       33|         77|        115|       1089|
-|Gwen|  F|       26|         84|        121|        676|
-|Hank|  M|       30|         85|        158|        900|
-|Ivan|  M|       53|         86|        175|       2809|
-|Jake|  M|       32|         87|        143|       1024|
-|Kate|  F|       47|         88|        139|       2209|
-|Luke|  M|       34|         89|        163|       1156|
-|Myra|  F|       23|         90|         98|        529|
-|Neil|  M|       36|         92|        160|       1296|
-|Omar|  M|       38|         93|        145|       1444|
-|Page|  F|       31|         95|        135|        961|
-|Quin|  M|       29|         97|        176|        841|
-|Ruth|  F|       28|         99|        131|        784|
-+----+---+---------+-----------+-----------+-----------+
++---------------+---+---------+-----------+-----------+-----------+
+|           Name|Sex|Age (yrs)|Height (in)|Weight (lb)|Age Squared|
++---------------+---+---------+-----------+-----------+-----------+
+| Alex Kumar Das|  M|       41|         72|        170|       1681|
+|Bert Biswas Das|  M|       42|         73|        166|       1764|
+| Carl Kumar Das|  M|       32|         74|        155|       1024|
+|Dave Biswas Das|  M|       39|         75|        167|       1521|
+| Elly Kumar Das|  F|       30|         76|        124|        900|
+|Fran Biswas Das|  F|       33|         77|        115|       1089|
+| Gwen Kumar Das|  F|       26|         84|        121|        676|
+|Hank Biswas Das|  M|       30|         85|        158|        900|
+| Ivan Kumar Das|  M|       53|         86|        175|       2809|
+|Jake Biswas Das|  M|       32|         87|        143|       1024|
+| Kate Kumar Das|  F|       47|         88|        139|       2209|
+|Luke Biswas Das|  M|       34|         89|        163|       1156|
+| Myra Kumar Das|  F|       23|         90|         98|        529|
+|Neil Biswas Das|  M|       36|         92|        160|       1296|
+| Omar Kumar Das|  M|       38|         93|        145|       1444|
+|Page Biswas Das|  F|       31|         95|        135|        961|
+| Quin Kumar Das|  M|       29|         97|        176|        841|
+|Ruth Biswas Das|  F|       28|         99|        131|        784|
++---------------+---+---------+-----------+-----------+-----------+
 
 df_ss_csv_new_3 
  None 
 
-+--------+---+------+----+----------------+
-|    name|sex|salary| age|Salary Squared !|
-+--------+---+------+----+----------------+
-| Michael|  M|  1000| NaN|         1000000|
-|    Andy|  M|  1002|30.0|         1004004|
-|  Justin|  M|  1001|19.0|         1002001|
-|Caroline|  F|  2002| NaN|         4008004|
-| Fabiana|  F|  2000|30.0|         4000000|
-| Sandhya|  F|  2002|19.0|         4008004|
-| Michael|  M|  3002| NaN|         9012004|
-|    Andy|  M|  3002|40.0|         9012004|
-|  Justin|  M|  3000|29.0|         9000000|
-+--------+---+------+----+----------------+
++----+-------------------+------+---+----------------+
+| age|               name|salary|sex|Salary Squared !|
++----+-------------------+------+---+----------------+
+|  37|  Michael Kumar Das|  1000|  M|         1000000|
+|  30|     Andy Kumar Das|  1000|  M|         1000000|
+|  19|   Justin Kumar Das|  1000|  M|         1000000|
+|null|Caroline Biswas Das|  2000|  F|         4000000|
+|  30| Fabiana Biswas Das|  2000|  F|         4000000|
+|  19| Sandhya Biswas Das|  2000|  F|         4000000|
+|null|  Michael Kumar Das|  3000|  M|         9000000|
+|  40|     Andy Kumar Das|  3000|  M|         9000000|
+|  29|   Justin Kumar Das|  3000|  M|         9000000|
++----+-------------------+------+---+----------------+
 
 df_ss_json_new_3 
  None 
 
-+----+--------+---------+-------------+
-|Name|Hey Name|Age (yrs)|Age Squared !|
-+----+--------+---------+-------------+
-|Alex|Hey Alex|       41|         1681|
-|Bert|Hey Bert|       42|         1764|
-|Carl|Hey Carl|       32|         1024|
-|Dave|Hey Dave|       39|         1521|
-|Elly|Hey Elly|       30|          900|
-|Fran|Hey Fran|       33|         1089|
-|Gwen|Hey Gwen|       26|          676|
-|Hank|Hey Hank|       30|          900|
-|Ivan|Hey Ivan|       53|         2809|
-|Jake|Hey Jake|       32|         1024|
-|Kate|Hey Kate|       47|         2209|
-|Luke|Hey Luke|       34|         1156|
-|Myra|Hey Myra|       23|          529|
-|Neil|Hey Neil|       36|         1296|
-|Omar|Hey Omar|       38|         1444|
-|Page|Hey Page|       31|          961|
-|Quin|Hey Quin|       29|          841|
-|Ruth|Hey Ruth|       28|          784|
-+----+--------+---------+-------------+
++---------------+-------------------+---------+-------------+
+|           Name|           Hey Name|Age (yrs)|Age Squared !|
++---------------+-------------------+---------+-------------+
+| Alex Kumar Das| Hey Alex Kumar Das|       41|         1681|
+|Bert Biswas Das|Hey Bert Biswas Das|       42|         1764|
+| Carl Kumar Das| Hey Carl Kumar Das|       32|         1024|
+|Dave Biswas Das|Hey Dave Biswas Das|       39|         1521|
+| Elly Kumar Das| Hey Elly Kumar Das|       30|          900|
+|Fran Biswas Das|Hey Fran Biswas Das|       33|         1089|
+| Gwen Kumar Das| Hey Gwen Kumar Das|       26|          676|
+|Hank Biswas Das|Hey Hank Biswas Das|       30|          900|
+| Ivan Kumar Das| Hey Ivan Kumar Das|       53|         2809|
+|Jake Biswas Das|Hey Jake Biswas Das|       32|         1024|
+| Kate Kumar Das| Hey Kate Kumar Das|       47|         2209|
+|Luke Biswas Das|Hey Luke Biswas Das|       34|         1156|
+| Myra Kumar Das| Hey Myra Kumar Das|       23|          529|
+|Neil Biswas Das|Hey Neil Biswas Das|       36|         1296|
+| Omar Kumar Das| Hey Omar Kumar Das|       38|         1444|
+|Page Biswas Das|Hey Page Biswas Das|       31|          961|
+| Quin Kumar Das| Hey Quin Kumar Das|       29|          841|
+|Ruth Biswas Das|Hey Ruth Biswas Das|       28|          784|
++---------------+-------------------+---------+-------------+
 
-df_ss_csv_new_4 
+df_ss_csv_new_sq_4 
  None 
 
-+----+-----------+-----------+------------+
-|Name|Height (in)|Weight (lb)|Ration Wt/Ht|
-+----+-----------+-----------+------------+
-|Alex|         72|        170|   2.3611112|
-|Bert|         73|        166|   2.2739725|
-|Carl|         74|        155|   2.0945945|
-|Dave|         75|        167|   2.2266667|
-|Elly|         76|        124|   1.6315789|
-|Fran|         77|        115|   1.4935066|
-|Gwen|         84|        121|   1.4404762|
-|Hank|         85|        158|   1.8588235|
-|Ivan|         86|        175|   2.0348837|
-|Jake|         87|        143|   1.6436782|
-|Kate|         88|        139|   1.5795455|
-|Luke|         89|        163|   1.8314607|
-|Myra|         90|         98|   1.0888889|
-|Neil|         92|        160|   1.7391304|
-|Omar|         93|        145|   1.5591397|
-|Page|         95|        135|   1.4210526|
-|Quin|         97|        176|    1.814433|
-|Ruth|         99|        131|   1.3232323|
-+----+-----------+-----------+------------+
++---------------+-----------+-----------+------------+
+|           Name|Height (in)|Weight (lb)|Ration Wt/Ht|
++---------------+-----------+-----------+------------+
+| Alex Kumar Das|         72|        170|   2.3611112|
+|Bert Biswas Das|         73|        166|   2.2739725|
+| Carl Kumar Das|         74|        155|   2.0945945|
+|Dave Biswas Das|         75|        167|   2.2266667|
+| Elly Kumar Das|         76|        124|   1.6315789|
+|Fran Biswas Das|         77|        115|   1.4935066|
+| Gwen Kumar Das|         84|        121|   1.4404762|
+|Hank Biswas Das|         85|        158|   1.8588235|
+| Ivan Kumar Das|         86|        175|   2.0348837|
+|Jake Biswas Das|         87|        143|   1.6436782|
+| Kate Kumar Das|         88|        139|   1.5795455|
+|Luke Biswas Das|         89|        163|   1.8314607|
+| Myra Kumar Das|         90|         98|   1.0888889|
+|Neil Biswas Das|         92|        160|   1.7391304|
+| Omar Kumar Das|         93|        145|   1.5591397|
+|Page Biswas Das|         95|        135|   1.4210526|
+| Quin Kumar Das|         97|        176|    1.814433|
+|Ruth Biswas Das|         99|        131|   1.3232323|
++---------------+-----------+-----------+------------+
 
 df_ss_csv_new_ratio_4 
  None 
 
-+--------+------------+------+-----------------+
-|    name|    Hey name|salary|salary Squared  !|
-+--------+------------+------+-----------------+
-| Michael| Hey Michael|  1000|          1000000|
-|    Andy|    Hey Andy|  1002|          1004004|
-|  Justin|  Hey Justin|  1001|          1002001|
-|Caroline|Hey Caroline|  2002|          4008004|
-| Fabiana| Hey Fabiana|  2000|          4000000|
-| Sandhya| Hey Sandhya|  2002|          4008004|
-| Michael| Hey Michael|  3002|          9012004|
-|    Andy|    Hey Andy|  3002|          9012004|
-|  Justin|  Hey Justin|  3000|          9000000|
-+--------+------------+------+-----------------+
++-------------------+--------------------+------+-----------------+
+|               name|            Hey name|salary|salary Squared  !|
++-------------------+--------------------+------+-----------------+
+|  Michael Kumar Das|Hey Michael Kumar...|  1000|          1000000|
+|     Andy Kumar Das|  Hey Andy Kumar Das|  1000|          1000000|
+|   Justin Kumar Das|Hey Justin Kumar Das|  1000|          1000000|
+|Caroline Biswas Das|Hey Caroline Bisw...|  2000|          4000000|
+| Fabiana Biswas Das|Hey Fabiana Biswa...|  2000|          4000000|
+| Sandhya Biswas Das|Hey Sandhya Biswa...|  2000|          4000000|
+|  Michael Kumar Das|Hey Michael Kumar...|  3000|          9000000|
+|     Andy Kumar Das|  Hey Andy Kumar Das|  3000|          9000000|
+|   Justin Kumar Das|Hey Justin Kumar Das|  3000|          9000000|
++-------------------+--------------------+------+-----------------+
 
 df_ss_json_new_sq_4 
  None 
 
-+--------+------------+------+-----------------+
-|    name|    Hey name|salary|salary Squared  !|
-+--------+------------+------+-----------------+
-| Michael| Hey Michael|  1000|          1000000|
-|    Andy|    Hey Andy|  1002|          1004004|
-|  Justin|  Hey Justin|  1001|          1002001|
-|Caroline|Hey Caroline|  2002|          4008004|
-| Fabiana| Hey Fabiana|  2000|          4000000|
-| Sandhya| Hey Sandhya|  2002|          4008004|
-| Michael| Hey Michael|  3002|          9012004|
-|    Andy|    Hey Andy|  3002|          9012004|
-|  Justin|  Hey Justin|  3000|          9000000|
-+--------+------------+------+-----------------+
++-------------------+--------------------+------+-----------------+
+|               name|            Hey name|salary|salary Squared  !|
++-------------------+--------------------+------+-----------------+
+|  Michael Kumar Das|Hey Michael Kumar...|  1000|          1000000|
+|     Andy Kumar Das|  Hey Andy Kumar Das|  1000|          1000000|
+|   Justin Kumar Das|Hey Justin Kumar Das|  1000|          1000000|
+|Caroline Biswas Das|Hey Caroline Bisw...|  2000|          4000000|
+| Fabiana Biswas Das|Hey Fabiana Biswa...|  2000|          4000000|
+| Sandhya Biswas Das|Hey Sandhya Biswa...|  2000|          4000000|
+|  Michael Kumar Das|Hey Michael Kumar...|  3000|          9000000|
+|     Andy Kumar Das|  Hey Andy Kumar Das|  3000|          9000000|
+|   Justin Kumar Das|Hey Justin Kumar Das|  3000|          9000000|
++-------------------+--------------------+------+-----------------+
 
 df_ss_json_new_dq_4 
  None 
 
+root
+ |-- Name: string (nullable = true)
+ |-- Sex: string (nullable = true)
+ |-- Height: double (nullable = true)
+ |-- Countries: string (nullable = true)
+ |-- List countries: array (nullable = true)
+ |    |-- element: string (containsNull = true)
+
+df_ss_1_udf_split_string_comma_to_list printSchema: None 
+
++-----+---+------+---------------+-------------------+
+| Name|Sex|Height|      Countries|     List countries|
++-----+---+------+---------------+-------------------+
+|  KKD|  M|   5.6|USA,India,India|[USA, India, India]|
+|Neepa|  F|   5.0|USA,India,India|[USA, India, India]|
+|Ronak|  M|   5.1|  USA,India,USA|  [USA, India, USA]|
+|Ronik|  M|   4.4|  USA,India,USA|  [USA, India, USA]|
++-----+---+------+---------------+-------------------+
+
+df_ss_1_udf_split_string_comma_to_list : None 
+
+root
+ |-- Name: string (nullable = true)
+ |-- Sex: string (nullable = true)
+ |-- Age (yrs): string (nullable = true)
+ |-- Height (in): string (nullable = true)
+ |-- Weight (lb): string (nullable = true)
+ |-- Split name: array (nullable = true)
+ |    |-- element: string (containsNull = true)
+
+df_ss_csv_split_string_space_to_list printSchema: None 
+
++---------------+---+---------+-----------+-----------+-------------------+
+|           Name|Sex|Age (yrs)|Height (in)|Weight (lb)|         Split name|
++---------------+---+---------+-----------+-----------+-------------------+
+| Alex Kumar Das|  M|       41|         72|        170| [Alex, Kumar, Das]|
+|Bert Biswas Das|  M|       42|         73|        166|[Bert, Biswas, Das]|
+| Carl Kumar Das|  M|       32|         74|        155| [Carl, Kumar, Das]|
+|Dave Biswas Das|  M|       39|         75|        167|[Dave, Biswas, Das]|
+| Elly Kumar Das|  F|       30|         76|        124| [Elly, Kumar, Das]|
+|Fran Biswas Das|  F|       33|         77|        115|[Fran, Biswas, Das]|
+| Gwen Kumar Das|  F|       26|         84|        121| [Gwen, Kumar, Das]|
+|Hank Biswas Das|  M|       30|         85|        158|[Hank, Biswas, Das]|
+| Ivan Kumar Das|  M|       53|         86|        175| [Ivan, Kumar, Das]|
+|Jake Biswas Das|  M|       32|         87|        143|[Jake, Biswas, Das]|
+| Kate Kumar Das|  F|       47|         88|        139| [Kate, Kumar, Das]|
+|Luke Biswas Das|  M|       34|         89|        163|[Luke, Biswas, Das]|
+| Myra Kumar Das|  F|       23|         90|         98| [Myra, Kumar, Das]|
+|Neil Biswas Das|  M|       36|         92|        160|[Neil, Biswas, Das]|
+| Omar Kumar Das|  M|       38|         93|        145| [Omar, Kumar, Das]|
+|Page Biswas Das|  F|       31|         95|        135|[Page, Biswas, Das]|
+| Quin Kumar Das|  M|       29|         97|        176| [Quin, Kumar, Das]|
+|Ruth Biswas Das|  F|       28|         99|        131|[Ruth, Biswas, Das]|
++---------------+---+---------+-----------+-----------+-------------------+
+
+df_ss_csv_split_string_space_to_list : None 
+
+root
+ |-- age: long (nullable = true)
+ |-- name: string (nullable = true)
+ |-- salary: long (nullable = true)
+ |-- sex: string (nullable = true)
+ |-- Split name: array (nullable = true)
+ |    |-- element: string (containsNull = true)
+
+df_ss_json_split_string_space_to_list printSchema: None
++----+-------------------+------+---+--------------------+
+| age|               name|salary|sex|          Split name|
++----+-------------------+------+---+--------------------+
+|  37|  Michael Kumar Das|  1000|  M|[Michael, Kumar, ...|
+|  30|     Andy Kumar Das|  1000|  M|  [Andy, Kumar, Das]|
+|  19|   Justin Kumar Das|  1000|  M|[Justin, Kumar, Das]|
+|null|Caroline Biswas Das|  2000|  F|[Caroline, Biswas...|
+|  30| Fabiana Biswas Das|  2000|  F|[Fabiana, Biswas,...|
+|  19| Sandhya Biswas Das|  2000|  F|[Sandhya, Biswas,...|
+|null|  Michael Kumar Das|  3000|  M|[Michael, Kumar, ...|
+|  40|     Andy Kumar Das|  3000|  M|  [Andy, Kumar, Das]|
+|  29|   Justin Kumar Das|  3000|  M|[Justin, Kumar, Das]|
++----+-------------------+------+---+--------------------+
+
+df_ss_json_split_string_space_to_list : None
++--------------------+
+|          Split name|
++--------------------+
+|[Michael, Kumar, ...|
+|  [Andy, Kumar, Das]|
+|[Justin, Kumar, Das]|
+|[Caroline, Biswas...|
+|[Fabiana, Biswas,...|
+|[Sandhya, Biswas,...|
+|[Michael, Kumar, ...|
+|  [Andy, Kumar, Das]|
+|[Justin, Kumar, Das]|
++--------------------+
+
+df_ss_json_split_string_space_to_list.select("Split name") : None
+root
+ |-- Name: string (nullable = true)
+ |-- Sex: string (nullable = true)
+ |-- Height: double (nullable = true)
+ |-- Countries: string (nullable = true)
+ |-- List countries / dict: map (nullable = true)
+ |    |-- key: string
+ |    |-- value: string (valueContainsNull = true)
+
+df_ss_1_udf_split_string_comma_to_dict printSchema: None 
+
++-----+---+------+---------------+---------------------+
+| Name|Sex|Height|      Countries|List countries / dict|
++-----+---+------+---------------+---------------------+
+|  KKD|  M|   5.6|USA,India,India| [c3 -> India, c1 ...|
+|Neepa|  F|   5.0|USA,India,India| [c3 -> India, c1 ...|
+|Ronak|  M|   5.1|  USA,India,USA| [c3 -> USA, c1 ->...|
+|Ronik|  M|   4.4|  USA,India,USA| [c3 -> USA, c1 ->...|
++-----+---+------+---------------+---------------------+
+
+df_ss_1_udf_split_string_comma_to_dict : None 
+
++---------------------+
+|List countries / dict|
++---------------------+
+| [c3 -> India, c1 ...|
+| [c3 -> India, c1 ...|
+| [c3 -> USA, c1 ->...|
+| [c3 -> USA, c1 ->...|
++---------------------+
+
+df_ss_1_udf_split_string_comma_to_dict.("List countries / dict ") : None 
+
+root
+ |-- Name: string (nullable = true)
+ |-- Sex: string (nullable = true)
+ |-- Age (yrs): string (nullable = true)
+ |-- Height (in): string (nullable = true)
+ |-- Weight (lb): string (nullable = true)
+ |-- Split name / dict: map (nullable = true)
+ |    |-- key: string
+ |    |-- value: string (valueContainsNull = true)
+
+df_ss_csv_split_string_space_to_dict printSchema: None
++---------------+---+---------+-----------+-----------+--------------------+
+|           Name|Sex|Age (yrs)|Height (in)|Weight (lb)|   Split name / dict|
++---------------+---+---------+-----------+-----------+--------------------+
+| Alex Kumar Das|  M|       41|         72|        170|[fn -> Alex, mn -...|
+|Bert Biswas Das|  M|       42|         73|        166|[fn -> Bert, mn -...|
+| Carl Kumar Das|  M|       32|         74|        155|[fn -> Carl, mn -...|
+|Dave Biswas Das|  M|       39|         75|        167|[fn -> Dave, mn -...|
+| Elly Kumar Das|  F|       30|         76|        124|[fn -> Elly, mn -...|
+|Fran Biswas Das|  F|       33|         77|        115|[fn -> Fran, mn -...|
+| Gwen Kumar Das|  F|       26|         84|        121|[fn -> Gwen, mn -...|
+|Hank Biswas Das|  M|       30|         85|        158|[fn -> Hank, mn -...|
+| Ivan Kumar Das|  M|       53|         86|        175|[fn -> Ivan, mn -...|
+|Jake Biswas Das|  M|       32|         87|        143|[fn -> Jake, mn -...|
+| Kate Kumar Das|  F|       47|         88|        139|[fn -> Kate, mn -...|
+|Luke Biswas Das|  M|       34|         89|        163|[fn -> Luke, mn -...|
+| Myra Kumar Das|  F|       23|         90|         98|[fn -> Myra, mn -...|
+|Neil Biswas Das|  M|       36|         92|        160|[fn -> Neil, mn -...|
+| Omar Kumar Das|  M|       38|         93|        145|[fn -> Omar, mn -...|
+|Page Biswas Das|  F|       31|         95|        135|[fn -> Page, mn -...|
+| Quin Kumar Das|  M|       29|         97|        176|[fn -> Quin, mn -...|
+|Ruth Biswas Das|  F|       28|         99|        131|[fn -> Ruth, mn -...|
++---------------+---+---------+-----------+-----------+--------------------+
+
+df_ss_csv_split_string_space_to_dict : None
+root
+ |-- age: long (nullable = true)
+ |-- name: string (nullable = true)
+ |-- salary: long (nullable = true)
+ |-- sex: string (nullable = true)
+ |-- Split name / dict: map (nullable = true)
+ |    |-- key: string
+ |    |-- value: string (valueContainsNull = true)
+
+df_ss_json_split_string_space_to_dict printSchema:  None
++----+-------------------+------+---+--------------------+
+| age|               name|salary|sex|   Split name / dict|
++----+-------------------+------+---+--------------------+
+|  37|  Michael Kumar Das|  1000|  M|[fn -> Michael, m...|
+|  30|     Andy Kumar Das|  1000|  M|[fn -> Andy, mn -...|
+|  19|   Justin Kumar Das|  1000|  M|[fn -> Justin, mn...|
+|null|Caroline Biswas Das|  2000|  F|[fn -> Caroline, ...|
+|  30| Fabiana Biswas Das|  2000|  F|[fn -> Fabiana, m...|
+|  19| Sandhya Biswas Das|  2000|  F|[fn -> Sandhya, m...|
+|null|  Michael Kumar Das|  3000|  M|[fn -> Michael, m...|
+|  40|     Andy Kumar Das|  3000|  M|[fn -> Andy, mn -...|
+|  29|   Justin Kumar Das|  3000|  M|[fn -> Justin, mn...|
++----+-------------------+------+---+--------------------+
+
+df_ss_json_split_string_space_to_dict:  None

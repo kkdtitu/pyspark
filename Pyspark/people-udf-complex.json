@@ -1,0 +1,12 @@
+[
+    {"name":"Michael Kumar Das", "age":37, "sex":"M", "salary": 1000},
+    {"name":"Andy Kumar Das", "age":30, "sex":"M", "salary": 1000},
+    {"name":"Justin Kumar Das", "age":19, "sex":"M", "salary": 1000},
+    {"name":"Caroline Biswas Das", "sex":"F", "salary": 2000},
+    {"name":"Fabiana Biswas Das", "age":30, "sex":"F", "salary": 2000},
+    {"name":"Sandhya Biswas Das", "age":19, "sex":"F", "salary": 2000},
+    {"name":"Michael Kumar Das", "sex":"M", "salary": 3000},
+    {"name":"Andy Kumar Das", "age":40, "sex":"M", "salary": 3000},
+    {"name":"Justin Kumar Das", "age":29, "sex":"M", "salary": 3000}
+]
+
