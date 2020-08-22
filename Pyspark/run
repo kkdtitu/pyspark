@@ -1,6 +1,6 @@
-Config 1: [('spark.app.name', 'pyspark-df-udf-complex.py'), ('spark.app.id', 'local-1597972982406'), ('spark.driver.host', '192.168.1.15'), ('spark.rdd.compress', 'True'), ('spark.serializer.objectStreamReset', '100'), ('spark.master', 'local[*]'), ('spark.executor.id', 'driver'), ('spark.submit.deployMode', 'client'), ('spark.driver.port', '60238')] 
+Config 1: [('spark.app.name', 'pyspark-df-udf-complex.py'), ('spark.driver.host', '192.168.1.15'), ('spark.rdd.compress', 'True'), ('spark.serializer.objectStreamReset', '100'), ('spark.driver.port', '56757'), ('spark.master', 'local[*]'), ('spark.executor.id', 'driver'), ('spark.submit.deployMode', 'client'), ('spark.app.id', 'local-1598061616304')] 
 
-Config 2: <pyspark.sql.session.SparkSession object at 0x10bad8e10> 
+Config 2: <pyspark.sql.session.SparkSession object at 0x117637310> 
 
 root
  |-- Name: string (nullable = true)
@@ -400,13 +400,13 @@ root
  |-- Sex: string (nullable = true)
  |-- Height: double (nullable = true)
  |-- Countries: string (nullable = true)
- |-- List countries: array (nullable = true)
+ |-- countries-list: array (nullable = true)
  |    |-- element: string (containsNull = true)
 
 df_ss_1_udf_split_string_comma_to_list printSchema: None 
 
 +-----+---+------+---------------+-------------------+
-| Name|Sex|Height|      Countries|     List countries|
+| Name|Sex|Height|      Countries|     countries-list|
 +-----+---+------+---------------+-------------------+
 |  KKD|  M|   5.6|USA,India,India|[USA, India, India]|
 |Neepa|  F|   5.0|USA,India,India|[USA, India, India]|
@@ -422,13 +422,13 @@ root
  |-- Age (yrs): string (nullable = true)
  |-- Height (in): string (nullable = true)
  |-- Weight (lb): string (nullable = true)
- |-- Split name: array (nullable = true)
+ |-- split-name-list: array (nullable = true)
  |    |-- element: string (containsNull = true)
 
 df_ss_csv_split_string_space_to_list printSchema: None 
 
 +---------------+---+---------+-----------+-----------+-------------------+
-|           Name|Sex|Age (yrs)|Height (in)|Weight (lb)|         Split name|
+|           Name|Sex|Age (yrs)|Height (in)|Weight (lb)|    split-name-list|
 +---------------+---+---------+-----------+-----------+-------------------+
 | Alex Kumar Das|  M|       41|         72|        170| [Alex, Kumar, Das]|
 |Bert Biswas Das|  M|       42|         73|        166|[Bert, Biswas, Das]|
@@ -457,12 +457,22 @@ root
  |-- name: string (nullable = true)
  |-- salary: long (nullable = true)
  |-- sex: string (nullable = true)
- |-- Split name: array (nullable = true)
+ |-- split-name-list: array (nullable = true)
  |    |-- element: string (containsNull = true)
 
 df_ss_json_split_string_space_to_list printSchema: None
+df_ss_json_split_string_space_to_list toPandas:     age                 name  salary sex          split-name-list
+0  37.0    Michael Kumar Das    1000   M    [Michael, Kumar, Das]
+1  30.0       Andy Kumar Das    1000   M       [Andy, Kumar, Das]
+2  19.0     Justin Kumar Das    1000   M     [Justin, Kumar, Das]
+3   NaN  Caroline Biswas Das    2000   F  [Caroline, Biswas, Das]
+4  30.0   Fabiana Biswas Das    2000   F   [Fabiana, Biswas, Das]
+5  19.0   Sandhya Biswas Das    2000   F   [Sandhya, Biswas, Das]
+6   NaN    Michael Kumar Das    3000   M    [Michael, Kumar, Das]
+7  40.0       Andy Kumar Das    3000   M       [Andy, Kumar, Das]
+8  29.0     Justin Kumar Das    3000   M     [Justin, Kumar, Das]
 +----+-------------------+------+---+--------------------+
-| age|               name|salary|sex|          Split name|
+| age|               name|salary|sex|     split-name-list|
 +----+-------------------+------+---+--------------------+
 |  37|  Michael Kumar Das|  1000|  M|[Michael, Kumar, ...|
 |  30|     Andy Kumar Das|  1000|  M|  [Andy, Kumar, Das]|
@@ -476,53 +486,35 @@ df_ss_json_split_string_space_to_list printSchema: None
 +----+-------------------+------+---+--------------------+
 
 df_ss_json_split_string_space_to_list : None
-+--------------------+
-|          Split name|
-+--------------------+
-|[Michael, Kumar, ...|
-|  [Andy, Kumar, Das]|
-|[Justin, Kumar, Das]|
-|[Caroline, Biswas...|
-|[Fabiana, Biswas,...|
-|[Sandhya, Biswas,...|
-|[Michael, Kumar, ...|
-|  [Andy, Kumar, Das]|
-|[Justin, Kumar, Das]|
-+--------------------+
-
-df_ss_json_split_string_space_to_list.select("Split name") : None
 root
  |-- Name: string (nullable = true)
  |-- Sex: string (nullable = true)
  |-- Height: double (nullable = true)
  |-- Countries: string (nullable = true)
- |-- List countries / dict: map (nullable = true)
+ |-- countriesdict: map (nullable = true)
  |    |-- key: string
  |    |-- value: string (valueContainsNull = true)
 
 df_ss_1_udf_split_string_comma_to_dict printSchema: None 
 
-+-----+---+------+---------------+---------------------+
-| Name|Sex|Height|      Countries|List countries / dict|
-+-----+---+------+---------------+---------------------+
-|  KKD|  M|   5.6|USA,India,India| [c3 -> India, c1 ...|
-|Neepa|  F|   5.0|USA,India,India| [c3 -> India, c1 ...|
-|Ronak|  M|   5.1|  USA,India,USA| [c3 -> USA, c1 ->...|
-|Ronik|  M|   4.4|  USA,India,USA| [c3 -> USA, c1 ->...|
-+-----+---+------+---------------+---------------------+
+df_ss_1_udf_split_string_comma_to_dict toPandas:     Name Sex  ...        Countries                                countriesdict
+0    KKD   M  ...  USA,India,India  {'c3': 'India', 'c1': 'USA', 'c2': 'India'}
+1  Neepa   F  ...  USA,India,India  {'c3': 'India', 'c1': 'USA', 'c2': 'India'}
+2  Ronak   M  ...    USA,India,USA    {'c3': 'USA', 'c1': 'USA', 'c2': 'India'}
+3  Ronik   M  ...    USA,India,USA    {'c3': 'USA', 'c1': 'USA', 'c2': 'India'}
+
+[4 rows x 5 columns] 
+
++-----+---+------+---------------+--------------------+
+| Name|Sex|Height|      Countries|       countriesdict|
++-----+---+------+---------------+--------------------+
+|  KKD|  M|   5.6|USA,India,India|[c3 -> India, c1 ...|
+|Neepa|  F|   5.0|USA,India,India|[c3 -> India, c1 ...|
+|Ronak|  M|   5.1|  USA,India,USA|[c3 -> USA, c1 ->...|
+|Ronik|  M|   4.4|  USA,India,USA|[c3 -> USA, c1 ->...|
++-----+---+------+---------------+--------------------+
 
 df_ss_1_udf_split_string_comma_to_dict : None 
-
-+---------------------+
-|List countries / dict|
-+---------------------+
-| [c3 -> India, c1 ...|
-| [c3 -> India, c1 ...|
-| [c3 -> USA, c1 ->...|
-| [c3 -> USA, c1 ->...|
-+---------------------+
-
-df_ss_1_udf_split_string_comma_to_dict.("List countries / dict ") : None 
 
 root
  |-- Name: string (nullable = true)
@@ -530,13 +522,34 @@ root
  |-- Age (yrs): string (nullable = true)
  |-- Height (in): string (nullable = true)
  |-- Weight (lb): string (nullable = true)
- |-- Split name / dict: map (nullable = true)
+ |-- splitnamedict: map (nullable = true)
  |    |-- key: string
  |    |-- value: string (valueContainsNull = true)
 
 df_ss_csv_split_string_space_to_dict printSchema: None
+df_ss_csv_split_string_space_to_dict toPandas:                Name  ...                                splitnamedict
+0    Alex Kumar Das  ...   {'fn': 'Alex', 'mn': 'Kumar', 'ln': 'Das'}
+1   Bert Biswas Das  ...  {'fn': 'Bert', 'mn': 'Biswas', 'ln': 'Das'}
+2    Carl Kumar Das  ...   {'fn': 'Carl', 'mn': 'Kumar', 'ln': 'Das'}
+3   Dave Biswas Das  ...  {'fn': 'Dave', 'mn': 'Biswas', 'ln': 'Das'}
+4    Elly Kumar Das  ...   {'fn': 'Elly', 'mn': 'Kumar', 'ln': 'Das'}
+5   Fran Biswas Das  ...  {'fn': 'Fran', 'mn': 'Biswas', 'ln': 'Das'}
+6    Gwen Kumar Das  ...   {'fn': 'Gwen', 'mn': 'Kumar', 'ln': 'Das'}
+7   Hank Biswas Das  ...  {'fn': 'Hank', 'mn': 'Biswas', 'ln': 'Das'}
+8    Ivan Kumar Das  ...   {'fn': 'Ivan', 'mn': 'Kumar', 'ln': 'Das'}
+9   Jake Biswas Das  ...  {'fn': 'Jake', 'mn': 'Biswas', 'ln': 'Das'}
+10   Kate Kumar Das  ...   {'fn': 'Kate', 'mn': 'Kumar', 'ln': 'Das'}
+11  Luke Biswas Das  ...  {'fn': 'Luke', 'mn': 'Biswas', 'ln': 'Das'}
+12   Myra Kumar Das  ...   {'fn': 'Myra', 'mn': 'Kumar', 'ln': 'Das'}
+13  Neil Biswas Das  ...  {'fn': 'Neil', 'mn': 'Biswas', 'ln': 'Das'}
+14   Omar Kumar Das  ...   {'fn': 'Omar', 'mn': 'Kumar', 'ln': 'Das'}
+15  Page Biswas Das  ...  {'fn': 'Page', 'mn': 'Biswas', 'ln': 'Das'}
+16   Quin Kumar Das  ...   {'fn': 'Quin', 'mn': 'Kumar', 'ln': 'Das'}
+17  Ruth Biswas Das  ...  {'fn': 'Ruth', 'mn': 'Biswas', 'ln': 'Das'}
+
+[18 rows x 6 columns]
 +---------------+---+---------+-----------+-----------+--------------------+
-|           Name|Sex|Age (yrs)|Height (in)|Weight (lb)|   Split name / dict|
+|           Name|Sex|Age (yrs)|Height (in)|Weight (lb)|       splitnamedict|
 +---------------+---+---------+-----------+-----------+--------------------+
 | Alex Kumar Das|  M|       41|         72|        170|[fn -> Alex, mn -...|
 |Bert Biswas Das|  M|       42|         73|        166|[fn -> Bert, mn -...|
@@ -564,13 +577,25 @@ root
  |-- name: string (nullable = true)
  |-- salary: long (nullable = true)
  |-- sex: string (nullable = true)
- |-- Split name / dict: map (nullable = true)
+ |-- splitnamedict: map (nullable = true)
  |    |-- key: string
  |    |-- value: string (valueContainsNull = true)
 
 df_ss_json_split_string_space_to_dict printSchema:  None
+df_ss_json_split_string_space_to_dict toPandas:      age  ...                                    splitnamedict
+0  37.0  ...    {'fn': 'Michael', 'mn': 'Kumar', 'ln': 'Das'}
+1  30.0  ...       {'fn': 'Andy', 'mn': 'Kumar', 'ln': 'Das'}
+2  19.0  ...     {'fn': 'Justin', 'mn': 'Kumar', 'ln': 'Das'}
+3   NaN  ...  {'fn': 'Caroline', 'mn': 'Biswas', 'ln': 'Das'}
+4  30.0  ...   {'fn': 'Fabiana', 'mn': 'Biswas', 'ln': 'Das'}
+5  19.0  ...   {'fn': 'Sandhya', 'mn': 'Biswas', 'ln': 'Das'}
+6   NaN  ...    {'fn': 'Michael', 'mn': 'Kumar', 'ln': 'Das'}
+7  40.0  ...       {'fn': 'Andy', 'mn': 'Kumar', 'ln': 'Das'}
+8  29.0  ...     {'fn': 'Justin', 'mn': 'Kumar', 'ln': 'Das'}
+
+[9 rows x 5 columns]
 +----+-------------------+------+---+--------------------+
-| age|               name|salary|sex|   Split name / dict|
+| age|               name|salary|sex|       splitnamedict|
 +----+-------------------+------+---+--------------------+
 |  37|  Michael Kumar Das|  1000|  M|[fn -> Michael, m...|
 |  30|     Andy Kumar Das|  1000|  M|[fn -> Andy, mn -...|
@@ -584,3 +609,94 @@ df_ss_json_split_string_space_to_dict printSchema:  None
 +----+-------------------+------+---+--------------------+
 
 df_ss_json_split_string_space_to_dict:  None
+["countriesdict['c1']", "countriesdict['c2']", "countriesdict['c3']"]
+["splitnamedict['fn']", "splitnamedict['mn']", "splitnamedict['ln']"]
+df_ss_1_udf_split_string_comma_to_dict_mult_cols toPandas:     Name Sex  Height  ... countriesdict[c1] countriesdict[c2] countriesdict[c3]
+0    KKD   M     5.6  ...               USA             India             India
+1  Neepa   F     5.0  ...               USA             India             India
+2  Ronak   M     5.1  ...               USA             India               USA
+3  Ronik   M     4.4  ...               USA             India               USA
+
+[4 rows x 8 columns]
++-----+---+------+---------------+--------------------+-----------------+-----------------+-----------------+
+| Name|Sex|Height|      Countries|       countriesdict|countriesdict[c1]|countriesdict[c2]|countriesdict[c3]|
++-----+---+------+---------------+--------------------+-----------------+-----------------+-----------------+
+|  KKD|  M|   5.6|USA,India,India|[c3 -> India, c1 ...|              USA|            India|            India|
+|Neepa|  F|   5.0|USA,India,India|[c3 -> India, c1 ...|              USA|            India|            India|
+|Ronak|  M|   5.1|  USA,India,USA|[c3 -> USA, c1 ->...|              USA|            India|              USA|
+|Ronik|  M|   4.4|  USA,India,USA|[c3 -> USA, c1 ->...|              USA|            India|              USA|
++-----+---+------+---------------+--------------------+-----------------+-----------------+-----------------+
+
+df_ss_1_udf_split_string_comma_to_dict_mult_cols : None
+df_ss_csv_split_string_space_to_dict_mult_cols toPandas                Name Sex  ... splitnamedict[mn] splitnamedict[ln]
+0    Alex Kumar Das   M  ...             Kumar               Das
+1   Bert Biswas Das   M  ...            Biswas               Das
+2    Carl Kumar Das   M  ...             Kumar               Das
+3   Dave Biswas Das   M  ...            Biswas               Das
+4    Elly Kumar Das   F  ...             Kumar               Das
+5   Fran Biswas Das   F  ...            Biswas               Das
+6    Gwen Kumar Das   F  ...             Kumar               Das
+7   Hank Biswas Das   M  ...            Biswas               Das
+8    Ivan Kumar Das   M  ...             Kumar               Das
+9   Jake Biswas Das   M  ...            Biswas               Das
+10   Kate Kumar Das   F  ...             Kumar               Das
+11  Luke Biswas Das   M  ...            Biswas               Das
+12   Myra Kumar Das   F  ...             Kumar               Das
+13  Neil Biswas Das   M  ...            Biswas               Das
+14   Omar Kumar Das   M  ...             Kumar               Das
+15  Page Biswas Das   F  ...            Biswas               Das
+16   Quin Kumar Das   M  ...             Kumar               Das
+17  Ruth Biswas Das   F  ...            Biswas               Das
+
+[18 rows x 9 columns]
++---------------+---+---------+-----------+-----------+--------------------+-----------------+-----------------+-----------------+
+|           Name|Sex|Age (yrs)|Height (in)|Weight (lb)|       splitnamedict|splitnamedict[fn]|splitnamedict[mn]|splitnamedict[ln]|
++---------------+---+---------+-----------+-----------+--------------------+-----------------+-----------------+-----------------+
+| Alex Kumar Das|  M|       41|         72|        170|[fn -> Alex, mn -...|             Alex|            Kumar|              Das|
+|Bert Biswas Das|  M|       42|         73|        166|[fn -> Bert, mn -...|             Bert|           Biswas|              Das|
+| Carl Kumar Das|  M|       32|         74|        155|[fn -> Carl, mn -...|             Carl|            Kumar|              Das|
+|Dave Biswas Das|  M|       39|         75|        167|[fn -> Dave, mn -...|             Dave|           Biswas|              Das|
+| Elly Kumar Das|  F|       30|         76|        124|[fn -> Elly, mn -...|             Elly|            Kumar|              Das|
+|Fran Biswas Das|  F|       33|         77|        115|[fn -> Fran, mn -...|             Fran|           Biswas|              Das|
+| Gwen Kumar Das|  F|       26|         84|        121|[fn -> Gwen, mn -...|             Gwen|            Kumar|              Das|
+|Hank Biswas Das|  M|       30|         85|        158|[fn -> Hank, mn -...|             Hank|           Biswas|              Das|
+| Ivan Kumar Das|  M|       53|         86|        175|[fn -> Ivan, mn -...|             Ivan|            Kumar|              Das|
+|Jake Biswas Das|  M|       32|         87|        143|[fn -> Jake, mn -...|             Jake|           Biswas|              Das|
+| Kate Kumar Das|  F|       47|         88|        139|[fn -> Kate, mn -...|             Kate|            Kumar|              Das|
+|Luke Biswas Das|  M|       34|         89|        163|[fn -> Luke, mn -...|             Luke|           Biswas|              Das|
+| Myra Kumar Das|  F|       23|         90|         98|[fn -> Myra, mn -...|             Myra|            Kumar|              Das|
+|Neil Biswas Das|  M|       36|         92|        160|[fn -> Neil, mn -...|             Neil|           Biswas|              Das|
+| Omar Kumar Das|  M|       38|         93|        145|[fn -> Omar, mn -...|             Omar|            Kumar|              Das|
+|Page Biswas Das|  F|       31|         95|        135|[fn -> Page, mn -...|             Page|           Biswas|              Das|
+| Quin Kumar Das|  M|       29|         97|        176|[fn -> Quin, mn -...|             Quin|            Kumar|              Das|
+|Ruth Biswas Das|  F|       28|         99|        131|[fn -> Ruth, mn -...|             Ruth|           Biswas|              Das|
++---------------+---+---------+-----------+-----------+--------------------+-----------------+-----------------+-----------------+
+
+df_ss_csv_split_string_space_to_dict_mult_cols :  None
+df_ss_json_split_string_space_to_dict_mult_cols toPandas      age                 name  ...  splitnamedict[mn] splitnamedict[ln]
+0  37.0    Michael Kumar Das  ...              Kumar               Das
+1  30.0       Andy Kumar Das  ...              Kumar               Das
+2  19.0     Justin Kumar Das  ...              Kumar               Das
+3   NaN  Caroline Biswas Das  ...             Biswas               Das
+4  30.0   Fabiana Biswas Das  ...             Biswas               Das
+5  19.0   Sandhya Biswas Das  ...             Biswas               Das
+6   NaN    Michael Kumar Das  ...              Kumar               Das
+7  40.0       Andy Kumar Das  ...              Kumar               Das
+8  29.0     Justin Kumar Das  ...              Kumar               Das
+
+[9 rows x 8 columns]
++----+-------------------+------+---+--------------------+-----------------+-----------------+-----------------+
+| age|               name|salary|sex|       splitnamedict|splitnamedict[fn]|splitnamedict[mn]|splitnamedict[ln]|
++----+-------------------+------+---+--------------------+-----------------+-----------------+-----------------+
+|  37|  Michael Kumar Das|  1000|  M|[fn -> Michael, m...|          Michael|            Kumar|              Das|
+|  30|     Andy Kumar Das|  1000|  M|[fn -> Andy, mn -...|             Andy|            Kumar|              Das|
+|  19|   Justin Kumar Das|  1000|  M|[fn -> Justin, mn...|           Justin|            Kumar|              Das|
+|null|Caroline Biswas Das|  2000|  F|[fn -> Caroline, ...|         Caroline|           Biswas|              Das|
+|  30| Fabiana Biswas Das|  2000|  F|[fn -> Fabiana, m...|          Fabiana|           Biswas|              Das|
+|  19| Sandhya Biswas Das|  2000|  F|[fn -> Sandhya, m...|          Sandhya|           Biswas|              Das|
+|null|  Michael Kumar Das|  3000|  M|[fn -> Michael, m...|          Michael|            Kumar|              Das|
+|  40|     Andy Kumar Das|  3000|  M|[fn -> Andy, mn -...|             Andy|            Kumar|              Das|
+|  29|   Justin Kumar Das|  3000|  M|[fn -> Justin, mn...|           Justin|            Kumar|              Das|
++----+-------------------+------+---+--------------------+-----------------+-----------------+-----------------+
+
+df_ss_json_split_string_space_to_dict_mult_cols : None
