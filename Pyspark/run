@@ -1,6 +1,6 @@
-Config 1: [('spark.app.name', 'pyspark-df-udf-complex.py'), ('spark.driver.host', '192.168.1.15'), ('spark.rdd.compress', 'True'), ('spark.serializer.objectStreamReset', '100'), ('spark.driver.port', '56757'), ('spark.master', 'local[*]'), ('spark.executor.id', 'driver'), ('spark.submit.deployMode', 'client'), ('spark.app.id', 'local-1598061616304')] 
+Config 1: [('spark.app.name', 'pyspark-df-udf-complex.py'), ('spark.driver.host', '192.168.1.15'), ('spark.rdd.compress', 'True'), ('spark.serializer.objectStreamReset', '100'), ('spark.master', 'local[*]'), ('spark.executor.id', 'driver'), ('spark.submit.deployMode', 'client'), ('spark.app.id', 'local-1598104741973'), ('spark.driver.port', '58140')] 
 
-Config 2: <pyspark.sql.session.SparkSession object at 0x117637310> 
+Config 2: <pyspark.sql.session.SparkSession object at 0x11018c350> 
 
 root
  |-- Name: string (nullable = true)
@@ -267,130 +267,130 @@ df_ss_json_new_2
  None 
 
 +---------------+---+---------+-----------+-----------+-----------+
-|           Name|Sex|Age (yrs)|Height (in)|Weight (lb)|Age Squared|
+|Name           |Sex|Age (yrs)|Height (in)|Weight (lb)|Age Squared|
 +---------------+---+---------+-----------+-----------+-----------+
-| Alex Kumar Das|  M|       41|         72|        170|       1681|
-|Bert Biswas Das|  M|       42|         73|        166|       1764|
-| Carl Kumar Das|  M|       32|         74|        155|       1024|
-|Dave Biswas Das|  M|       39|         75|        167|       1521|
-| Elly Kumar Das|  F|       30|         76|        124|        900|
-|Fran Biswas Das|  F|       33|         77|        115|       1089|
-| Gwen Kumar Das|  F|       26|         84|        121|        676|
-|Hank Biswas Das|  M|       30|         85|        158|        900|
-| Ivan Kumar Das|  M|       53|         86|        175|       2809|
-|Jake Biswas Das|  M|       32|         87|        143|       1024|
-| Kate Kumar Das|  F|       47|         88|        139|       2209|
-|Luke Biswas Das|  M|       34|         89|        163|       1156|
-| Myra Kumar Das|  F|       23|         90|         98|        529|
-|Neil Biswas Das|  M|       36|         92|        160|       1296|
-| Omar Kumar Das|  M|       38|         93|        145|       1444|
-|Page Biswas Das|  F|       31|         95|        135|        961|
-| Quin Kumar Das|  M|       29|         97|        176|        841|
-|Ruth Biswas Das|  F|       28|         99|        131|        784|
+|Alex Kumar Das |M  |41       |72         |170        |1681       |
+|Bert Biswas Das|M  |42       |73         |166        |1764       |
+|Carl Kumar Das |M  |32       |74         |155        |1024       |
+|Dave Biswas Das|M  |39       |75         |167        |1521       |
+|Elly Kumar Das |F  |30       |76         |124        |900        |
+|Fran Biswas Das|F  |33       |77         |115        |1089       |
+|Gwen Kumar Das |F  |26       |84         |121        |676        |
+|Hank Biswas Das|M  |30       |85         |158        |900        |
+|Ivan Kumar Das |M  |53       |86         |175        |2809       |
+|Jake Biswas Das|M  |32       |87         |143        |1024       |
+|Kate Kumar Das |F  |47       |88         |139        |2209       |
+|Luke Biswas Das|M  |34       |89         |163        |1156       |
+|Myra Kumar Das |F  |23       |90         |98         |529        |
+|Neil Biswas Das|M  |36       |92         |160        |1296       |
+|Omar Kumar Das |M  |38       |93         |145        |1444       |
+|Page Biswas Das|F  |31       |95         |135        |961        |
+|Quin Kumar Das |M  |29       |97         |176        |841        |
+|Ruth Biswas Das|F  |28       |99         |131        |784        |
 +---------------+---+---------+-----------+-----------+-----------+
 
 df_ss_csv_new_3 
  None 
 
 +----+-------------------+------+---+----------------+
-| age|               name|salary|sex|Salary Squared !|
+|age |name               |salary|sex|Salary Squared !|
 +----+-------------------+------+---+----------------+
-|  37|  Michael Kumar Das|  1000|  M|         1000000|
-|  30|     Andy Kumar Das|  1000|  M|         1000000|
-|  19|   Justin Kumar Das|  1000|  M|         1000000|
-|null|Caroline Biswas Das|  2000|  F|         4000000|
-|  30| Fabiana Biswas Das|  2000|  F|         4000000|
-|  19| Sandhya Biswas Das|  2000|  F|         4000000|
-|null|  Michael Kumar Das|  3000|  M|         9000000|
-|  40|     Andy Kumar Das|  3000|  M|         9000000|
-|  29|   Justin Kumar Das|  3000|  M|         9000000|
+|37  |Michael Kumar Das  |1000  |M  |1000000         |
+|30  |Andy Kumar Das     |1000  |M  |1000000         |
+|19  |Justin Kumar Das   |1000  |M  |1000000         |
+|null|Caroline Biswas Das|2000  |F  |4000000         |
+|30  |Fabiana Biswas Das |2000  |F  |4000000         |
+|19  |Sandhya Biswas Das |2000  |F  |4000000         |
+|null|Michael Kumar Das  |3000  |M  |9000000         |
+|40  |Andy Kumar Das     |3000  |M  |9000000         |
+|29  |Justin Kumar Das   |3000  |M  |9000000         |
 +----+-------------------+------+---+----------------+
 
 df_ss_json_new_3 
  None 
 
 +---------------+-------------------+---------+-------------+
-|           Name|           Hey Name|Age (yrs)|Age Squared !|
+|Name           |Hey Name           |Age (yrs)|Age Squared !|
 +---------------+-------------------+---------+-------------+
-| Alex Kumar Das| Hey Alex Kumar Das|       41|         1681|
-|Bert Biswas Das|Hey Bert Biswas Das|       42|         1764|
-| Carl Kumar Das| Hey Carl Kumar Das|       32|         1024|
-|Dave Biswas Das|Hey Dave Biswas Das|       39|         1521|
-| Elly Kumar Das| Hey Elly Kumar Das|       30|          900|
-|Fran Biswas Das|Hey Fran Biswas Das|       33|         1089|
-| Gwen Kumar Das| Hey Gwen Kumar Das|       26|          676|
-|Hank Biswas Das|Hey Hank Biswas Das|       30|          900|
-| Ivan Kumar Das| Hey Ivan Kumar Das|       53|         2809|
-|Jake Biswas Das|Hey Jake Biswas Das|       32|         1024|
-| Kate Kumar Das| Hey Kate Kumar Das|       47|         2209|
-|Luke Biswas Das|Hey Luke Biswas Das|       34|         1156|
-| Myra Kumar Das| Hey Myra Kumar Das|       23|          529|
-|Neil Biswas Das|Hey Neil Biswas Das|       36|         1296|
-| Omar Kumar Das| Hey Omar Kumar Das|       38|         1444|
-|Page Biswas Das|Hey Page Biswas Das|       31|          961|
-| Quin Kumar Das| Hey Quin Kumar Das|       29|          841|
-|Ruth Biswas Das|Hey Ruth Biswas Das|       28|          784|
+|Alex Kumar Das |Hey Alex Kumar Das |41       |1681         |
+|Bert Biswas Das|Hey Bert Biswas Das|42       |1764         |
+|Carl Kumar Das |Hey Carl Kumar Das |32       |1024         |
+|Dave Biswas Das|Hey Dave Biswas Das|39       |1521         |
+|Elly Kumar Das |Hey Elly Kumar Das |30       |900          |
+|Fran Biswas Das|Hey Fran Biswas Das|33       |1089         |
+|Gwen Kumar Das |Hey Gwen Kumar Das |26       |676          |
+|Hank Biswas Das|Hey Hank Biswas Das|30       |900          |
+|Ivan Kumar Das |Hey Ivan Kumar Das |53       |2809         |
+|Jake Biswas Das|Hey Jake Biswas Das|32       |1024         |
+|Kate Kumar Das |Hey Kate Kumar Das |47       |2209         |
+|Luke Biswas Das|Hey Luke Biswas Das|34       |1156         |
+|Myra Kumar Das |Hey Myra Kumar Das |23       |529          |
+|Neil Biswas Das|Hey Neil Biswas Das|36       |1296         |
+|Omar Kumar Das |Hey Omar Kumar Das |38       |1444         |
+|Page Biswas Das|Hey Page Biswas Das|31       |961          |
+|Quin Kumar Das |Hey Quin Kumar Das |29       |841          |
+|Ruth Biswas Das|Hey Ruth Biswas Das|28       |784          |
 +---------------+-------------------+---------+-------------+
 
 df_ss_csv_new_sq_4 
  None 
 
 +---------------+-----------+-----------+------------+
-|           Name|Height (in)|Weight (lb)|Ration Wt/Ht|
+|Name           |Height (in)|Weight (lb)|Ration Wt/Ht|
 +---------------+-----------+-----------+------------+
-| Alex Kumar Das|         72|        170|   2.3611112|
-|Bert Biswas Das|         73|        166|   2.2739725|
-| Carl Kumar Das|         74|        155|   2.0945945|
-|Dave Biswas Das|         75|        167|   2.2266667|
-| Elly Kumar Das|         76|        124|   1.6315789|
-|Fran Biswas Das|         77|        115|   1.4935066|
-| Gwen Kumar Das|         84|        121|   1.4404762|
-|Hank Biswas Das|         85|        158|   1.8588235|
-| Ivan Kumar Das|         86|        175|   2.0348837|
-|Jake Biswas Das|         87|        143|   1.6436782|
-| Kate Kumar Das|         88|        139|   1.5795455|
-|Luke Biswas Das|         89|        163|   1.8314607|
-| Myra Kumar Das|         90|         98|   1.0888889|
-|Neil Biswas Das|         92|        160|   1.7391304|
-| Omar Kumar Das|         93|        145|   1.5591397|
-|Page Biswas Das|         95|        135|   1.4210526|
-| Quin Kumar Das|         97|        176|    1.814433|
-|Ruth Biswas Das|         99|        131|   1.3232323|
+|Alex Kumar Das |72         |170        |2.3611112   |
+|Bert Biswas Das|73         |166        |2.2739725   |
+|Carl Kumar Das |74         |155        |2.0945945   |
+|Dave Biswas Das|75         |167        |2.2266667   |
+|Elly Kumar Das |76         |124        |1.6315789   |
+|Fran Biswas Das|77         |115        |1.4935066   |
+|Gwen Kumar Das |84         |121        |1.4404762   |
+|Hank Biswas Das|85         |158        |1.8588235   |
+|Ivan Kumar Das |86         |175        |2.0348837   |
+|Jake Biswas Das|87         |143        |1.6436782   |
+|Kate Kumar Das |88         |139        |1.5795455   |
+|Luke Biswas Das|89         |163        |1.8314607   |
+|Myra Kumar Das |90         |98         |1.0888889   |
+|Neil Biswas Das|92         |160        |1.7391304   |
+|Omar Kumar Das |93         |145        |1.5591397   |
+|Page Biswas Das|95         |135        |1.4210526   |
+|Quin Kumar Das |97         |176        |1.814433    |
+|Ruth Biswas Das|99         |131        |1.3232323   |
 +---------------+-----------+-----------+------------+
 
 df_ss_csv_new_ratio_4 
  None 
 
-+-------------------+--------------------+------+-----------------+
-|               name|            Hey name|salary|salary Squared  !|
-+-------------------+--------------------+------+-----------------+
-|  Michael Kumar Das|Hey Michael Kumar...|  1000|          1000000|
-|     Andy Kumar Das|  Hey Andy Kumar Das|  1000|          1000000|
-|   Justin Kumar Das|Hey Justin Kumar Das|  1000|          1000000|
-|Caroline Biswas Das|Hey Caroline Bisw...|  2000|          4000000|
-| Fabiana Biswas Das|Hey Fabiana Biswa...|  2000|          4000000|
-| Sandhya Biswas Das|Hey Sandhya Biswa...|  2000|          4000000|
-|  Michael Kumar Das|Hey Michael Kumar...|  3000|          9000000|
-|     Andy Kumar Das|  Hey Andy Kumar Das|  3000|          9000000|
-|   Justin Kumar Das|Hey Justin Kumar Das|  3000|          9000000|
-+-------------------+--------------------+------+-----------------+
++-------------------+-----------------------+------+-----------------+
+|name               |Hey name               |salary|salary Squared  !|
++-------------------+-----------------------+------+-----------------+
+|Michael Kumar Das  |Hey Michael Kumar Das  |1000  |1000000          |
+|Andy Kumar Das     |Hey Andy Kumar Das     |1000  |1000000          |
+|Justin Kumar Das   |Hey Justin Kumar Das   |1000  |1000000          |
+|Caroline Biswas Das|Hey Caroline Biswas Das|2000  |4000000          |
+|Fabiana Biswas Das |Hey Fabiana Biswas Das |2000  |4000000          |
+|Sandhya Biswas Das |Hey Sandhya Biswas Das |2000  |4000000          |
+|Michael Kumar Das  |Hey Michael Kumar Das  |3000  |9000000          |
+|Andy Kumar Das     |Hey Andy Kumar Das     |3000  |9000000          |
+|Justin Kumar Das   |Hey Justin Kumar Das   |3000  |9000000          |
++-------------------+-----------------------+------+-----------------+
 
 df_ss_json_new_sq_4 
  None 
 
-+-------------------+--------------------+------+-----------------+
-|               name|            Hey name|salary|salary Squared  !|
-+-------------------+--------------------+------+-----------------+
-|  Michael Kumar Das|Hey Michael Kumar...|  1000|          1000000|
-|     Andy Kumar Das|  Hey Andy Kumar Das|  1000|          1000000|
-|   Justin Kumar Das|Hey Justin Kumar Das|  1000|          1000000|
-|Caroline Biswas Das|Hey Caroline Bisw...|  2000|          4000000|
-| Fabiana Biswas Das|Hey Fabiana Biswa...|  2000|          4000000|
-| Sandhya Biswas Das|Hey Sandhya Biswa...|  2000|          4000000|
-|  Michael Kumar Das|Hey Michael Kumar...|  3000|          9000000|
-|     Andy Kumar Das|  Hey Andy Kumar Das|  3000|          9000000|
-|   Justin Kumar Das|Hey Justin Kumar Das|  3000|          9000000|
-+-------------------+--------------------+------+-----------------+
++-------------------+-----------------------+------+-----------------+
+|name               |Hey name               |salary|salary Squared  !|
++-------------------+-----------------------+------+-----------------+
+|Michael Kumar Das  |Hey Michael Kumar Das  |1000  |1000000          |
+|Andy Kumar Das     |Hey Andy Kumar Das     |1000  |1000000          |
+|Justin Kumar Das   |Hey Justin Kumar Das   |1000  |1000000          |
+|Caroline Biswas Das|Hey Caroline Biswas Das|2000  |4000000          |
+|Fabiana Biswas Das |Hey Fabiana Biswas Das |2000  |4000000          |
+|Sandhya Biswas Das |Hey Sandhya Biswas Das |2000  |4000000          |
+|Michael Kumar Das  |Hey Michael Kumar Das  |3000  |9000000          |
+|Andy Kumar Das     |Hey Andy Kumar Das     |3000  |9000000          |
+|Justin Kumar Das   |Hey Justin Kumar Das   |3000  |9000000          |
++-------------------+-----------------------+------+-----------------+
 
 df_ss_json_new_dq_4 
  None 
@@ -406,12 +406,12 @@ root
 df_ss_1_udf_split_string_comma_to_list printSchema: None 
 
 +-----+---+------+---------------+-------------------+
-| Name|Sex|Height|      Countries|     countries-list|
+|Name |Sex|Height|Countries      |countries-list     |
 +-----+---+------+---------------+-------------------+
-|  KKD|  M|   5.6|USA,India,India|[USA, India, India]|
-|Neepa|  F|   5.0|USA,India,India|[USA, India, India]|
-|Ronak|  M|   5.1|  USA,India,USA|  [USA, India, USA]|
-|Ronik|  M|   4.4|  USA,India,USA|  [USA, India, USA]|
+|KKD  |M  |5.6   |USA,India,India|[USA, India, India]|
+|Neepa|F  |5.0   |USA,India,India|[USA, India, India]|
+|Ronak|M  |5.1   |USA,India,USA  |[USA, India, USA]  |
+|Ronik|M  |4.4   |USA,India,USA  |[USA, India, USA]  |
 +-----+---+------+---------------+-------------------+
 
 df_ss_1_udf_split_string_comma_to_list : None 
@@ -428,26 +428,26 @@ root
 df_ss_csv_split_string_space_to_list printSchema: None 
 
 +---------------+---+---------+-----------+-----------+-------------------+
-|           Name|Sex|Age (yrs)|Height (in)|Weight (lb)|    split-name-list|
+|Name           |Sex|Age (yrs)|Height (in)|Weight (lb)|split-name-list    |
 +---------------+---+---------+-----------+-----------+-------------------+
-| Alex Kumar Das|  M|       41|         72|        170| [Alex, Kumar, Das]|
-|Bert Biswas Das|  M|       42|         73|        166|[Bert, Biswas, Das]|
-| Carl Kumar Das|  M|       32|         74|        155| [Carl, Kumar, Das]|
-|Dave Biswas Das|  M|       39|         75|        167|[Dave, Biswas, Das]|
-| Elly Kumar Das|  F|       30|         76|        124| [Elly, Kumar, Das]|
-|Fran Biswas Das|  F|       33|         77|        115|[Fran, Biswas, Das]|
-| Gwen Kumar Das|  F|       26|         84|        121| [Gwen, Kumar, Das]|
-|Hank Biswas Das|  M|       30|         85|        158|[Hank, Biswas, Das]|
-| Ivan Kumar Das|  M|       53|         86|        175| [Ivan, Kumar, Das]|
-|Jake Biswas Das|  M|       32|         87|        143|[Jake, Biswas, Das]|
-| Kate Kumar Das|  F|       47|         88|        139| [Kate, Kumar, Das]|
-|Luke Biswas Das|  M|       34|         89|        163|[Luke, Biswas, Das]|
-| Myra Kumar Das|  F|       23|         90|         98| [Myra, Kumar, Das]|
-|Neil Biswas Das|  M|       36|         92|        160|[Neil, Biswas, Das]|
-| Omar Kumar Das|  M|       38|         93|        145| [Omar, Kumar, Das]|
-|Page Biswas Das|  F|       31|         95|        135|[Page, Biswas, Das]|
-| Quin Kumar Das|  M|       29|         97|        176| [Quin, Kumar, Das]|
-|Ruth Biswas Das|  F|       28|         99|        131|[Ruth, Biswas, Das]|
+|Alex Kumar Das |M  |41       |72         |170        |[Alex, Kumar, Das] |
+|Bert Biswas Das|M  |42       |73         |166        |[Bert, Biswas, Das]|
+|Carl Kumar Das |M  |32       |74         |155        |[Carl, Kumar, Das] |
+|Dave Biswas Das|M  |39       |75         |167        |[Dave, Biswas, Das]|
+|Elly Kumar Das |F  |30       |76         |124        |[Elly, Kumar, Das] |
+|Fran Biswas Das|F  |33       |77         |115        |[Fran, Biswas, Das]|
+|Gwen Kumar Das |F  |26       |84         |121        |[Gwen, Kumar, Das] |
+|Hank Biswas Das|M  |30       |85         |158        |[Hank, Biswas, Das]|
+|Ivan Kumar Das |M  |53       |86         |175        |[Ivan, Kumar, Das] |
+|Jake Biswas Das|M  |32       |87         |143        |[Jake, Biswas, Das]|
+|Kate Kumar Das |F  |47       |88         |139        |[Kate, Kumar, Das] |
+|Luke Biswas Das|M  |34       |89         |163        |[Luke, Biswas, Das]|
+|Myra Kumar Das |F  |23       |90         |98         |[Myra, Kumar, Das] |
+|Neil Biswas Das|M  |36       |92         |160        |[Neil, Biswas, Das]|
+|Omar Kumar Das |M  |38       |93         |145        |[Omar, Kumar, Das] |
+|Page Biswas Das|F  |31       |95         |135        |[Page, Biswas, Das]|
+|Quin Kumar Das |M  |29       |97         |176        |[Quin, Kumar, Das] |
+|Ruth Biswas Das|F  |28       |99         |131        |[Ruth, Biswas, Das]|
 +---------------+---+---------+-----------+-----------+-------------------+
 
 df_ss_csv_split_string_space_to_list : None 
@@ -471,19 +471,19 @@ df_ss_json_split_string_space_to_list toPandas:     age                 name  sa
 6   NaN    Michael Kumar Das    3000   M    [Michael, Kumar, Das]
 7  40.0       Andy Kumar Das    3000   M       [Andy, Kumar, Das]
 8  29.0     Justin Kumar Das    3000   M     [Justin, Kumar, Das]
-+----+-------------------+------+---+--------------------+
-| age|               name|salary|sex|     split-name-list|
-+----+-------------------+------+---+--------------------+
-|  37|  Michael Kumar Das|  1000|  M|[Michael, Kumar, ...|
-|  30|     Andy Kumar Das|  1000|  M|  [Andy, Kumar, Das]|
-|  19|   Justin Kumar Das|  1000|  M|[Justin, Kumar, Das]|
-|null|Caroline Biswas Das|  2000|  F|[Caroline, Biswas...|
-|  30| Fabiana Biswas Das|  2000|  F|[Fabiana, Biswas,...|
-|  19| Sandhya Biswas Das|  2000|  F|[Sandhya, Biswas,...|
-|null|  Michael Kumar Das|  3000|  M|[Michael, Kumar, ...|
-|  40|     Andy Kumar Das|  3000|  M|  [Andy, Kumar, Das]|
-|  29|   Justin Kumar Das|  3000|  M|[Justin, Kumar, Das]|
-+----+-------------------+------+---+--------------------+
++----+-------------------+------+---+-----------------------+
+|age |name               |salary|sex|split-name-list        |
++----+-------------------+------+---+-----------------------+
+|37  |Michael Kumar Das  |1000  |M  |[Michael, Kumar, Das]  |
+|30  |Andy Kumar Das     |1000  |M  |[Andy, Kumar, Das]     |
+|19  |Justin Kumar Das   |1000  |M  |[Justin, Kumar, Das]   |
+|null|Caroline Biswas Das|2000  |F  |[Caroline, Biswas, Das]|
+|30  |Fabiana Biswas Das |2000  |F  |[Fabiana, Biswas, Das] |
+|19  |Sandhya Biswas Das |2000  |F  |[Sandhya, Biswas, Das] |
+|null|Michael Kumar Das  |3000  |M  |[Michael, Kumar, Das]  |
+|40  |Andy Kumar Das     |3000  |M  |[Andy, Kumar, Das]     |
+|29  |Justin Kumar Das   |3000  |M  |[Justin, Kumar, Das]   |
++----+-------------------+------+---+-----------------------+
 
 df_ss_json_split_string_space_to_list : None
 root
@@ -505,14 +505,14 @@ df_ss_1_udf_split_string_comma_to_dict toPandas:     Name Sex  ...        Countr
 
 [4 rows x 5 columns] 
 
-+-----+---+------+---------------+--------------------+
-| Name|Sex|Height|      Countries|       countriesdict|
-+-----+---+------+---------------+--------------------+
-|  KKD|  M|   5.6|USA,India,India|[c3 -> India, c1 ...|
-|Neepa|  F|   5.0|USA,India,India|[c3 -> India, c1 ...|
-|Ronak|  M|   5.1|  USA,India,USA|[c3 -> USA, c1 ->...|
-|Ronik|  M|   4.4|  USA,India,USA|[c3 -> USA, c1 ->...|
-+-----+---+------+---------------+--------------------+
++-----+---+------+---------------+-------------------------------------+
+|Name |Sex|Height|Countries      |countriesdict                        |
++-----+---+------+---------------+-------------------------------------+
+|KKD  |M  |5.6   |USA,India,India|[c3 -> India, c1 -> USA, c2 -> India]|
+|Neepa|F  |5.0   |USA,India,India|[c3 -> India, c1 -> USA, c2 -> India]|
+|Ronak|M  |5.1   |USA,India,USA  |[c3 -> USA, c1 -> USA, c2 -> India]  |
+|Ronik|M  |4.4   |USA,India,USA  |[c3 -> USA, c1 -> USA, c2 -> India]  |
++-----+---+------+---------------+-------------------------------------+
 
 df_ss_1_udf_split_string_comma_to_dict : None 
 
@@ -548,28 +548,28 @@ df_ss_csv_split_string_space_to_dict toPandas:                Name  ...         
 17  Ruth Biswas Das  ...  {'fn': 'Ruth', 'mn': 'Biswas', 'ln': 'Das'}
 
 [18 rows x 6 columns]
-+---------------+---+---------+-----------+-----------+--------------------+
-|           Name|Sex|Age (yrs)|Height (in)|Weight (lb)|       splitnamedict|
-+---------------+---+---------+-----------+-----------+--------------------+
-| Alex Kumar Das|  M|       41|         72|        170|[fn -> Alex, mn -...|
-|Bert Biswas Das|  M|       42|         73|        166|[fn -> Bert, mn -...|
-| Carl Kumar Das|  M|       32|         74|        155|[fn -> Carl, mn -...|
-|Dave Biswas Das|  M|       39|         75|        167|[fn -> Dave, mn -...|
-| Elly Kumar Das|  F|       30|         76|        124|[fn -> Elly, mn -...|
-|Fran Biswas Das|  F|       33|         77|        115|[fn -> Fran, mn -...|
-| Gwen Kumar Das|  F|       26|         84|        121|[fn -> Gwen, mn -...|
-|Hank Biswas Das|  M|       30|         85|        158|[fn -> Hank, mn -...|
-| Ivan Kumar Das|  M|       53|         86|        175|[fn -> Ivan, mn -...|
-|Jake Biswas Das|  M|       32|         87|        143|[fn -> Jake, mn -...|
-| Kate Kumar Das|  F|       47|         88|        139|[fn -> Kate, mn -...|
-|Luke Biswas Das|  M|       34|         89|        163|[fn -> Luke, mn -...|
-| Myra Kumar Das|  F|       23|         90|         98|[fn -> Myra, mn -...|
-|Neil Biswas Das|  M|       36|         92|        160|[fn -> Neil, mn -...|
-| Omar Kumar Das|  M|       38|         93|        145|[fn -> Omar, mn -...|
-|Page Biswas Das|  F|       31|         95|        135|[fn -> Page, mn -...|
-| Quin Kumar Das|  M|       29|         97|        176|[fn -> Quin, mn -...|
-|Ruth Biswas Das|  F|       28|         99|        131|[fn -> Ruth, mn -...|
-+---------------+---+---------+-----------+-----------+--------------------+
++---------------+---+---------+-----------+-----------+-------------------------------------+
+|Name           |Sex|Age (yrs)|Height (in)|Weight (lb)|splitnamedict                        |
++---------------+---+---------+-----------+-----------+-------------------------------------+
+|Alex Kumar Das |M  |41       |72         |170        |[fn -> Alex, mn -> Kumar, ln -> Das] |
+|Bert Biswas Das|M  |42       |73         |166        |[fn -> Bert, mn -> Biswas, ln -> Das]|
+|Carl Kumar Das |M  |32       |74         |155        |[fn -> Carl, mn -> Kumar, ln -> Das] |
+|Dave Biswas Das|M  |39       |75         |167        |[fn -> Dave, mn -> Biswas, ln -> Das]|
+|Elly Kumar Das |F  |30       |76         |124        |[fn -> Elly, mn -> Kumar, ln -> Das] |
+|Fran Biswas Das|F  |33       |77         |115        |[fn -> Fran, mn -> Biswas, ln -> Das]|
+|Gwen Kumar Das |F  |26       |84         |121        |[fn -> Gwen, mn -> Kumar, ln -> Das] |
+|Hank Biswas Das|M  |30       |85         |158        |[fn -> Hank, mn -> Biswas, ln -> Das]|
+|Ivan Kumar Das |M  |53       |86         |175        |[fn -> Ivan, mn -> Kumar, ln -> Das] |
+|Jake Biswas Das|M  |32       |87         |143        |[fn -> Jake, mn -> Biswas, ln -> Das]|
+|Kate Kumar Das |F  |47       |88         |139        |[fn -> Kate, mn -> Kumar, ln -> Das] |
+|Luke Biswas Das|M  |34       |89         |163        |[fn -> Luke, mn -> Biswas, ln -> Das]|
+|Myra Kumar Das |F  |23       |90         |98         |[fn -> Myra, mn -> Kumar, ln -> Das] |
+|Neil Biswas Das|M  |36       |92         |160        |[fn -> Neil, mn -> Biswas, ln -> Das]|
+|Omar Kumar Das |M  |38       |93         |145        |[fn -> Omar, mn -> Kumar, ln -> Das] |
+|Page Biswas Das|F  |31       |95         |135        |[fn -> Page, mn -> Biswas, ln -> Das]|
+|Quin Kumar Das |M  |29       |97         |176        |[fn -> Quin, mn -> Kumar, ln -> Das] |
+|Ruth Biswas Das|F  |28       |99         |131        |[fn -> Ruth, mn -> Biswas, ln -> Das]|
++---------------+---+---------+-----------+-----------+-------------------------------------+
 
 df_ss_csv_split_string_space_to_dict : None
 root
@@ -594,19 +594,19 @@ df_ss_json_split_string_space_to_dict toPandas:      age  ...                   
 8  29.0  ...     {'fn': 'Justin', 'mn': 'Kumar', 'ln': 'Das'}
 
 [9 rows x 5 columns]
-+----+-------------------+------+---+--------------------+
-| age|               name|salary|sex|       splitnamedict|
-+----+-------------------+------+---+--------------------+
-|  37|  Michael Kumar Das|  1000|  M|[fn -> Michael, m...|
-|  30|     Andy Kumar Das|  1000|  M|[fn -> Andy, mn -...|
-|  19|   Justin Kumar Das|  1000|  M|[fn -> Justin, mn...|
-|null|Caroline Biswas Das|  2000|  F|[fn -> Caroline, ...|
-|  30| Fabiana Biswas Das|  2000|  F|[fn -> Fabiana, m...|
-|  19| Sandhya Biswas Das|  2000|  F|[fn -> Sandhya, m...|
-|null|  Michael Kumar Das|  3000|  M|[fn -> Michael, m...|
-|  40|     Andy Kumar Das|  3000|  M|[fn -> Andy, mn -...|
-|  29|   Justin Kumar Das|  3000|  M|[fn -> Justin, mn...|
-+----+-------------------+------+---+--------------------+
++----+-------------------+------+---+-----------------------------------------+
+|age |name               |salary|sex|splitnamedict                            |
++----+-------------------+------+---+-----------------------------------------+
+|37  |Michael Kumar Das  |1000  |M  |[fn -> Michael, mn -> Kumar, ln -> Das]  |
+|30  |Andy Kumar Das     |1000  |M  |[fn -> Andy, mn -> Kumar, ln -> Das]     |
+|19  |Justin Kumar Das   |1000  |M  |[fn -> Justin, mn -> Kumar, ln -> Das]   |
+|null|Caroline Biswas Das|2000  |F  |[fn -> Caroline, mn -> Biswas, ln -> Das]|
+|30  |Fabiana Biswas Das |2000  |F  |[fn -> Fabiana, mn -> Biswas, ln -> Das] |
+|19  |Sandhya Biswas Das |2000  |F  |[fn -> Sandhya, mn -> Biswas, ln -> Das] |
+|null|Michael Kumar Das  |3000  |M  |[fn -> Michael, mn -> Kumar, ln -> Das]  |
+|40  |Andy Kumar Das     |3000  |M  |[fn -> Andy, mn -> Kumar, ln -> Das]     |
+|29  |Justin Kumar Das   |3000  |M  |[fn -> Justin, mn -> Kumar, ln -> Das]   |
++----+-------------------+------+---+-----------------------------------------+
 
 df_ss_json_split_string_space_to_dict:  None
 ["countriesdict['c1']", "countriesdict['c2']", "countriesdict['c3']"]
@@ -618,14 +618,14 @@ df_ss_1_udf_split_string_comma_to_dict_mult_cols toPandas:     Name Sex  Height 
 3  Ronik   M     4.4  ...               USA             India               USA
 
 [4 rows x 8 columns]
-+-----+---+------+---------------+--------------------+-----------------+-----------------+-----------------+
-| Name|Sex|Height|      Countries|       countriesdict|countriesdict[c1]|countriesdict[c2]|countriesdict[c3]|
-+-----+---+------+---------------+--------------------+-----------------+-----------------+-----------------+
-|  KKD|  M|   5.6|USA,India,India|[c3 -> India, c1 ...|              USA|            India|            India|
-|Neepa|  F|   5.0|USA,India,India|[c3 -> India, c1 ...|              USA|            India|            India|
-|Ronak|  M|   5.1|  USA,India,USA|[c3 -> USA, c1 ->...|              USA|            India|              USA|
-|Ronik|  M|   4.4|  USA,India,USA|[c3 -> USA, c1 ->...|              USA|            India|              USA|
-+-----+---+------+---------------+--------------------+-----------------+-----------------+-----------------+
++-----+---+------+---------------+-------------------------------------+-----------------+-----------------+-----------------+
+|Name |Sex|Height|Countries      |countriesdict                        |countriesdict[c1]|countriesdict[c2]|countriesdict[c3]|
++-----+---+------+---------------+-------------------------------------+-----------------+-----------------+-----------------+
+|KKD  |M  |5.6   |USA,India,India|[c3 -> India, c1 -> USA, c2 -> India]|USA              |India            |India            |
+|Neepa|F  |5.0   |USA,India,India|[c3 -> India, c1 -> USA, c2 -> India]|USA              |India            |India            |
+|Ronak|M  |5.1   |USA,India,USA  |[c3 -> USA, c1 -> USA, c2 -> India]  |USA              |India            |USA              |
+|Ronik|M  |4.4   |USA,India,USA  |[c3 -> USA, c1 -> USA, c2 -> India]  |USA              |India            |USA              |
++-----+---+------+---------------+-------------------------------------+-----------------+-----------------+-----------------+
 
 df_ss_1_udf_split_string_comma_to_dict_mult_cols : None
 df_ss_csv_split_string_space_to_dict_mult_cols toPandas                Name Sex  ... splitnamedict[mn] splitnamedict[ln]
@@ -649,28 +649,28 @@ df_ss_csv_split_string_space_to_dict_mult_cols toPandas                Name Sex 
 17  Ruth Biswas Das   F  ...            Biswas               Das
 
 [18 rows x 9 columns]
-+---------------+---+---------+-----------+-----------+--------------------+-----------------+-----------------+-----------------+
-|           Name|Sex|Age (yrs)|Height (in)|Weight (lb)|       splitnamedict|splitnamedict[fn]|splitnamedict[mn]|splitnamedict[ln]|
-+---------------+---+---------+-----------+-----------+--------------------+-----------------+-----------------+-----------------+
-| Alex Kumar Das|  M|       41|         72|        170|[fn -> Alex, mn -...|             Alex|            Kumar|              Das|
-|Bert Biswas Das|  M|       42|         73|        166|[fn -> Bert, mn -...|             Bert|           Biswas|              Das|
-| Carl Kumar Das|  M|       32|         74|        155|[fn -> Carl, mn -...|             Carl|            Kumar|              Das|
-|Dave Biswas Das|  M|       39|         75|        167|[fn -> Dave, mn -...|             Dave|           Biswas|              Das|
-| Elly Kumar Das|  F|       30|         76|        124|[fn -> Elly, mn -...|             Elly|            Kumar|              Das|
-|Fran Biswas Das|  F|       33|         77|        115|[fn -> Fran, mn -...|             Fran|           Biswas|              Das|
-| Gwen Kumar Das|  F|       26|         84|        121|[fn -> Gwen, mn -...|             Gwen|            Kumar|              Das|
-|Hank Biswas Das|  M|       30|         85|        158|[fn -> Hank, mn -...|             Hank|           Biswas|              Das|
-| Ivan Kumar Das|  M|       53|         86|        175|[fn -> Ivan, mn -...|             Ivan|            Kumar|              Das|
-|Jake Biswas Das|  M|       32|         87|        143|[fn -> Jake, mn -...|             Jake|           Biswas|              Das|
-| Kate Kumar Das|  F|       47|         88|        139|[fn -> Kate, mn -...|             Kate|            Kumar|              Das|
-|Luke Biswas Das|  M|       34|         89|        163|[fn -> Luke, mn -...|             Luke|           Biswas|              Das|
-| Myra Kumar Das|  F|       23|         90|         98|[fn -> Myra, mn -...|             Myra|            Kumar|              Das|
-|Neil Biswas Das|  M|       36|         92|        160|[fn -> Neil, mn -...|             Neil|           Biswas|              Das|
-| Omar Kumar Das|  M|       38|         93|        145|[fn -> Omar, mn -...|             Omar|            Kumar|              Das|
-|Page Biswas Das|  F|       31|         95|        135|[fn -> Page, mn -...|             Page|           Biswas|              Das|
-| Quin Kumar Das|  M|       29|         97|        176|[fn -> Quin, mn -...|             Quin|            Kumar|              Das|
-|Ruth Biswas Das|  F|       28|         99|        131|[fn -> Ruth, mn -...|             Ruth|           Biswas|              Das|
-+---------------+---+---------+-----------+-----------+--------------------+-----------------+-----------------+-----------------+
++---------------+---+---------+-----------+-----------+-------------------------------------+-----------------+-----------------+-----------------+
+|Name           |Sex|Age (yrs)|Height (in)|Weight (lb)|splitnamedict                        |splitnamedict[fn]|splitnamedict[mn]|splitnamedict[ln]|
++---------------+---+---------+-----------+-----------+-------------------------------------+-----------------+-----------------+-----------------+
+|Alex Kumar Das |M  |41       |72         |170        |[fn -> Alex, mn -> Kumar, ln -> Das] |Alex             |Kumar            |Das              |
+|Bert Biswas Das|M  |42       |73         |166        |[fn -> Bert, mn -> Biswas, ln -> Das]|Bert             |Biswas           |Das              |
+|Carl Kumar Das |M  |32       |74         |155        |[fn -> Carl, mn -> Kumar, ln -> Das] |Carl             |Kumar            |Das              |
+|Dave Biswas Das|M  |39       |75         |167        |[fn -> Dave, mn -> Biswas, ln -> Das]|Dave             |Biswas           |Das              |
+|Elly Kumar Das |F  |30       |76         |124        |[fn -> Elly, mn -> Kumar, ln -> Das] |Elly             |Kumar            |Das              |
+|Fran Biswas Das|F  |33       |77         |115        |[fn -> Fran, mn -> Biswas, ln -> Das]|Fran             |Biswas           |Das              |
+|Gwen Kumar Das |F  |26       |84         |121        |[fn -> Gwen, mn -> Kumar, ln -> Das] |Gwen             |Kumar            |Das              |
+|Hank Biswas Das|M  |30       |85         |158        |[fn -> Hank, mn -> Biswas, ln -> Das]|Hank             |Biswas           |Das              |
+|Ivan Kumar Das |M  |53       |86         |175        |[fn -> Ivan, mn -> Kumar, ln -> Das] |Ivan             |Kumar            |Das              |
+|Jake Biswas Das|M  |32       |87         |143        |[fn -> Jake, mn -> Biswas, ln -> Das]|Jake             |Biswas           |Das              |
+|Kate Kumar Das |F  |47       |88         |139        |[fn -> Kate, mn -> Kumar, ln -> Das] |Kate             |Kumar            |Das              |
+|Luke Biswas Das|M  |34       |89         |163        |[fn -> Luke, mn -> Biswas, ln -> Das]|Luke             |Biswas           |Das              |
+|Myra Kumar Das |F  |23       |90         |98         |[fn -> Myra, mn -> Kumar, ln -> Das] |Myra             |Kumar            |Das              |
+|Neil Biswas Das|M  |36       |92         |160        |[fn -> Neil, mn -> Biswas, ln -> Das]|Neil             |Biswas           |Das              |
+|Omar Kumar Das |M  |38       |93         |145        |[fn -> Omar, mn -> Kumar, ln -> Das] |Omar             |Kumar            |Das              |
+|Page Biswas Das|F  |31       |95         |135        |[fn -> Page, mn -> Biswas, ln -> Das]|Page             |Biswas           |Das              |
+|Quin Kumar Das |M  |29       |97         |176        |[fn -> Quin, mn -> Kumar, ln -> Das] |Quin             |Kumar            |Das              |
+|Ruth Biswas Das|F  |28       |99         |131        |[fn -> Ruth, mn -> Biswas, ln -> Das]|Ruth             |Biswas           |Das              |
++---------------+---+---------+-----------+-----------+-------------------------------------+-----------------+-----------------+-----------------+
 
 df_ss_csv_split_string_space_to_dict_mult_cols :  None
 df_ss_json_split_string_space_to_dict_mult_cols toPandas      age                 name  ...  splitnamedict[mn] splitnamedict[ln]
@@ -685,18 +685,18 @@ df_ss_json_split_string_space_to_dict_mult_cols toPandas      age               
 8  29.0     Justin Kumar Das  ...              Kumar               Das
 
 [9 rows x 8 columns]
-+----+-------------------+------+---+--------------------+-----------------+-----------------+-----------------+
-| age|               name|salary|sex|       splitnamedict|splitnamedict[fn]|splitnamedict[mn]|splitnamedict[ln]|
-+----+-------------------+------+---+--------------------+-----------------+-----------------+-----------------+
-|  37|  Michael Kumar Das|  1000|  M|[fn -> Michael, m...|          Michael|            Kumar|              Das|
-|  30|     Andy Kumar Das|  1000|  M|[fn -> Andy, mn -...|             Andy|            Kumar|              Das|
-|  19|   Justin Kumar Das|  1000|  M|[fn -> Justin, mn...|           Justin|            Kumar|              Das|
-|null|Caroline Biswas Das|  2000|  F|[fn -> Caroline, ...|         Caroline|           Biswas|              Das|
-|  30| Fabiana Biswas Das|  2000|  F|[fn -> Fabiana, m...|          Fabiana|           Biswas|              Das|
-|  19| Sandhya Biswas Das|  2000|  F|[fn -> Sandhya, m...|          Sandhya|           Biswas|              Das|
-|null|  Michael Kumar Das|  3000|  M|[fn -> Michael, m...|          Michael|            Kumar|              Das|
-|  40|     Andy Kumar Das|  3000|  M|[fn -> Andy, mn -...|             Andy|            Kumar|              Das|
-|  29|   Justin Kumar Das|  3000|  M|[fn -> Justin, mn...|           Justin|            Kumar|              Das|
-+----+-------------------+------+---+--------------------+-----------------+-----------------+-----------------+
++----+-------------------+------+---+-----------------------------------------+-----------------+-----------------+-----------------+
+|age |name               |salary|sex|splitnamedict                            |splitnamedict[fn]|splitnamedict[mn]|splitnamedict[ln]|
++----+-------------------+------+---+-----------------------------------------+-----------------+-----------------+-----------------+
+|37  |Michael Kumar Das  |1000  |M  |[fn -> Michael, mn -> Kumar, ln -> Das]  |Michael          |Kumar            |Das              |
+|30  |Andy Kumar Das     |1000  |M  |[fn -> Andy, mn -> Kumar, ln -> Das]     |Andy             |Kumar            |Das              |
+|19  |Justin Kumar Das   |1000  |M  |[fn -> Justin, mn -> Kumar, ln -> Das]   |Justin           |Kumar            |Das              |
+|null|Caroline Biswas Das|2000  |F  |[fn -> Caroline, mn -> Biswas, ln -> Das]|Caroline         |Biswas           |Das              |
+|30  |Fabiana Biswas Das |2000  |F  |[fn -> Fabiana, mn -> Biswas, ln -> Das] |Fabiana          |Biswas           |Das              |
+|19  |Sandhya Biswas Das |2000  |F  |[fn -> Sandhya, mn -> Biswas, ln -> Das] |Sandhya          |Biswas           |Das              |
+|null|Michael Kumar Das  |3000  |M  |[fn -> Michael, mn -> Kumar, ln -> Das]  |Michael          |Kumar            |Das              |
+|40  |Andy Kumar Das     |3000  |M  |[fn -> Andy, mn -> Kumar, ln -> Das]     |Andy             |Kumar            |Das              |
+|29  |Justin Kumar Das   |3000  |M  |[fn -> Justin, mn -> Kumar, ln -> Das]   |Justin           |Kumar            |Das              |
++----+-------------------+------+---+-----------------------------------------+-----------------+-----------------+-----------------+
 
 df_ss_json_split_string_space_to_dict_mult_cols : None

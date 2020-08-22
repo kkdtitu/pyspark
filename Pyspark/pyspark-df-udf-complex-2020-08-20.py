@@ -192,10 +192,10 @@ print("df_ss_json_new_2 \n", df_ss_json_new_2.show(29) ,"\n")
 #Using ALT Spark UDFs to add columns to a Spark DF
 #csv
 df_ss_csv_new_3 = df_ss_csv.withColumn("Age Squared", udf_square_val("Age (yrs)"))
-print("df_ss_csv_new_3 \n", df_ss_csv_new_3.show(29) ,"\n")
+print("df_ss_csv_new_3 \n", df_ss_csv_new_3.show(29, truncate=False) ,"\n")
 #json, string single quote
 df_ss_json_new_3 = df_ss_json.withColumn('Salary Squared !', udf_square_val('salary'))
-print("df_ss_json_new_3 \n", df_ss_json_new_3.show(29) ,"\n")
+print("df_ss_json_new_3 \n", df_ss_json_new_3.show(29, truncate=False) ,"\n")
 
 #Using ALT Spark UDFs 
 #csv
@@ -209,21 +209,21 @@ df_ss_json_new_sq_4 = df_ss_json.select('name', udf_hey_name('name').alias('Hey 
 #json, string double quote
 df_ss_json_new_dq_4 = df_ss_json.select("name", udf_hey_name("name").alias("Hey name"), "salary", \
         udf_square_val("salary").alias("salary Squared  !"))
-print("df_ss_csv_new_sq_4 \n", df_ss_csv_new_sq_4.show(28) ,"\n")
-print("df_ss_csv_new_ratio_4 \n", df_ss_csv_new_ratio_4.show(29) ,"\n")
-print("df_ss_json_new_sq_4 \n", df_ss_json_new_sq_4.show(29) ,"\n")
-print("df_ss_json_new_dq_4 \n", df_ss_json_new_dq_4.show(27) ,"\n")
+print("df_ss_csv_new_sq_4 \n", df_ss_csv_new_sq_4.show(28, truncate=False) ,"\n")
+print("df_ss_csv_new_ratio_4 \n", df_ss_csv_new_ratio_4.show(29, truncate=False) ,"\n")
+print("df_ss_json_new_sq_4 \n", df_ss_json_new_sq_4.show(29, truncate=False) ,"\n")
+print("df_ss_json_new_dq_4 \n", df_ss_json_new_dq_4.show(27, truncate=False) ,"\n")
 
 
 #using complex UDFs
 # converting string column to a list column 
 df_ss_1_udf_split_string_comma_to_list = df_ss_1.withColumn("countries-list", udf_split_string_comma_to_list("Countries"))
 print("df_ss_1_udf_split_string_comma_to_list printSchema:", df_ss_1_udf_split_string_comma_to_list.printSchema() ,"\n")
-print("df_ss_1_udf_split_string_comma_to_list :", df_ss_1_udf_split_string_comma_to_list.show(28) ,"\n")
+print("df_ss_1_udf_split_string_comma_to_list :", df_ss_1_udf_split_string_comma_to_list.show(28, truncate=False) ,"\n")
 
 df_ss_csv_split_string_space_to_list = df_ss_csv.withColumn("split-name-list", udf_split_string_space_to_list("Name"))
 print("df_ss_csv_split_string_space_to_list printSchema:", df_ss_csv_split_string_space_to_list.printSchema(), "\n")
-print("df_ss_csv_split_string_space_to_list :", df_ss_csv_split_string_space_to_list.show(28), "\n")
+print("df_ss_csv_split_string_space_to_list :", df_ss_csv_split_string_space_to_list.show(28, truncate=False), "\n")
 
 
 df_ss_json_split_string_space_to_list = df_ss_json.withColumn("split-name-list", udf_split_string_space_to_list("name"))
@@ -231,7 +231,7 @@ print("df_ss_json_split_string_space_to_list printSchema:", df_ss_json_split_str
 print("df_ss_json_split_string_space_to_list toPandas:", \
         df_ss_json_split_string_space_to_list.toPandas()) #pandas DF print better !
 print("df_ss_json_split_string_space_to_list :", \
-        df_ss_json_split_string_space_to_list.show(28))
+        df_ss_json_split_string_space_to_list.show(28, truncate=False))
 
 #converting a string column to a dict/json column
 df_ss_1_udf_split_string_comma_to_dict = df_ss_1.withColumn("countriesdict", udf_split_string_comma_to_dict("Countries"))
@@ -239,21 +239,21 @@ print("df_ss_1_udf_split_string_comma_to_dict printSchema:", df_ss_1_udf_split_s
 print("df_ss_1_udf_split_string_comma_to_dict toPandas:", \
         df_ss_1_udf_split_string_comma_to_dict.toPandas() ,"\n") #pandas DF print better !
 print("df_ss_1_udf_split_string_comma_to_dict :", \
-        df_ss_1_udf_split_string_comma_to_dict.show(28) ,"\n")
+        df_ss_1_udf_split_string_comma_to_dict.show(28, truncate=False) ,"\n")
 
 df_ss_csv_split_string_space_to_dict = df_ss_csv.withColumn("splitnamedict", \
         udf_split_string_space_to_dict("Name"))
 print("df_ss_csv_split_string_space_to_dict printSchema:", df_ss_csv_split_string_space_to_dict.printSchema())
 print("df_ss_csv_split_string_space_to_dict toPandas:", \
         df_ss_csv_split_string_space_to_dict.toPandas()) #pandas DF print better !
-print("df_ss_csv_split_string_space_to_dict :", df_ss_csv_split_string_space_to_dict.show(28))
+print("df_ss_csv_split_string_space_to_dict :", df_ss_csv_split_string_space_to_dict.show(28, truncate=False))
 
 df_ss_json_split_string_space_to_dict = df_ss_json.withColumn("splitnamedict", \
         udf_split_string_space_to_dict("name"))
 print("df_ss_json_split_string_space_to_dict printSchema: ", df_ss_json_split_string_space_to_dict.printSchema())
 print("df_ss_json_split_string_space_to_dict toPandas: ", \
         df_ss_json_split_string_space_to_dict.toPandas()) #pandas DF print better !
-print("df_ss_json_split_string_space_to_dict: ", df_ss_json_split_string_space_to_dict.show(28))
+print("df_ss_json_split_string_space_to_dict: ", df_ss_json_split_string_space_to_dict.show(28, truncate=False))
 
 # Now we are going to split the dict column into multiple columns
 list_c = ["c1", "c2", "c3"]
@@ -272,12 +272,12 @@ print(list_n_for_select_expr)
 
 df_ss_1_udf_split_string_comma_to_dict_mult_cols = df_ss_1_udf_split_string_comma_to_dict.selectExpr("*", *list_c_for_select_expr)
 print("df_ss_1_udf_split_string_comma_to_dict_mult_cols toPandas:", df_ss_1_udf_split_string_comma_to_dict_mult_cols.toPandas())
-print("df_ss_1_udf_split_string_comma_to_dict_mult_cols :", df_ss_1_udf_split_string_comma_to_dict_mult_cols.show(45))
+print("df_ss_1_udf_split_string_comma_to_dict_mult_cols :", df_ss_1_udf_split_string_comma_to_dict_mult_cols.show(45, truncate=False))
 
 df_ss_csv_split_string_space_to_dict_mult_cols = df_ss_csv_split_string_space_to_dict.selectExpr("*", *list_n_for_select_expr)
 print("df_ss_csv_split_string_space_to_dict_mult_cols toPandas", df_ss_csv_split_string_space_to_dict_mult_cols.toPandas())
-print("df_ss_csv_split_string_space_to_dict_mult_cols : ", df_ss_csv_split_string_space_to_dict_mult_cols.show(45))
+print("df_ss_csv_split_string_space_to_dict_mult_cols : ", df_ss_csv_split_string_space_to_dict_mult_cols.show(45, truncate=False))
 
 df_ss_json_split_string_space_to_dict_mult_cols = df_ss_json_split_string_space_to_dict.selectExpr("*", *list_n_for_select_expr)
 print("df_ss_json_split_string_space_to_dict_mult_cols toPandas ", df_ss_json_split_string_space_to_dict_mult_cols.toPandas())
-print("df_ss_json_split_string_space_to_dict_mult_cols :", df_ss_json_split_string_space_to_dict_mult_cols.show(46))
+print("df_ss_json_split_string_space_to_dict_mult_cols :", df_ss_json_split_string_space_to_dict_mult_cols.show(46, truncate=False))
