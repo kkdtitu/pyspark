@@ -1,6 +1,6 @@
-Config 1: [('spark.app.name', 'pyspark-df-udf-complex.py'), ('spark.driver.port', '61140'), ('spark.app.id', 'local-1598193148786'), ('spark.driver.host', '192.168.1.15'), ('spark.rdd.compress', 'True'), ('spark.serializer.objectStreamReset', '100'), ('spark.master', 'local[*]'), ('spark.executor.id', 'driver'), ('spark.submit.deployMode', 'client')] 
+Config 1: [('spark.driver.port', '61403'), ('spark.app.name', 'pyspark-df-udf-complex.py'), ('spark.driver.host', '192.168.1.15'), ('spark.rdd.compress', 'True'), ('spark.serializer.objectStreamReset', '100'), ('spark.master', 'local[*]'), ('spark.app.id', 'local-1598195779867'), ('spark.executor.id', 'driver'), ('spark.submit.deployMode', 'client')] 
 
-Config 2: <pyspark.sql.session.SparkSession object at 0x10cc60a50> 
+Config 2: <pyspark.sql.session.SparkSession object at 0x117f7ba50> 
 
 root
  |-- Name: string (nullable = true)
