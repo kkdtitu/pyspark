@@ -57,20 +57,12 @@ def udf_split_string_comma_to_list(string1):
         if result is None:
                 return(string1, 0)
         list1 = list()
-        if not result.group(1) is None:
-                list1.append(result.group(1))   #first group from pattern
-        else:
-                list1.append(0)
+        for i in [1,2,3]:
+                if not result.group(i) is None:
+                        list1.append(result.group(i))   #i-th group from pattern
+                else:
+                        list1.append(0)
 
-        if not result.group(2) is None:
-                list1.append(result.group(2))   #second group from pattern 
-        else:
-                list1.append(0)
-        
-        if not result.group(3) is None:
-                list1.append(result.group(3))   #third group from pattern
-        else:
-                list1.append(0)
         return list1
 
 @udf(returnType=ArrayType(StringType())) #ArrayType(StringType) => returns a list of strings
@@ -80,20 +72,11 @@ def udf_split_string_space_to_list(string1):
         if result is None:
                 return(string1, 0)
         list1 = []
-        if not result.group(1) is None:
-                list1.append(result.group(1))   #first group from pattern
-        else:
-                list1.append(0)
-
-        if not result.group(3) is None:
-                list1.append(result.group(3))   #third group from pattern
-        else:
-                list1.append(0)
-
-        if not result.group(5) is None:
-                list1.append(result.group(5))   #fifth group from pattern
-        else:
-                list1.append(0)
+        for i in [1, 3, 5]:
+                if not result.group(i) is None:
+                        list1.append(result.group(i))   #i-th group from pattern
+                else:
+                        list1.append(0)
 
         return list1
 
@@ -105,22 +88,12 @@ def udf_split_string_comma_to_dict(string1):
         if result is None:
                 return(string1, 0)
         dict1 = dict()
-
-        if not result.group(1) is None:
-                dict1["c1"]=result.group(1)     #first group from pattern
-        else:
-                dict1["c1"]=0
+        for (x,y) in [("c1",1), ("c2",2), ("c3",3)]:   #iterating through a list of tuples
+                if not result.group(y) is None:
+                        dict1[x]=result.group(y)     #i-th group from pattern
+                else:
+                        dict1[x]=0
         
-        if not result.group(2) is None:
-                dict1["c2"]=result.group(2)     #second group from pattern
-        else:
-                dict1["c2"]=0
-        
-        if not result.group(3) is None:
-                dict1["c3"]=result.group(3)     #third group from pattern
-        else:
-                dict1["c3"]=0
-
         return dict1
 
 @udf(returnType=MapType(StringType(), StringType()))    #MapType(StringType, StringType) => returns a dict/json of K/V strings
@@ -130,21 +103,11 @@ def udf_split_string_space_to_dict(string1):
         if result is None:
                 return(string1, 0)
         dict1 = {}
-
-        if not result.group(1) is None:
-                dict1["fn"] = result.group(1)     #first group from pattern
-        else:
-                dict1["fn"]=0
-
-        if not result.group(3) is None:
-                dict1["mn"] = result.group(3)     #third group from pattern
-        else:
-                dict1["mn"]=0
-
-        if not result.group(5) is None:        
-                dict1["ln"] = result.group(5)     #fifth group from pattern
-        else:
-                dict1["ln"]=0
+        for (x,y) in [("fn",1), ("mn",3), ("ln",5)]:    #iterating through a list of tuples
+                if not result.group(y) is None:
+                        dict1[x] = result.group(y)     #i-th group from pattern
+                else:
+                        dict1[x]=0
 
         return dict1
 
