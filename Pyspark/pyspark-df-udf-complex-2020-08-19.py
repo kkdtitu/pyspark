@@ -54,20 +54,47 @@ def udf_ratio_cols (a,b):
 def udf_split_string_comma_to_list(string1):
         pattern = "([A-Za-z0-9]+),([A-Za-z0-9]+),([A-Za-z0-9]+)"
         result = re.search(pattern, string1)
+        if result is None:
+                return(string1, 0)
         list1 = list()
-        list1.append(result.group(1))   #first group from pattern
-        list1.append(result.group(2))   #second group from pattern 
-        list1.append(result.group(3))   #third group from pattern
+        if not result.group(1) is None:
+                list1.append(result.group(1))   #first group from pattern
+        else:
+                list1.append(0)
+
+        if not result.group(2) is None:
+                list1.append(result.group(2))   #second group from pattern 
+        else:
+                list1.append(0)
+        
+        if not result.group(3) is None:
+                list1.append(result.group(3))   #third group from pattern
+        else:
+                list1.append(0)
         return list1
 
 @udf(returnType=ArrayType(StringType())) #ArrayType(StringType) => returns a list of strings
 def udf_split_string_space_to_list(string1):
         pattern = "([A-Za-z0-9]+)(\s+)([A-Za-z0-9]+)(\s+)([A-Za-z0-9]+)"
         result = re.search(pattern,string1)
+        if result is None:
+                return(string1, 0)
         list1 = []
-        list1.append(result.group(1))   #first group from pattern
-        list1.append(result.group(3))   #third group from pattern
-        list1.append(result.group(5))   #fifth group from pattern
+        if not result.group(1) is None:
+                list1.append(result.group(1))   #first group from pattern
+        else:
+                list1.append(0)
+
+        if not result.group(3) is None:
+                list1.append(result.group(3))   #third group from pattern
+        else:
+                list1.append(0)
+
+        if not result.group(5) is None:
+                list1.append(result.group(5))   #fifth group from pattern
+        else:
+                list1.append(0)
+
         return list1
 
 #complex UDF with returnType = MapType, returns a dict/json of key/value strings
@@ -75,20 +102,50 @@ def udf_split_string_space_to_list(string1):
 def udf_split_string_comma_to_dict(string1):
         pattern="([A-Za-z0-9]+),([A-Za-z0-9]+),([A-Za-z0-9]+)"
         result = re.search(pattern, string1)
+        if result is None:
+                return(string1, 0)
         dict1 = dict()
-        dict1["c1"]=result.group(1)     #first group from pattern
-        dict1["c2"]=result.group(2)     #second group from pattern
-        dict1["c3"]=result.group(3)     #third group from pattern
+
+        if not result.group(1) is None:
+                dict1["c1"]=result.group(1)     #first group from pattern
+        else:
+                dict1["c1"]=0
+        
+        if not result.group(2) is None:
+                dict1["c2"]=result.group(2)     #second group from pattern
+        else:
+                dict1["c2"]=0
+        
+        if not result.group(3) is None:
+                dict1["c3"]=result.group(3)     #third group from pattern
+        else:
+                dict1["c3"]=0
+
         return dict1
 
 @udf(returnType=MapType(StringType(), StringType()))    #MapType(StringType, StringType) => returns a dict/json of K/V strings
 def udf_split_string_space_to_dict(string1):
         pattern="([a-zA-Z0-9]+)(\s+)([0-9a-zA-Z]+)(\s+)([A-Za-z0-9]+)"
         result = re.search(pattern, string1)
+        if result is None:
+                return(string1, 0)
         dict1 = {}
-        dict1["fn"] = result.group(1)     #first group from pattern
-        dict1["mn"] = result.group(3)     #third group from pattern
-        dict1["ln"] = result.group(5)     #fifth group from pattern
+
+        if not result.group(1) is None:
+                dict1["fn"] = result.group(1)     #first group from pattern
+        else:
+                dict1["fn"]=0
+
+        if not result.group(3) is None:
+                dict1["mn"] = result.group(3)     #third group from pattern
+        else:
+                dict1["mn"]=0
+
+        if not result.group(5) is None:        
+                dict1["ln"] = result.group(5)     #fifth group from pattern
+        else:
+                dict1["ln"]=0
+
         return dict1
 
 #spark = SparkSession \
